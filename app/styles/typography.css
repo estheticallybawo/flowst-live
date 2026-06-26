@@ -1,0 +1,39 @@
+/* ============================================================
+   Flowst — Typography tokens
+   Display: Unbounded (400–600).  Body/UI: Albert Sans (400–600).
+   Headings sit at 500–600; body at 400–500. Generous leading.
+
+   The font families resolve to next/font CSS variables
+   (--font-unbounded / --font-albert), assigned on <html> in
+   app/layout.tsx, with web-safe fallbacks.
+   ============================================================ */
+:root {
+  --font-heading: var(--font-unbounded), system-ui, sans-serif;
+  --font-body: var(--font-albert), system-ui, sans-serif;
+
+  /* Fluid type scale */
+  --text-hero: clamp(3.5rem, 6vw, 5.75rem);
+  --text-h1: clamp(2.75rem, 5vw, 4.75rem);
+  --text-h2: clamp(2.25rem, 3.5vw, 3.25rem);
+  --text-h3: clamp(1.5rem, 2vw, 2rem);
+  --text-h4: 1.125rem;
+  --text-body-lg: 1.25rem;
+  --text-body: 1rem;
+  --text-caption: 0.8125rem;
+  --text-micro: 0.75rem;
+
+  /* Weights */
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-display: 600;
+
+  /* Leading */
+  --leading-tight: 1.04;   /* hero / large display */
+  --leading-snug: 1.18;    /* headings */
+  --leading-body: 1.6;     /* body copy */
+
+  /* Tracking */
+  --tracking-display: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+}

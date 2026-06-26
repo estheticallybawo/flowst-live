@@ -1,0 +1,88 @@
+/* ============================================================
+   Flowst — Base elements & utility surfaces
+   Element defaults + reusable surface classes (glass card, pill,
+   neumorphic well) that encode the brand's neumorphic/glass hybrid.
+   ============================================================ */
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--weight-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-foreground);
+  background: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+
+/* ---- Cloud canvas backdrop ---- */
+.flowst-canvas {
+  background:
+    radial-gradient(120% 90% at 50% -10%, var(--sky-top) 0%, var(--sky-mid) 42%, var(--sky-bottom) 100%);
+}
+
+/* ---- Glass card ---- */
+.flowst-glass-card {
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card-soft), var(--shadow-inner-soft);
+  -webkit-backdrop-filter: blur(var(--blur-soft));
+  backdrop-filter: blur(var(--blur-soft));
+}
+
+/* ---- Solid neumorphic card ---- */
+.flowst-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card), var(--shadow-inner-soft);
+}
+
+/* ---- Neumorphic sunken well ---- */
+.flowst-well {
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-inset-well);
+}
+
+/* ---- Emphasis pill (background highlight on a word) ---- */
+.flowst-pill {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  color: var(--color-foreground);
+  background: var(--pill-amber);
+  border-radius: var(--radius-pill);
+  padding: 0.12em 0.62em;
+  line-height: inherit;
+  white-space: nowrap;
+}
+.flowst-pill--amber  { background: var(--pill-amber); }
+.flowst-pill--mint   { background: var(--pill-mint); }
+.flowst-pill--sage   { background: var(--pill-sage); }
+.flowst-pill--rose   { background: var(--pill-rose); }
+.flowst-pill--blue   { background: var(--pill-blue); }
+.flowst-pill--orange { background: var(--pill-orange); }
+.flowst-pill--magenta{ background: var(--pill-magenta); }
+.flowst-pill--lavender { background: var(--pill-lavender); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

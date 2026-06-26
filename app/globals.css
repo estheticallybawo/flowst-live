@@ -1,0 +1,91 @@
+/* ============================================================
+   Flowst Marketing — global stylesheet entry point.
+   Tokens + base, mirroring the design system's styles.css closure.
+   Fonts are loaded via next/font in app/layout.tsx (not @imported).
+   ============================================================ */
+@import './styles/colors.css';
+@import './styles/agents.css';
+@import './styles/typography.css';
+@import './styles/spacing.css';
+@import './styles/effects.css';
+@import './styles/base.css';
+
+/* ---- Marketing layout helpers (from the prototype's inline <style>) ----
+   NOTE: the prototype relied on the default content-box sizing (several
+   components set an explicit width *and* padding), so we deliberately do
+   NOT set a global box-sizing reset here. */
+
+.nav-links a {
+  text-decoration: none;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Responsive collapse — matches the prototype's @media (max-width: 920px) */
+.hero-pill-field {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(2.35rem, auto));
+  align-items: center;
+  min-height: 6.25rem;
+  padding: 0 0.35rem 0.8rem;
+  pointer-events: none;
+}
+
+.hero-pill-field__item {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.hero-agent-row {
+  display: flex;
+  gap: 0.8rem;
+}
+
+@media (max-width: 920px) {
+  .hero-grid,
+  .two-col,
+  .three-col,
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-features {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+  .steps .step-arrow {
+    display: none !important;
+  }
+
+  .hero-pill-field {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    min-height: 5.75rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-pill-field {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem 0.8rem;
+    min-height: 0;
+    padding: 0.5rem 0 1.25rem;
+  }
+
+  .hero-pill-field__item {
+    transform: none !important;
+  }
+
+  .hero-agent-row {
+    gap: 0.55rem;
+  }
+}

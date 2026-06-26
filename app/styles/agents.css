@@ -1,0 +1,365 @@
+/* Active agent accents and agent-specific layouts. */
+:root {
+  --agent-nyx: #ffc861;
+  --agent-miro: #8179df;
+  --agent-amira: #ff8a25;
+
+  --agent-nyx-soft: rgba(255, 200, 97, 0.24);
+  --agent-miro-soft: rgba(129, 121, 223, 0.18);
+  --agent-amira-soft: rgba(255, 138, 37, 0.18);
+
+  --pill-amber: rgba(255, 200, 97, 0.44);
+  --pill-mint: rgba(54, 226, 208, 0.28);
+  --pill-sage: rgba(116, 224, 140, 0.28);
+  --pill-rose: rgba(255, 139, 107, 0.28);
+  --pill-blue: rgba(154, 208, 255, 0.36);
+  --pill-orange: rgba(255, 166, 61, 0.3);
+  --pill-magenta: rgba(255, 107, 157, 0.26);
+  --pill-lavender: rgba(154, 166, 255, 0.26);
+}
+
+.agents-library__intro {
+  max-width: 680px;
+  margin-top: 1rem;
+  margin-left: auto;
+  color: var(--color-muted);
+  font-size: var(--text-body-lg);
+}
+
+.agents-library__heading {
+  text-align: right;
+}
+
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.agent-card,
+.agent-profile {
+  --agent-accent: var(--agent-nyx);
+  --agent-soft: var(--agent-nyx-soft);
+  --agent-glow: var(--glow-nyx);
+}
+
+[data-agent="miro"] {
+  --agent-accent: var(--agent-miro);
+  --agent-soft: var(--agent-miro-soft);
+  --agent-glow: var(--glow-miro);
+}
+
+[data-agent="amira"] {
+  --agent-accent: var(--agent-amira);
+  --agent-soft: var(--agent-amira-soft);
+  --agent-glow: var(--glow-amira);
+}
+
+.agent-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-glass);
+  box-shadow: var(--shadow-card-soft), var(--shadow-inner-soft);
+  transition:
+    transform var(--dur-slow) var(--ease-soft),
+    box-shadow var(--dur-slow) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+
+.agent-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--agent-glow), var(--shadow-card);
+}
+
+.agent-card:focus-visible,
+.profile-back-link:focus-visible {
+  outline: 3px solid var(--agent-accent);
+  outline-offset: 4px;
+}
+
+.agent-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 0.35rem 0.35rem;
+}
+
+.agent-card__world {
+  color: var(--color-soft-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.agent-card h3 {
+  margin-top: 0.2rem;
+  font-size: 1.75rem;
+}
+
+.agent-card__role {
+  margin-top: 0.3rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.agent-card__summary {
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+
+.agent-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.agent-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.35rem;
+  font-weight: 600;
+}
+
+.agent-card__link svg {
+  transition: transform var(--dur-fast) var(--ease-soft);
+}
+
+.agent-card:hover .agent-card__link svg {
+  transform: translateX(4px);
+}
+
+.agent-profile {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 8%, var(--agent-soft), transparent 28rem),
+    radial-gradient(circle at 8% 32%, var(--agent-soft), transparent 24rem),
+    linear-gradient(180deg, var(--sky-top), var(--color-canvas) 34rem);
+}
+
+.agent-profile__main {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 2rem 16px 1px;
+}
+
+.profile-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: var(--radius-pill);
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.agent-profile__hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  padding: clamp(2rem, 5vw, 4.5rem) 0;
+}
+
+.agent-profile__portrait {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(180deg, var(--color-surface-glass-strong), var(--agent-soft));
+  box-shadow: var(--agent-glow), var(--shadow-card);
+}
+
+.agent-profile__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.agent-profile__eyebrow {
+  color: var(--color-soft-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.agent-profile__hero h1 {
+  margin-top: 0.55rem;
+  font-size: var(--text-h1);
+}
+
+.agent-profile__role {
+  margin-top: 0.6rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 500;
+}
+
+.agent-profile__summary {
+  max-width: 620px;
+  margin-top: 1.25rem;
+  color: var(--color-muted);
+  font-size: var(--text-body-lg);
+}
+
+.agent-profile__promise {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--agent-soft);
+  font-weight: 600;
+}
+
+.agent-profile__traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.agent-profile__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding-bottom: 2rem;
+}
+
+.profile-section {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-glass);
+  box-shadow: var(--shadow-card-soft), var(--shadow-inner-soft);
+  backdrop-filter: blur(var(--blur-soft));
+}
+
+.profile-section--wide {
+  grid-column: 1 / -1;
+}
+
+.profile-section h2 {
+  font-size: var(--text-h3);
+}
+
+.profile-list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-list li {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  color: var(--color-muted);
+}
+
+.profile-list__marker {
+  display: inline-flex;
+  width: 1.55rem;
+  height: 1.55rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--agent-soft);
+  color: var(--color-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.profile-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+}
+
+.profile-flow__step {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card-soft), var(--shadow-inner-soft);
+}
+
+.profile-flow__step strong {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+.profile-flow__step p {
+  margin-top: 0.4rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.profile-model {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: var(--agent-soft);
+}
+
+.profile-model strong {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.profile-model span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 920px) {
+  .agent-grid,
+  .agent-profile__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-section--wide {
+    grid-column: auto;
+  }
+
+  .agent-profile__hero {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-profile__portrait {
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .agent-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .agent-profile__main {
+    padding-top: 1.25rem;
+  }
+
+  .agent-profile__hero {
+    padding-top: 2rem;
+  }
+
+  .agent-profile__portrait {
+    aspect-ratio: 1;
+  }
+}

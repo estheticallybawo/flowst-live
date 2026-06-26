@@ -1,0 +1,37 @@
+/* ============================================================
+   Flowst — Shadow, blur, glass & glow tokens
+   Neumorphic + glassmorphism hybrid: soft pillowy drop shadows,
+   inner highlight, frosted translucency, ambient accent glows.
+   ============================================================ */
+:root {
+  /* Blur */
+  --blur-glass: 24px;
+  --blur-soft: 14px;
+
+  /* Elevation — soft, cool-grey, large-radius drop shadows */
+  --shadow-card: 0 24px 80px rgba(70, 81, 104, 0.14);
+  --shadow-card-soft: 0 16px 48px rgba(70, 81, 104, 0.10);
+  --shadow-pill: 0 8px 20px rgba(70, 81, 104, 0.12);
+  --shadow-avatar: 0 28px 80px rgba(70, 81, 104, 0.16);
+
+  /* Neumorphic inner highlight (top rim) */
+  --shadow-inner-soft: inset 0 1px 1px rgba(255, 255, 255, 0.82);
+  /* Neumorphic inset well (sunken inputs / accordions) */
+  --shadow-inset-well: inset 0 2px 6px rgba(70, 81, 104, 0.12),
+                       inset 0 -1px 1px rgba(255, 255, 255, 0.7);
+
+  /* Composite glass card shadow (drop + inner rim) */
+  --shadow-glass: 0 24px 80px rgba(70, 81, 104, 0.14),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.82);
+
+  /* Ambient accent glows (place behind active containers/avatars) */
+  --glow-nyx: 0 0 64px rgba(255, 200, 97, 0.28);
+  --glow-miro: 0 0 64px rgba(129, 121, 223, 0.26);
+  --glow-amira: 0 0 64px rgba(255, 138, 37, 0.25);
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --dur-fast: 180ms; /* @kind other */
+  --dur-base: 260ms; /* @kind other */
+  --dur-slow: 360ms; /* @kind other */
+}

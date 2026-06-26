@@ -1,0 +1,41 @@
+/* ============================================================
+   Flowst — Color tokens
+   Calm cloud canvas, solid dark type, pastel agent accents.
+   Rule: text is ALWAYS solid dark. Color lives in pills, glows,
+   surfaces — never in typography.
+   ============================================================ */
+:root {
+  /* Core surfaces */
+  --color-canvas: #F7FAFF;            /* global page background */
+  --color-surface: #FFFFFF;           /* opaque cards */
+  --color-surface-glass: rgba(255, 255, 255, 0.64);
+  --color-surface-glass-strong: rgba(255, 255, 255, 0.78);
+  --color-surface-sunken: #EEF3FB;    /* inset wells, inputs */
+
+  /* Text — solid dark only */
+  --color-foreground: #0D0F14;        /* all copy, headings, icons */
+  --color-muted: #464A53;             /* secondary text, metadata */
+  --color-soft-muted: #6E7687;        /* captions, placeholders, hints */
+  --color-inverse: #FFFFFF;           /* text on dark fills */
+
+  /* Structure */
+  --color-border: #DBDEE5;            /* dividers, outlines */
+  --color-border-soft: rgba(219, 222, 229, 0.65);
+  --color-glass-border: rgba(255, 255, 255, 0.72);  /* white rim on glass */
+  --color-hairline: rgba(13, 15, 20, 0.08);
+
+  /* Brand mark */
+  --color-logo-dark: #0D0F14;
+  --color-logo-light: #FFFFFF;
+
+  /* Primary / secondary actions */
+  --color-primary: #0D0F14;
+  --color-primary-hover: #252A33;
+  --color-secondary: #FFFFFF;
+  --color-secondary-hover: #F1F5FB;
+
+  /* Sky gradient for hero/cloud canvases */
+  --sky-top: #EAF2FF;
+  --sky-mid: #F4F8FF;
+  --sky-bottom: #F7FAFF;
+}
