@@ -4,9 +4,9 @@ import { Section, SectionTitle } from "./Section";
 import type { PillColor } from "@/lib/agents";
 
 const PILLS: { a: string; b: string; c: PillColor }[] = [
-  { a: "Learn it", b: "clearly", c: "amber" },
-  { a: "See it", b: "visually", c: "mint" },
-  { a: "Prove it", b: "later", c: "rose" },
+  { a: "Learn it", b: "with a path", c: "lavender" },
+  { a: "Say it", b: "out loud", c: "orange" },
+  { a: "Prove it", b: "with clarity", c: "sage" },
 ];
 
 export function Pillars() {
@@ -16,7 +16,7 @@ export function Pillars() {
         <SectionTitle
           style={{ margin: "0 auto", maxWidth: 820, fontSize: "clamp(2.4rem, 4.5vw, 3.6rem)" }}
         >
-          Learning should move from understanding to memory.
+          Learning should become something you can explain, not just something you recognize.
         </SectionTitle>
         <div
           style={{

@@ -7,14 +7,16 @@ const faqSource = readFileSync(
   "utf8",
 );
 
-test("FAQ uses the conversion-focused waitlist questions", () => {
+test("FAQ answers the pre-launch product-truth questions", () => {
   const expectedQuestions = [
-    "What is Flowst?",
-    "How is Flowst different from a normal AI tutor?",
-    "Do I have to know which agent to start with?",
-    "What happens in early access?",
-    "Will there be free and premium features?",
-    "Is Amira just an image generator?",
+    "Is Flowst live yet?",
+    "What happens when I join the newsletter?",
+    "What will Flowst help me do?",
+    "Do I need to choose an agent first?",
+    "Is Amira live yet?",
+    "Can institutions use Flowst with students?",
+    "What does the certificate prove?",
+    "Is Flowst a professional certification?",
   ];
 
   for (const question of expectedQuestions) {
@@ -24,15 +26,15 @@ test("FAQ uses the conversion-focused waitlist questions", () => {
   assert.equal((faqSource.match(/q: "/g) ?? []).length, expectedQuestions.length);
 });
 
-test("FAQ keeps pricing soft and converts to the waitlist", () => {
-  assert.match(faqSource, /"use client"/);
-  assert.match(faqSource, /useNotify/);
-  assert.match(faqSource, /Before you join the loop\./);
-  assert.match(faqSource, /Join the list for early access updates\./);
-  assert.match(faqSource, /Notify Me/);
-  assert.match(faqSource, /Access tiers are still being shaped/);
-
-  assert.doesNotMatch(faqSource, /\$\d/);
-  assert.doesNotMatch(faqSource, /per month/i);
-  assert.doesNotMatch(faqSource, /unlimited access/i);
+test("FAQ preserves pre-launch safety boundaries", () => {
+  assert.match(faqSource, /still in build/i);
+  assert.match(faqSource, /newsletter/i);
+  assert.match(faqSource, /Sophia/);
+  assert.match(faqSource, /Not active yet|in progress/i);
+  assert.match(faqSource, /student coupon support/i);
+  assert.match(faqSource, /Explanation Clarity Certificate/);
+  assert.doesNotMatch(faqSource, /Google sign-in/i);
+  assert.doesNotMatch(faqSource, /N19,999|N200,000|\$19|\$190/);
+  assert.doesNotMatch(faqSource, /Certified .*Developer/i);
+  assert.doesNotMatch(faqSource, /JUDGE100|SCHOOL50|100OFF|50OFF|FLOWST100/i);
 });

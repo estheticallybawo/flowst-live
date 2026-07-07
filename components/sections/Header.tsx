@@ -4,7 +4,13 @@ import { Button } from "../ui/Button";
 import { Bell } from "../Icons";
 import { useNotify } from "../NotifyProvider";
 
-const LINKS = ["How it works", "For creators", "For teams", "About"];
+const LINKS = [
+  { label: "How it works", href: "#how-it-works" },
+  { label: "Agents", href: "#agents" },
+  { label: "Institutions", href: "#institutions" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Blog", href: "#blog" },
+];
 
 export function Header() {
   const { notify } = useNotify();
@@ -56,10 +62,10 @@ export function Header() {
             </span>
           </a>
           <div style={{ display: "flex", gap: "1.9rem" }} className="nav-links">
-            {LINKS.map((l) => (
+            {LINKS.map((link) => (
               <a
-                key={l}
-                href="#"
+                key={link.href}
+                href={link.href}
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "0.95rem",
@@ -70,15 +76,16 @@ export function Header() {
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.85")}
               >
-                {l}
+                {link.label}
               </a>
             ))}
           </div>
-          <Button variant="glass" onClick={notify} iconRight={<Bell size={18} />}>
-            Notify Me
+          <Button variant="accent" onClick={notify} iconRight={<Bell size={18} />}>
+            Notify me
           </Button>
         </nav>
       </header>
     </div>
   );
 }
+

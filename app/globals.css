@@ -47,10 +47,24 @@
   gap: 0.8rem;
 }
 
+/* Institutions banner — mobile-only coupon CTA (hidden on desktop) */
+.partner-coupon-cta {
+  display: none;
+  margin-top: 1.2rem;
+}
+
+/* Lead dialog — role/students row collapses on small phones */
+.lead-dialog__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
 @media (max-width: 920px) {
   .hero-grid,
   .two-col,
   .three-col,
+  .partner-grid,
   .footer-grid {
     grid-template-columns: 1fr !important;
   }
@@ -60,14 +74,26 @@
   .nav-links {
     display: none !important;
   }
+  .steps {
+    flex-direction: column;
+  }
   .steps .step-arrow {
     display: none !important;
+  }
+  .partner-coupon-cta {
+    display: flex;
   }
 
   .hero-pill-field {
     grid-template-columns: repeat(7, minmax(0, 1fr));
     min-height: 5.75rem;
     margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lead-dialog__row {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -1,9 +1,30 @@
 import Link from "next/link";
 
-import type { AgentProfile } from "@/lib/agents";
+import type { AgentId, AgentProfile, PillColor } from "@/lib/agents";
 import { Arrow } from "../Icons";
 import { AgentAvatar } from "./AgentAvatar";
-import { Tag } from "./Tag";
+import { Pill } from "./Pill";
+
+const AGENT_PILL_COLORS: Record<AgentId, PillColor> = {
+  miro: "lavender",
+  sophia: "amber",
+  amira: "orange",
+};
+
+function AgentPill({ agentId, children }: { agentId: AgentId; children: React.ReactNode }) {
+  return (
+    <Pill
+      color={AGENT_PILL_COLORS[agentId]}
+      style={{
+        fontSize: "0.8125rem",
+        padding: "0.34rem 0.75rem",
+        lineHeight: 1,
+      }}
+    >
+      {children}
+    </Pill>
+  );
+}
 
 export function AgentCard({ agent }: { agent: AgentProfile }) {
   return (
@@ -26,12 +47,16 @@ export function AgentCard({ agent }: { agent: AgentProfile }) {
           <h3>{agent.name}</h3>
           <p className="agent-card__role">{agent.role}</p>
         </div>
+        <div className="agent-card__tags" aria-label={`${agent.name} availability`}>
+          <AgentPill agentId={agent.id}>{agent.status}</AgentPill>
+          <AgentPill agentId={agent.id}>{agent.contextLabel}</AgentPill>
+        </div>
         <p className="agent-card__summary">{agent.summary}</p>
         <div className="agent-card__tags">
           {agent.tags.slice(0, 3).map((tag) => (
-            <Tag key={tag} agent={agent.id}>
+            <AgentPill key={tag} agentId={agent.id}>
               {tag}
-            </Tag>
+            </AgentPill>
           ))}
         </div>
         <span className="agent-card__link">

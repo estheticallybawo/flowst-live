@@ -1,8 +1,29 @@
 import Link from "next/link";
 
-import type { AgentProfile } from "@/lib/agents";
+import type { AgentId, AgentProfile, PillColor } from "@/lib/agents";
 import { Arrow } from "../Icons";
-import { Tag } from "../ui/Tag";
+import { Pill } from "../ui/Pill";
+
+const AGENT_PILL_COLORS: Record<AgentId, PillColor> = {
+  miro: "lavender",
+  sophia: "amber",
+  amira: "orange",
+};
+
+function ProfilePill({ agentId, children }: { agentId: AgentId; children: React.ReactNode }) {
+  return (
+    <Pill
+      color={AGENT_PILL_COLORS[agentId]}
+      style={{
+        fontSize: "0.8125rem",
+        padding: "0.34rem 0.75rem",
+        lineHeight: 1,
+      }}
+    >
+      {children}
+    </Pill>
+  );
+}
 
 function ProfileSection({
   title,
@@ -53,13 +74,17 @@ export function AgentProfileView({ agent }: { agent: AgentProfile }) {
           <p className="agent-profile__eyebrow">{agent.world}</p>
           <h1>{agent.name}</h1>
           <p className="agent-profile__role">{agent.role}</p>
+          <div className="agent-profile__traits" aria-label={`${agent.name} availability`}>
+            <ProfilePill agentId={agent.id}>{agent.status}</ProfilePill>
+            <ProfilePill agentId={agent.id}>{agent.contextLabel}</ProfilePill>
+          </div>
           <p className="agent-profile__summary">{agent.summary}</p>
           <p className="agent-profile__promise">{agent.promise}</p>
           <div className="agent-profile__traits" aria-label={`${agent.name} personality`}>
             {agent.personality.map((trait) => (
-              <Tag key={trait} agent={agent.id} dot>
+              <ProfilePill key={trait} agentId={agent.id}>
                 {trait}
-              </Tag>
+              </ProfilePill>
             ))}
           </div>
         </div>

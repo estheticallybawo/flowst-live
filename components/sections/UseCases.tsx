@@ -7,20 +7,20 @@ const USE_CASES: { ic: keyof typeof ICONS; agent: AgentId; title: string; body: 
   {
     ic: "Target",
     agent: "miro",
-    title: "The learner with a messy goal",
-    body: "They know what they want to study, but not where to begin. Miro turns the goal into a path, questions, and a next step.",
+    title: "The learner with a messy topic",
+    body: "They know what they want to learn, but not where to begin. Miro turns the goal into a path, preview, daily focus, and final review.",
   },
   {
     ic: "Bulb",
-    agent: "nyx",
+    agent: "sophia",
     title: "The learner who needs the idea to click",
-    body: "They need the theory broken down, connected, and spoken back clearly before it becomes something they can trust.",
+    body: "They need patient explanation, plain words, and a chance to explain the idea back before moving deeper into the path.",
   },
   {
-    ic: "Image",
+    ic: "Nodes",
     agent: "amira",
-    title: "The learner who remembers in pictures",
-    body: "They need the concept turned into a visual anchor so recall feels less abstract and more personal.",
+    title: "The learner preparing to say it out loud",
+    body: "They need guided voice practice so knowledge becomes spoken clarity, not just notes they silently recognize.",
   },
 ];
 
@@ -28,7 +28,7 @@ export function UseCases() {
   return (
     <Section>
       <Eyebrow>Who it&apos;s for</Eyebrow>
-      <SectionTitle>Built for learners who need to understand, visualize, and remember.</SectionTitle>
+      <SectionTitle>Built for learners who need a route, a clearer explanation, and proof.</SectionTitle>
       <div
         className="three-col"
         style={{

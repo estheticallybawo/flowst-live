@@ -4,9 +4,8 @@ import { useState } from "react";
 import type { ChangeEvent, CSSProperties, ReactNode } from "react";
 
 /**
- * Flowst Input — pill-shaped field on a soft white surface. Optionally
- * renders an attached action button inside the same capsule (the mail
- * signup / "enter email" pattern).
+ * Flowst Input — soft field on a white surface. Optionally renders an
+ * attached soft-rectangle action button inside the same control.
  */
 interface InputProps {
   value: string;
@@ -19,6 +18,8 @@ interface InputProps {
   style?: CSSProperties;
   "aria-label"?: string;
 }
+
+const CTA_GREY = "#2e2f30"; 
 
 export function Input({
   value,
@@ -40,9 +41,9 @@ export function Input({
         alignItems: "center",
         gap: "0.5rem",
         background: "var(--color-surface)",
-        border: `1px solid ${focused ? "var(--color-foreground)" : "var(--color-border-soft)"}`,
-        borderRadius: "var(--radius-pill)",
-        boxShadow: focused ? "0 0 0 4px var(--agent-miro-soft)" : "var(--shadow-inner-soft)",
+        border: `1px solid ${focused ? CTA_GREY : "var(--color-border-soft)"}`,
+        borderRadius: "14px",
+        boxShadow: focused ? "0 0 0 4px rgba(88, 89, 90, 0.18)" : "var(--shadow-inner-soft)",
         padding: action ? "0.35rem 0.35rem 0.35rem 1.1rem" : "0.7rem 1.1rem",
         transition:
           "box-shadow var(--dur-base) var(--ease-soft), border-color var(--dur-base) var(--ease-soft)",
@@ -82,16 +83,16 @@ export function Input({
           onClick={onAction}
           style={{
             flex: "none",
-            border: "none",
+            border: "1px solid rgba(88, 89, 90, 0.22)",
             cursor: "pointer",
             fontFamily: "var(--font-body)",
-            fontWeight: 500,
+            fontWeight: 600,
             fontSize: "0.9rem",
-            color: "var(--color-inverse)",
-            background: "var(--color-primary)",
-            borderRadius: "var(--radius-pill)",
+            color: "#FFFFFF",
+            background: CTA_GREY,
+            borderRadius: "14px",
             padding: "0.55rem 1.1rem",
-            boxShadow: "var(--shadow-pill)",
+            boxShadow: "0 12px 26px rgba(88, 89, 90, 0.22), var(--shadow-inner-soft)",
           }}
         >
           {action}
@@ -100,3 +101,5 @@ export function Input({
     </div>
   );
 }
+
+

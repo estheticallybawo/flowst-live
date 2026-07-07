@@ -1,8 +1,8 @@
 /* ============================================================
-   Flowst — Color tokens
+   Flowst â€” Color tokens
    Calm cloud canvas, solid dark type, pastel agent accents.
    Rule: text is ALWAYS solid dark. Color lives in pills, glows,
-   surfaces — never in typography.
+   surfaces â€” never in typography.
    ============================================================ */
 :root {
   /* Core surfaces */
@@ -12,7 +12,7 @@
   --color-surface-glass-strong: rgba(255, 255, 255, 0.78);
   --color-surface-sunken: #EEF3FB;    /* inset wells, inputs */
 
-  /* Text — solid dark only */
+  /* Text â€” solid dark only */
   --color-foreground: #0D0F14;        /* all copy, headings, icons */
   --color-muted: #464A53;             /* secondary text, metadata */
   --color-soft-muted: #6E7687;        /* captions, placeholders, hints */
@@ -29,8 +29,8 @@
   --color-logo-light: #FFFFFF;
 
   /* Primary / secondary actions */
-  --color-primary: #0D0F14;
-  --color-primary-hover: #252A33;
+  --color-primary: #2e2f30;
+  --color-primary-hover: #2e2f30;
   --color-secondary: #FFFFFF;
   --color-secondary-hover: #F1F5FB;
 
@@ -39,3 +39,7 @@
   --sky-mid: #F4F8FF;
   --sky-bottom: #F7FAFF;
 }
+
+
+
+

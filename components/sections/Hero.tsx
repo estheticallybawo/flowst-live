@@ -18,8 +18,8 @@ interface HeroAgent {
 const HERO_AGENTS: HeroAgent[] = AGENTS.map((agent) => ({
   id: agent.id,
   name: agent.name,
-  world: agent.world,
-  fw: agent.flowName,
+  world: agent.status,
+  fw: agent.role,
   avatar: agent.assets.avatar,
 }));
 
@@ -30,21 +30,21 @@ const FLOATERS: {
   row: number;
   rotate: string;
 }[] = [
-  { t: "Goal", c: "amber", column: "1 / 3", row: 1, rotate: "-7deg" },
-  { t: "Theory", c: "mint", column: "3 / 5", row: 1, rotate: "-5deg" },
-  { t: "Mental model", c: "rose", column: "5 / 7", row: 1, rotate: "7deg" },
-  { t: "Image", c: "blue", column: "7 / 9", row: 1, rotate: "-7deg" },
-  { t: "Questions", c: "sage", column: "2 / 4", row: 2, rotate: "6deg" },
-  { t: "Recall", c: "orange", column: "4 / 6", row: 2, rotate: "7deg" },
-  { t: "Next step", c: "lavender", column: "6 / 8", row: 2, rotate: "-6deg" },
+  { t: "Goal", c: "blue", column: "1 / 3", row: 1, rotate: "-7deg" },
+  { t: "Knowledge", c: "lavender", column: "3 / 5", row: 1, rotate: "-5deg" },
+  { t: "Clarity", c: "amber", column: "5 / 7", row: 1, rotate: "7deg" },
+  { t: "Voice practice", c: "orange", column: "7 / 9", row: 1, rotate: "-7deg" },
+  { t: "Focus", c: "sage", column: "2 / 4", row: 2, rotate: "6deg" },
+  { t: "Feedback", c: "rose", column: "4 / 6", row: 2, rotate: "7deg" },
+  { t: "Confidence", c: "mint", column: "6 / 8", row: 2, rotate: "-6deg" },
 ];
 
 const FEATURES: { ic: keyof typeof ICONS; a: string; b: string }[] = [
-  { ic: "Target", a: "Study path", b: "Planned by Miro" },
-  { ic: "Brain", a: "Concept clarity", b: "Taught by Nyx" },
-  { ic: "Nodes", a: "Mental model", b: "Built in words" },
-  { ic: "Image", a: "Visual anchor", b: "Created by Amira" },
-  { ic: "Chart", a: "Recall score", b: "Checked by Miro" },
+  { ic: "Target", a: "Miro path", b: "Generated from your goal" },
+  { ic: "Brain", a: "Sophia clarity", b: "Understand and explain" },
+  { ic: "Nodes", a: "Say it", b: "Practice out loud" },
+  { ic: "Chart", a: "Progress", b: "Badges and weak areas" },
+  { ic: "Shield", a: "Proof", b: "Final clarity review" },
 ];
 
 function MascotColumn({ a }: { a: HeroAgent }) {
@@ -107,7 +107,7 @@ export function Hero() {
       }}
     >
       <div style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", marginBottom: "1rem" }}>
-        Flowst AI, the flow state of learning
+        Flowst, the guided path to bridging the knowing-speaking gap
       </div>
       <div
         className="hero-grid"
@@ -118,7 +118,6 @@ export function Hero() {
           alignItems: "center",
         }}
       >
-        {/* Left */}
         <div>
           <h1
             style={{
@@ -128,19 +127,19 @@ export function Hero() {
               fontWeight: 600,
             }}
           >
-            Learn it. See it. Prove it.
+            Learn it. Say it. Prove it.
           </h1>
           <p
             style={{
               marginTop: "1.4rem",
               fontSize: "var(--text-body-lg)",
               color: "var(--color-muted)",
-              maxWidth: 420,
+              maxWidth: 460,
             }}
           >
-            Flowst helps you <Pill color="amber">understand</Pill> a concept, turn it into a{" "}
-            <Pill color="mint">picture</Pill>, and prove what you{" "}
-            <Pill color="orange">remember</Pill>.
+            Flowst is built as a <Pill color="blue">FlowState</Pill> for learning with agents that helps you
+            understand ideas, and concepts <Pill color="amber">Sophia</Pill>, practice out loud{" "}
+            <Pill color="orange">Amira</Pill>, and increase confidence with guided learning with <Pill color="lavender">Miro</Pill>
           </p>
           <div
             style={{
@@ -178,17 +177,19 @@ export function Hero() {
                 <Nodes size={20} />
               </span>
               <span style={{ fontSize: "0.92rem", lineHeight: 1.25 }}>
-                One connected
+                Be first
                 <br />
-                learning loop.
+                to know when we launch.
               </span>
             </div>
-            <Button variant="solid" size="lg" onClick={notify} iconRight={<Bell size={18} />}>
-              Notify Me
+            <Button variant="accent" size="lg" onClick={notify} iconRight={<Bell size={18} />}>
+              Notify me
+            </Button>
+            <Button href="#how-it-works" variant="ghost" size="lg">
+              See how Flowst works
             </Button>
           </div>
         </div>
-        {/* Right — mascot cluster */}
         <div>
           <div className="hero-pill-field" aria-hidden="true">
             {FLOATERS.map((f) => (
@@ -214,7 +215,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-      {/* Feature strip */}
       <div
         className="hero-features"
         style={{
@@ -242,3 +242,5 @@ export function Hero() {
     </section>
   );
 }
+
+

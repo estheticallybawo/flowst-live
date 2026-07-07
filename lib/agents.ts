@@ -1,4 +1,7 @@
-export type AgentId = "nyx" | "miro" | "amira";
+export type AgentId = "miro" | "sophia" | "amira";
+
+export type FeatureStatus = "Available" | "Premium" | "Not active yet";
+export type ContextLabel = "Ready now" | "Requires Miro Path" | "In progress";
 
 export interface AgentFlowStep {
   title: string;
@@ -21,6 +24,8 @@ export interface AgentProfile {
   name: string;
   role: string;
   world: string;
+  status: FeatureStatus;
+  contextLabel: ContextLabel;
   summary: string;
   promise: string;
   personality: string[];
@@ -38,41 +43,43 @@ export const AGENTS: readonly AgentProfile[] = [
   {
     id: "miro",
     name: "Miro",
-    role: "Learning Orchestrator",
-    world: "The Study Guide",
+    role: "Learning Path Guide",
+    world: "Premium path guide",
+    status: "Premium",
+    contextLabel: "Requires Miro Path",
     summary:
-      "Miro collects the learning goal, creates the study path, turns content into questions, and brings the learner back for assessment.",
-    promise: "Plan the path, prove recall, and recommend the next step.",
-    personality: ["Calm", "Observant", "Precise", "Strategic"],
+      "Miro turns your topic into a learning path, previews the route before payment, remembers weak areas, and returns for the final Miro Clarity Review.",
+    promise: "Build the path, guide the work, and help you prove explanation clarity.",
+    personality: ["Calm", "Structured", "Observant", "Strategic"],
     bestFor: [
-      "Setting the learning goal",
-      "Turning content into study questions",
-      "Assessing recall readiness",
-      "Tracking weak points and progress",
+      "Turning a messy topic into a guided learning path",
+      "Previewing what Premium will unlock before checkout",
+      "Tracking progress, weak areas, and completed subtopics",
+      "Running the final Miro Clarity Review",
     ],
-    flowName: "Study Path and Assessment Loop",
+    flowName: "Miro Path and Review Loop",
     flow: [
-      { title: "Goal", description: "Collect the learner's topic, target, or document." },
-      { title: "Questions", description: "Create focused study questions from the goal." },
-      { title: "Route", description: "Send the learner to the right agent for the next phase." },
-      { title: "Assess", description: "Check clarity, weak points, and recall readiness." },
-      { title: "Next Step", description: "Store progress and recommend what to review next." },
+      { title: "Onboarding", description: "Ask the 7 setup questions that define the learner's goal, level, time, and outcome." },
+      { title: "Path Preview", description: "Generate a clear path preview so the learner sees the plan before choosing Premium." },
+      { title: "Daily Focus", description: "Route the learner through Today, Path, Progress, and Agents inside the Premium workspace." },
+      { title: "Memory", description: "Carry weak areas forward so review sessions stay personal and useful." },
+      { title: "Final Review", description: "Run the final clarity check and prepare proof for the shareable certificate." },
     ],
     model: {
       name: "Qwen",
     },
     goals: [
-      "Keep the full learning journey connected",
-      "Create 3 to 5 useful study questions from a goal",
-      "Measure theory clarity, visual mapping, and recall readiness",
-      "Store weak points so review feels personal and timely",
+      "Create one coherent learning path from the learner's topic",
+      "Make the next step obvious after every session",
+      "Connect Sophia clarity work and Amira voice practice into one record",
+      "Validate readiness with a final explanation clarity review",
     ],
     teachingNotes: [
-      "Starts the premium journey by clarifying the learner's goal",
-      "Passes Nyx's mental model to Amira when a visual anchor is needed",
-      "Returns at the end with a score, reward summary, and next step",
+      "Miro is the premium guide and memory orchestrator, not a standalone free tutor.",
+      "The path preview should be useful before checkout without pretending Premium has already started.",
+      "Miro's final review proves explanation clarity, not professional accreditation.",
     ],
-    tags: ["Orchestrator", "Memory", "Assessment"],
+    tags: ["Path", "Memory", "Final review"],
     assets: {
       avatar: "/assets/mascots/miro/avatar.png",
       portrait: "/assets/mascots/miro/portrait.png",
@@ -80,44 +87,46 @@ export const AGENTS: readonly AgentProfile[] = [
     },
   },
   {
-    id: "nyx",
-    name: "Nyx",
-    role: "Theory and Vocal Clarity Agent",
-    world: "Learn it",
+    id: "sophia",
+    name: "Sophia",
+    role: "Clarity Teacher",
+    world: "Ready now",
+    status: "Available",
+    contextLabel: "Ready now",
     summary:
-      "Nyx teaches the theory, breaks the concept into parts, and helps the learner build a mental model they can explain clearly.",
-    promise: "Understand the concept before you try to prove it.",
-    personality: ["Warm", "Calm", "Grounded", "Supportive"],
+      "Sophia helps you understand ideas in plain language, explain them back, and tighten your words until the concept feels clear enough to keep learning.",
+    promise: "Make the idea understandable before you try to say it or prove it.",
+    personality: ["Patient", "Warm", "Plain-spoken", "Encouraging"],
     bestFor: [
-      "Concept clarity",
-      "Key terms and relationships",
-      "Building a first explanation",
-      "Improving vocal communication",
+      "Understanding a confusing concept",
+      "Explaining an idea in your own words",
+      "Finding gaps in a first explanation",
+      "Getting one limited clarity mini-session before Premium",
     ],
-    flowName: "Learn It Framework",
+    flowName: "Sophia Clarity Session",
     flow: [
-      { title: "Topic", description: "Start with the concept Miro selected." },
-      { title: "Parts", description: "Break the idea into simple pieces." },
-      { title: "Connections", description: "Show how the pieces relate to each other." },
-      { title: "Explanation", description: "Practice saying the concept in clearer words." },
-      { title: "Mental Model", description: "Shape the learner's own model for Amira to visualize." },
+      { title: "Topic", description: "Start with the subtopic from Miro or a limited free clarity prompt." },
+      { title: "Plain English", description: "Break the idea into simple parts and useful relationships." },
+      { title: "Explain Back", description: "Ask the learner to explain the concept in their own words." },
+      { title: "Tighten", description: "Name what is unclear and help rewrite it more clearly." },
+      { title: "Hand Off", description: "Send clear wording back into the path for voice practice and review." },
     ],
     model: {
-      name: "Gemini Multimodal Live",
-      voice: "Warm, calm, grounded",
+      name: "Provider-switchable clarity model",
+      voice: "Warm, calm, plain-spoken",
     },
     goals: [
-      "Help learners understand the topic",
-      "Turn theory into a clear mental model",
-      "Improve the learner's first explanation",
-      "Notice weak points in vocal expression",
+      "Help learners understand concepts before rushing forward",
+      "Turn fragile knowledge into explainable language",
+      "Surface confusion early and kindly",
+      "Support Miro's path with clearer explanations",
     ],
     teachingNotes: [
-      "Summarizes the concept in plain language",
-      "Names the key terms the learner needs to remember",
-      "Helps the learner explain the idea before moving to a visual anchor",
+      "Sophia uses temporary mascot artwork until dedicated Sophia artwork is added.",
+      "Sophia is available for limited clarity support outside Premium.",
+      "Sophia should focus on understanding and explanation, not image generation.",
     ],
-    tags: ["Theory", "Mental model", "Vocal clarity"],
+    tags: ["Clarity", "Explain", "Free limited"],
     assets: {
       avatar: "/assets/mascots/nyx/avatar.png",
       portrait: "/assets/mascots/nyx/portrait.png",
@@ -127,42 +136,44 @@ export const AGENTS: readonly AgentProfile[] = [
   {
     id: "amira",
     name: "Amira",
-    role: "Visual Learning Agent",
-    world: "See it",
+    role: "Voice Coach",
+    world: "Voice practice",
+    status: "Not active yet",
+    contextLabel: "In progress",
     summary:
-      "Amira turns the learner's mental model into a generated image, then refines it into a visual memory anchor.",
-    promise: "Turn understanding into a picture you can remember.",
-    personality: ["Warm", "Patient", "Visual", "Encouraging", "Practical"],
+      "Amira is the in-progress voice coach for practicing knowledge out loud, shaping spoken clarity, and helping learners say what they know with confidence.",
+    promise: "Practice saying the idea until your explanation sounds clear, calm, and real.",
+    personality: ["Warm", "Direct", "Encouraging", "Attentive"],
     bestFor: [
-      "Creating concept images",
-      "Refining visual prompts",
-      "Comparing an image with a mental model",
-      "Building picture-based recall anchors",
+      "Practicing an explanation out loud",
+      "Building confidence before the final review",
+      "Finding where spoken answers become vague",
+      "Preparing for the Say it step once voice is live",
     ],
-    flowName: "See It Framework",
+    flowName: "Amira Voice Practice",
     flow: [
-      { title: "Mental Model", description: "Receive the learner's model from Nyx." },
-      { title: "Image Prompt", description: "Translate the model into a visual direction." },
-      { title: "Generated Image", description: "Create one image that represents the concept." },
-      { title: "Refinement", description: "Adjust what does not match the learner's understanding." },
-      { title: "Memory Anchor", description: "Leave the learner with a picture-based recall prompt." },
+      { title: "Prompt", description: "Receive a concept or subtopic from the Miro path." },
+      { title: "Speak", description: "Ask the learner to say the explanation out loud." },
+      { title: "Listen", description: "Capture the spoken answer once voice is connected." },
+      { title: "Coach", description: "Reflect where the explanation is clear, rushed, or missing a key idea." },
+      { title: "Prepare", description: "Send voice-practice notes toward the final Miro review." },
     ],
     teachingNotes: [
-      "Uses the learner's own mental model as the source of the image",
-      "Asks what the generated image represents and what should change",
-      "Turns the final image into a recall prompt Miro can assess later",
+      "Amira should remain publicly visible as in progress until the voice experience is active.",
+      "Do not promise live voice scoring before ElevenLabs voice agents are connected.",
+      "Amira is a voice coach, not a visual-learning or image-generation agent.",
     ],
     model: {
-      name: "Gemini Multimodal Live",
-      voice: "Warm, calm, grounded",
+      name: "ElevenLabs voice agents",
+      voice: "Warm, focused voice coach",
     },
     goals: [
-      "Help learners see concepts as images",
-      "Strengthen visual memory through personalized anchors",
-      "Make abstract ideas easier to recall later",
-      "Support Miro's final assessment with visual evidence",
+      "Help learners practice saying knowledge out loud",
+      "Improve spoken clarity before final proof",
+      "Make the Say it step feel guided rather than intimidating",
+      "Feed useful practice signals into Miro's final review",
     ],
-    tags: ["Visual learning", "Image refinement", "Recall anchor"],
+    tags: ["Voice", "Practice", "In progress"],
     assets: {
       avatar: "/assets/mascots/amira/avatar.png",
       portrait: "/assets/mascots/amira/portrait.png",
@@ -192,3 +203,5 @@ export type PillColor =
   | "orange"
   | "magenta"
   | "lavender";
+
+

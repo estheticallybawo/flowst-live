@@ -7,13 +7,13 @@ import type { AgentId } from "@/lib/agents";
  * 3D vinyl-toy renders; pass the image via `src`.
  */
 const SOFT: Record<AgentId, string> = {
-  nyx: "var(--agent-nyx-soft)",
   miro: "var(--agent-miro-soft)",
+  sophia: "var(--agent-sophia-soft)",
   amira: "var(--agent-amira-soft)",
 };
 const GLOW: Record<AgentId, string> = {
-  nyx: "var(--glow-nyx)",
   miro: "var(--glow-miro)",
+  sophia: "var(--glow-sophia)",
   amira: "var(--glow-amira)",
 };
 
@@ -29,7 +29,7 @@ interface AgentAvatarProps {
 export function AgentAvatar({
   src,
   alt = "",
-  agent = "nyx",
+  agent = "sophia",
   size = 120,
   glow = true,
   style,

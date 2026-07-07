@@ -5,3 +5,8 @@
 next-env.d.ts
 .DS_Store
 .env*.local
+
+# Local tooling & scratch
+/.claude
+/tmp-*
+/tmp-responsive

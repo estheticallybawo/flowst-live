@@ -1,56 +1,70 @@
+import { Fragment } from "react";
 import { GlassCard } from "../ui/GlassCard";
 import { ICONS, Arrow } from "../Icons";
 import { Section, Eyebrow, SectionTitle } from "./Section";
 import type { AgentId } from "@/lib/agents";
 
-const STEPS: { n: string; agent: AgentId; ic: keyof typeof ICONS; title: string; body: string }[] =
-  [
-    {
-      n: "01",
-      agent: "nyx",
-      ic: "Target",
-      title: "Learn it with Nyx",
-      body: "Miro starts by clarifying the goal and creating study questions. Then Nyx teaches the concept, names the key ideas, and helps the learner build a mental model.",
-    },
-    {
-      n: "02",
-      agent: "amira",
-      ic: "Image",
-      title: "See it with Amira",
-      body: "Amira turns that mental model into a generated image, then helps refine it until the picture matches how the learner understands the concept.",
-    },
-    {
-      n: "03",
-      agent: "miro",
-      ic: "Chart",
-      title: "Prove it with Miro",
-      body: "Miro checks theory clarity, vocal clarity, visual mapping, and recall readiness, then stores weak points and recommends the next review step.",
-    },
-  ];
+const STEPS: { n: string; agent: AgentId; ic: keyof typeof ICONS; title: string; body: string }[] = [
+  {
+    n: "01",
+    agent: "miro",
+    ic: "Target",
+    title: "Join the launch list",
+    body: "Follow the build and be first to know when the Flowst learning loop opens for early users.",
+  },
+  {
+    n: "02",
+    agent: "miro",
+    ic: "Nodes",
+    title: "Tell Miro what you want to learn",
+    body: "Miro will shape your topic, level, time, and learning goal into a path you can actually follow.",
+  },
+  {
+    n: "03",
+    agent: "miro",
+    ic: "Chart",
+    title: "Preview the learning path",
+    body: "You will see the route before committing deeper, including subtopics, practice moments, and the final review goal.",
+  },
+  {
+    n: "04",
+    agent: "sophia",
+    ic: "Bulb",
+    title: "Learn with Sophia clarity sessions",
+    body: "Sophia helps you understand each idea, explain it back, and tighten what still feels vague.",
+  },
+  {
+    n: "05",
+    agent: "amira",
+    ic: "Brain",
+    title: "Say it, review it, share proof",
+    body: "Amira voice practice comes online as the Say it layer, then Miro runs the final clarity review and prepares a shareable explanation-clarity certificate.",
+  },
+];
 
 export function HowItWorks() {
   return (
-    <Section>
-      <Eyebrow>The Flowst loop</Eyebrow>
-      <SectionTitle>One connected mission from learning goal to recall proof.</SectionTitle>
+    <Section id="how-it-works">
+      <Eyebrow>The product journey</Eyebrow>
+      <SectionTitle>What we are building: Learn it. Say it. Prove it.</SectionTitle>
       <div
-        className="three-col steps"
+        className="steps"
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "1rem",
-          marginTop: "2.5rem",
+          display: "flex",
           alignItems: "stretch",
+          gap: "0.75rem",
+          marginTop: "2.5rem",
         }}
       >
         {STEPS.map((s, i) => {
           const I = ICONS[s.ic];
           return (
-            <div key={s.n} style={{ display: "flex", alignItems: "stretch", gap: "1rem" }}>
+            <Fragment key={s.n}>
               <GlassCard
                 variant="solid"
-                padding="1.75rem"
-                style={{ flex: 1, display: "flex", flexDirection: "column" }}
+                padding="1.5rem"
+                className="step-card"
+                style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column" }}
               >
                 <div
                   style={{
@@ -77,22 +91,23 @@ export function HowItWorks() {
                   <span
                     style={{
                       fontFamily: "var(--font-heading)",
-                      fontWeight: 600,
+                      fontWeight: 500,
                       fontSize: "1.6rem",
-                      color: "var(--color-hairline)",
+                      color: "var(--color-soft-muted)",
+                      opacity: 0.38,
                     }}
                   >
                     {s.n}
                   </span>
                 </div>
-                <h3 style={{ fontSize: "1.18rem", fontWeight: 600, marginTop: "1.2rem" }}>
+                <h3 style={{ fontSize: "1.08rem", fontWeight: 600, marginTop: "1.2rem" }}>
                   {s.title}
                 </h3>
                 <p
                   style={{
                     marginTop: "0.6rem",
                     color: "var(--color-muted)",
-                    fontSize: "0.92rem",
+                    fontSize: "0.9rem",
                     lineHeight: 1.55,
                   }}
                 >
@@ -108,13 +123,14 @@ export function HowItWorks() {
                     color: "var(--color-soft-muted)",
                   }}
                 >
-                  <Arrow size={22} />
+                  <Arrow size={20} />
                 </div>
               )}
-            </div>
+            </Fragment>
           );
         })}
       </div>
     </Section>
   );
 }
+

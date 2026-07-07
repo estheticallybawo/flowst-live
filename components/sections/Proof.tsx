@@ -16,22 +16,21 @@ export function Proof() {
             textWrap: "balance",
           }}
         >
-          Every Flowst method is backed by intense research in cognitive science and flow state
-          retention.
+          Flowst turns learning into explainable knowledge, spoken clarity, and reviewable proof.
         </SectionTitle>
       </div>
       <div
-        className="two-col"
+        className="three-col"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
+          gridTemplateColumns: "repeat(3, 1fr)",
           gap: "1.5rem",
           marginTop: "2.5rem",
         }}
       >
         <GlassCard variant="solid" padding="2rem">
-          <Tag agent="nyx" dot>
-            Connected Understanding
+          <Tag agent="sophia" dot>
+            Explainable Knowledge
           </Tag>
           <div
             style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}
@@ -49,13 +48,13 @@ export function Proof() {
             </Pill>
           </div>
           <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Flowst pushes learners beyond passive reading by asking them to organize ideas, connect
-            key terms, and explain the concept in their own words.
+            Sophia pushes learners beyond passive reading by asking them to connect key ideas,
+            explain the concept in their own words, and tighten what still feels vague.
           </p>
         </GlassCard>
         <GlassCard variant="solid" padding="2rem">
-          <Tag agent="miro" dot>
-            Retrieval Practice
+          <Tag agent="amira" dot>
+            Spoken Clarity
           </Tag>
           <div
             style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}
@@ -69,15 +68,40 @@ export function Proof() {
                 padding: "0.1em 0.4em",
               }}
             >
+              Say it
+            </Pill>
+          </div>
+          <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
+            Amira turns quiet understanding into spoken practice, helping learners hear where an
+            answer is clear, rushed, or missing the point.
+          </p>
+        </GlassCard>
+        <GlassCard variant="solid" padding="2rem">
+          <Tag agent="miro" dot>
+            Final Miro Clarity Review
+          </Tag>
+          <div
+            style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}
+          >
+            <Pill
+              color="lavender"
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontWeight: 600,
+                fontSize: "1.8rem",
+                padding: "0.1em 0.4em",
+              }}
+            >
               Prove it
             </Pill>
           </div>
           <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Miro turns learning into checkpoints, weak-point tracking, and next-step review so
-            progress is based on recall instead of empty confidence.
+            Proof means completed subtopics, badges, weak-area review, and a final explanation check
+            that unlocks a shareable Explanation Clarity Certificate.
           </p>
         </GlassCard>
       </div>
     </Section>
   );
 }
+

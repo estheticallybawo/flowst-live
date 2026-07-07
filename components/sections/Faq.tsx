@@ -1,43 +1,44 @@
-"use client";
-
-import { useNotify } from "../NotifyProvider";
-import { Bell } from "../Icons";
-import { Button } from "../ui/Button";
 import { Accordion, type AccordionItem } from "../ui/Accordion";
 import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const ITEMS: AccordionItem[] = [
   {
-    q: "What is Flowst?",
-    a: "Flowst is a learning loop powered by active agents. You start with a goal, learn the concept, turn your mental model into a picture, and prove what you remember.",
+    q: "Is Flowst live yet?",
+    a: "Flowst is still in build. The public site is here to explain the product direction, introduce the agents, and let early learners or institutions hear when launch access opens.",
   },
   {
-    q: "How is Flowst different from a normal AI tutor?",
-    a: "Most AI tutors answer questions one at a time. Flowst connects the whole journey: Miro guides the path, Nyx builds clarity, Amira creates a visual anchor, and Miro checks recall.",
+    q: "What happens when I join the newsletter?",
+    a: "You will be on the list for launch updates, early-access notes, and product announcements. The current Notify Me action is a placeholder until the production newsletter endpoint is connected.",
   },
   {
-    q: "Do I have to know which agent to start with?",
-    a: "No. The experience is designed to feel guided. Miro can help shape the goal and route the learner into the right next step, while Nyx and Amira handle the learning and visual phases.",
+    q: "What will Flowst help me do?",
+    a: "Flowst is being built to turn a topic into a guided learning path, help you understand each idea, practice saying it out loud, and prove explanation clarity through review.",
   },
   {
-    q: "What happens in early access?",
-    a: "Early access means you will hear when the Flowst loop is ready to try, see what is being tested first, and get product updates as the active agents become available.",
+    q: "Do I need to choose an agent first?",
+    a: "No. The product is designed as a guided loop. Miro shapes the path, Sophia helps with clarity, and Amira supports voice practice as that layer comes online.",
   },
   {
-    q: "Will there be free and premium features?",
-    a: "Yes. Access tiers are still being shaped, so we are not locking exact pricing or plan rules yet. The waitlist is the best place to get updates as free, pro, and premium experiences become clearer.",
+    q: "Is Amira live yet?",
+    a: "Amira is visible because she is part of the product loop, but her voice-coaching experience is not active yet. She is in progress and should not be treated as live voice scoring until the voice layer is connected.",
   },
   {
-    q: "Is Amira just an image generator?",
-    a: "No. Amira is a visual learning agent. She uses the learner's mental model to create and refine a concept image, then helps turn that image into a memory anchor.",
+    q: "Can institutions use Flowst with students?",
+    a: "Yes. We are open to early conversations with schools, bootcamps, clubs, and learning communities that want demos, launch pilots, or student coupon support.",
+  },
+  {
+    q: "What does the certificate prove?",
+    a: "The certificate represents explanation clarity inside Flowst: completed subtopics, badges, practice history, and a final review. For example, it may read JavaScript Explanation Clarity Certificate.",
+  },
+  {
+    q: "Is Flowst a professional certification?",
+    a: "No. Flowst proof is not a professional license, school accreditation, or job credential. It shows that you completed a Flowst path and passed an explanation clarity review for a topic.",
   },
 ];
 
 export function Faq() {
-  const { notify } = useNotify();
-
   return (
-    <Section>
+    <Section id="faq">
       <div
         className="two-col"
         style={{
@@ -49,33 +50,9 @@ export function Faq() {
       >
         <div>
           <Eyebrow>Questions</Eyebrow>
-          <SectionTitle>Before you join the loop.</SectionTitle>
+          <SectionTitle>Before you join the launch list.</SectionTitle>
         </div>
-        <div>
-          <Accordion items={ITEMS} />
-          <div
-            style={{
-              marginTop: "1.1rem",
-              padding: "1rem 1.15rem",
-              border: "1px solid var(--color-glass-border)",
-              borderRadius: "var(--radius-lg)",
-              background: "var(--color-surface-glass)",
-              boxShadow: "var(--shadow-inner-soft)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "1rem",
-              flexWrap: "wrap",
-            }}
-          >
-            <p style={{ color: "var(--color-muted)", fontSize: "0.95rem", margin: 0 }}>
-              Join the list for early access updates.
-            </p>
-            <Button variant="solid" onClick={notify} iconRight={<Bell size={18} />}>
-              Notify Me
-            </Button>
-          </div>
-        </div>
+        <Accordion items={ITEMS} />
       </div>
     </Section>
   );

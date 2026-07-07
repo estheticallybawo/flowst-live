@@ -208,9 +208,9 @@ example
 
 ### Nyx
 
-Nyx teaches the theory using a mental model:
+Nyx teaches the theory using  mental model and encourages vocalization:
 
-> Think of a REST API like a restaurant ordering system. The client makes a request, the server receives it, and a response comes back.
+> Think of a REST API like a restaurant ordering system. The client makes a request, the server receives it, and a response comes back, now tell me how you would describe it in your terms with things you've encoutered in the real world.
 
 ### Amira
 
@@ -225,11 +225,11 @@ Amira generates a visual of:
 
 Amira asks:
 
-> Does this image match how you now see REST APIs? What should we adjust?
+> Does this image match how you now see REST APIs? Tell me how you picture Rest APIs and i generate an image for it?
 
 ### Miro
 
-Miro assesses:
+Miro assesses and scores:
 
 - Theory Clarity: 78%
 - Mental Model Strength: 81%
@@ -238,35 +238,8 @@ Miro assesses:
 
 Miro recommends:
 
-> Review HTTP methods next, then go to Quen for technical interview practice.
+> You've learnt REST APIs, share your progress then come back tomorrow to learn what Endpoints are.
 
----
-
-## 9. MVP Version
-
-For the MVP, build only the simplest version:
-
-1. Miro collects the goal.
-2. Miro creates 3–5 study questions.
-3. Nyx teaches one concept.
-4. User creates a short mental model.
-5. Amira generates one image from the mental model.
-6. User gives feedback on the image.
-7. Miro gives a simple score and next step.
-
-Start with:
-
-- Miro
-- Nyx
-- Amira
-
-Then later add:
-
-- Quen
-- Riva
-- Sora
-- Naro
-- Ivara
 
 ---
 

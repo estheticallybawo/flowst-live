@@ -8,8 +8,8 @@ import type { AgentId } from "@/lib/agents";
  * Optional ambient accent `glow` behind the card (agent-colored).
  */
 const GLOWS: Record<AgentId, string> = {
-  nyx: "var(--glow-nyx)",
   miro: "var(--glow-miro)",
+  sophia: "var(--glow-sophia)",
   amira: "var(--glow-amira)",
 };
 

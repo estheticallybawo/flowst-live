@@ -34,7 +34,7 @@ export function Curiosity() {
                 fontSize: "0.9rem",
               }}
             >
-              Goal, concept, image, recall
+              Recall → ownership → clarity → voice → proof
             </div>
             <div
               style={{
@@ -51,7 +51,7 @@ export function Curiosity() {
         <div>
           <Eyebrow>The learning gap</Eyebrow>
           <SectionTitle>
-            Most tools answer a question. Flowst structures the whole learning loop.
+            Traditional education rewards recall. Flowst helps you own what you know.
           </SectionTitle>
           <p
             style={{
@@ -61,9 +61,11 @@ export function Curiosity() {
               lineHeight: 1.6,
             }}
           >
-            Start with a <Pill color="amber">goal</Pill>, learn the theory, turn your mental model
-            into a <Pill color="mint">picture</Pill>, then prove what you can{" "}
-            <Pill color="orange">recall</Pill> later.
+            Most learning systems train you to remember the answer. Flowst bridges the gap between
+            <Pill color="lavender"> knowing</Pill> and owning it: Miro shapes the path, Sophia turns
+            vague ideas into <Pill color="amber">clarity</Pill>, Amira gives you space to practice with
+            <Pill color="orange"> your voice</Pill>, and the final review helps you prove
+            <Pill color="sage"> explanation clarity</Pill>.
           </p>
         </div>
       </div>

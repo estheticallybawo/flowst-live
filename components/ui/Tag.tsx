@@ -9,8 +9,8 @@ import type { AgentId } from "@/lib/agents";
 type TagAccent = AgentId | "neutral";
 
 const ACCENTS: Record<TagAccent, [string, string]> = {
-  nyx: ["var(--agent-nyx-soft)", "var(--agent-nyx)"],
   miro: ["var(--agent-miro-soft)", "var(--agent-miro)"],
+  sophia: ["var(--agent-sophia-soft)", "var(--agent-sophia)"],
   amira: ["var(--agent-amira-soft)", "var(--agent-amira)"],
   neutral: ["var(--color-surface-glass-strong)", "var(--color-soft-muted)"],
 };

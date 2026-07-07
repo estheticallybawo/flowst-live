@@ -1,21 +1,21 @@
 /* Active agent accents and agent-specific layouts. */
 :root {
-  --agent-nyx: #ffc861;
-  --agent-miro: #8179df;
-  --agent-amira: #ff8a25;
+  --agent-sophia: #fad795;
+  --agent-miro: #b3adf5;
+  --agent-amira: #fab87f;
 
-  --agent-nyx-soft: rgba(255, 200, 97, 0.24);
+  --agent-sophia-soft: rgba(255, 200, 97, 0.24);
   --agent-miro-soft: rgba(129, 121, 223, 0.18);
   --agent-amira-soft: rgba(255, 138, 37, 0.18);
 
-  --pill-amber: rgba(255, 200, 97, 0.44);
-  --pill-mint: rgba(54, 226, 208, 0.28);
-  --pill-sage: rgba(116, 224, 140, 0.28);
-  --pill-rose: rgba(255, 139, 107, 0.28);
-  --pill-blue: rgba(154, 208, 255, 0.36);
-  --pill-orange: rgba(255, 166, 61, 0.3);
-  --pill-magenta: rgba(255, 107, 157, 0.26);
-  --pill-lavender: rgba(154, 166, 255, 0.26);
+  --pill-amber: #FFDFA2;
+  --pill-mint: #9EEBDD;
+  --pill-sage: #DDE6A9;
+  --pill-rose: #FFC5BA;
+  --pill-blue: #C9DBFF;
+  --pill-orange: #FFD39A;
+  --pill-magenta: #F4A9CF;
+  --pill-lavender: #C7C2FF;
 }
 
 .agents-library__intro {
@@ -39,9 +39,15 @@
 
 .agent-card,
 .agent-profile {
-  --agent-accent: var(--agent-nyx);
-  --agent-soft: var(--agent-nyx-soft);
-  --agent-glow: var(--glow-nyx);
+  --agent-accent: var(--agent-sophia);
+  --agent-soft: var(--agent-sophia-soft);
+  --agent-glow: var(--glow-sophia);
+}
+
+[data-agent="sophia"] {
+  --agent-accent: var(--agent-sophia);
+  --agent-soft: var(--agent-sophia-soft);
+  --agent-glow: var(--glow-sophia);
 }
 
 [data-agent="miro"] {
@@ -363,3 +369,5 @@
     aspect-ratio: 1;
   }
 }
+
+
