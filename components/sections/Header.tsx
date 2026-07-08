@@ -16,18 +16,18 @@ export function Header() {
   const { notify } = useNotify();
 
   return (
-    <div style={{ paddingTop: 16 }}>
-      <header
-        style={{
-          position: "sticky",
-          top: 16,
-          zIndex: 40,
-          display: "flex",
-          justifyContent: "center",
-          padding: "0 16px",
-        }}
-      >
-        <nav
+    <header
+      style={{
+        position: "sticky",
+        top: 16,
+        zIndex: 40,
+        marginTop: 16,
+        display: "flex",
+        justifyContent: "center",
+        padding: "0 16px",
+      }}
+    >
+      <nav
           style={{
             width: "100%",
             maxWidth: "var(--container-max)",
@@ -84,8 +84,7 @@ export function Header() {
             Notify me
           </Button>
         </nav>
-      </header>
-    </div>
+    </header>
   );
 }
 

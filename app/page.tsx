@@ -1,4 +1,5 @@
 import { NotifyProvider } from "@/components/NotifyProvider";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
 import { Curiosity } from "@/components/sections/Curiosity";
@@ -33,6 +34,7 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+      <ScrollReveal />
     </NotifyProvider>
   );
 }

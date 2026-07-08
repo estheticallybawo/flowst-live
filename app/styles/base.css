@@ -4,7 +4,7 @@
    neumorphic well) that encode the brand's neumorphic/glass hybrid.
    ============================================================ */
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 92px; }
 
 body {
   margin: 0;

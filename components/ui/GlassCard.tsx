@@ -53,7 +53,7 @@ export function GlassCard({
 
   return (
     <div
-      className={className}
+      className={["hover-lift", className].filter(Boolean).join(" ")}
       style={{
         border: "1px solid var(--color-glass-border)",
         borderRadius: radius,
