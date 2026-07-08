@@ -30,6 +30,12 @@ h1, h2, h3, h4, h5, h6 {
 p { margin: 0; }
 a { color: inherit; text-decoration: none; }
 
+/* Form controls & buttons use width:100% + padding — border-box keeps
+   the padding inside the declared width so they never overflow their
+   container on narrow screens (the rest of the app relies on the
+   default content-box, so we scope this rather than resetting globally). */
+input, textarea, select, button { box-sizing: border-box; }
+
 /* ---- Cloud canvas backdrop ---- */
 .flowst-canvas {
   background:

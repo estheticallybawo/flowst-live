@@ -31,9 +31,18 @@ export function PartnerBanner() {
         }}
       >
         <div style={{ maxWidth: 660, position: "relative", zIndex: 1 }}>
-          <Pill color="amber" glass>
+          <div
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--color-muted)",
+            }}
+          >
             For institutions and learning communities
-          </Pill>
+          </div>
           <h3
             style={{
               fontSize: "var(--text-h3)",
@@ -54,18 +63,6 @@ export function PartnerBanner() {
                 {item}
               </Pill>
             ))}
-          </div>
-          {/* Mobile-only coupon CTA — desktop keeps the side card as its call to action */}
-          <div className="partner-coupon-cta">
-            <Button
-              variant="accent"
-              size="lg"
-              iconRight={<Arrow size={18} />}
-              onClick={notify}
-              style={{ width: "100%" }}
-            >
-              Get a student coupon
-            </Button>
           </div>
         </div>
         <div
@@ -95,6 +92,18 @@ export function PartnerBanner() {
           >
             Book a demo
           </Button>
+          {/* Student-coupon CTA, paired under Book a demo as an outlined action (mobile-only) */}
+          <div className="partner-coupon-cta">
+            <Button
+              variant="ghost"
+              size="lg"
+              iconRight={<Arrow size={18} />}
+              onClick={notify}
+              style={{ width: "100%" }}
+            >
+              Get a student coupon
+            </Button>
+          </div>
         </div>
       </div>
     </Section>

@@ -47,6 +47,12 @@
   gap: 0.8rem;
 }
 
+/* Institutions banner — grid items must be able to shrink below their
+   content width so a long chip/word can't force the column to overflow. */
+.partner-grid > * {
+  min-width: 0;
+}
+
 /* Institutions banner — mobile-only coupon CTA (hidden on desktop) */
 .partner-coupon-cta {
   display: none;
