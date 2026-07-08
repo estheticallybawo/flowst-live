@@ -1,7 +1,7 @@
-# Flowst — Marketing Site
+# Flowst Ã¢â‚¬â€ Marketing Site
 
 Production implementation of the Flowst landing page, built from the
-Claude Design handoff in [`../project/`](../project). **Flowst AI — the flow
+Claude Design handoff in [`../project/`](../project). **Flowst AI Ã¢â‚¬â€ the flow
 state of learning.** _Understand, then express. For minds that think in
 pictures._
 
@@ -28,7 +28,7 @@ Node 20+ recommended (developed on Node 22).
 
 ```
 app/
-  layout.tsx          Root layout — next/font (Unbounded + Albert Sans), SEO + OpenGraph metadata
+  layout.tsx          Root layout Ã¢â‚¬â€ next/font (Unbounded + Albert Sans), SEO + OpenGraph metadata
   page.tsx            Composes the landing page sections in order
   agents/[id]/        Statically generated active-agent profile pages
   globals.css         Imports the design tokens + base, plus responsive helpers
@@ -55,18 +55,14 @@ Server components render all static content; only the interactive pieces
 ### Design tokens
 
 All color, type, spacing, and effect values live as CSS custom properties in
-`app/styles/*` and are consumed via `var(--token)` — identical to the design
+`app/styles/*` and are consumed via `var(--token)` Ã¢â‚¬â€ identical to the design
 system. The one change from the source: fonts are loaded with `next/font`
 (self-hosted, no layout shift) instead of a remote `@import`, and
 `--font-heading` / `--font-body` resolve to the generated font variables.
 
 ## Production caveats (carried over from the design handoff)
 
-- **Forms are stubbed.** The "Notify Me" buttons and the email signup show
-  their success states but do **not** persist anything. Search for
-  `TODO (production)` in `components/NotifyProvider.tsx` and
-  `components/sections/MailSignup.tsx` and wire them to a real waitlist /
-  email provider before launch.
+- **Lead collection requires environment variables.** The forms are wired to `/api/leads`, which sends contacts to Brevo when `BREVO_API_KEY` and list IDs are configured. See the Lead collection section above.
 - **Icons are a substitution.** The brand spec calls for **Supercons**;
   this site ships Feather/Lucide-weight inline SVGs in `components/Icons.tsx`
   as the closest CDN-free match. Swap for Supercons when available.
@@ -80,6 +76,6 @@ system. The one change from the source: fonts are loaded with `next/font`
 ## Deployment
 
 The site is fully static-capable. Deploy to any Next.js host (Vercel, etc.),
-or add `output: "export"` in `next.config.mjs` to emit a static bundle —
+or add `output: "export"` in `next.config.mjs` to emit a static bundle Ã¢â‚¬â€
 note that would disable the Next image optimizer (this site uses plain
 `<img>` for the oversized object-cover mascot crops, so export works as-is).

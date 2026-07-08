@@ -69,7 +69,7 @@ export function MailSignup() {
               />
               {status === "error" ? (
                 <p style={{ marginTop: "0.8rem", color: "#9f3412", fontSize: "0.88rem" }}>
-                  {error} You can also email hello@useflowst.com.
+                  {error} You can also email info@useflowst.com.
                 </p>
               ) : null}
             </>

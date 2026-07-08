@@ -257,7 +257,7 @@ function LeadDialog({ mode, onClose, onSuccess }: { mode: LeadMode; onClose: () 
 
         {state === "error" ? (
           <p style={{ marginTop: "1rem", color: "#9f3412", fontSize: "0.9rem", lineHeight: 1.45 }}>
-            {error} You can also email hello@useflowst.com.
+            {error} You can also email info@useflowst.com.
           </p>
         ) : null}
 

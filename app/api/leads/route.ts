@@ -20,6 +20,7 @@ interface DestinationResult {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const BREVO_CONTACTS_URL = "https://api.brevo.com/v3/contacts";
+const GENERIC_LEAD_ERROR = "We couldn't add you to the list yet. Please try again.";
 
 function clean(value: unknown): string | undefined {
   if (typeof value !== "string") return undefined;
@@ -50,23 +51,24 @@ function compactAttributes(attributes: Record<string, string | undefined>): Reco
   return compacted;
 }
 
-function fullBrevoAttributes(payload: LeadPayload) {
-  return compactAttributes({
-    FNAME: firstName(payload.name),
-    FLOWST_TYPE: payload.type,
-    FLOWST_SOURCE: payload.source,
-    FLOWST_CREATED_AT: payload.createdAt,
-    ORGANIZATION: payload.organization,
-    ROLE: payload.role,
-    AUDIENCE_SIZE: payload.audienceSize,
-    MESSAGE: payload.message,
-  });
-}
+function brevoAttributes(payload: LeadPayload) {
+  const attributes: Record<string, string | undefined> = {
+    FIRSTNAME: firstName(payload.name),
+  };
 
-function minimalBrevoAttributes(payload: LeadPayload) {
-  return compactAttributes({
-    FNAME: firstName(payload.name),
-  });
+  // Keep custom Flowst metadata opt-in because Brevo rejects unknown contact
+  // attributes. Create these attributes in Brevo first, then set this env var.
+  if (process.env.BREVO_ENABLE_CUSTOM_ATTRIBUTES === "true") {
+    attributes.FLOWST_TYPE = payload.type;
+    attributes.FLOWST_SOURCE = payload.source;
+    attributes.FLOWST_CREATED_AT = payload.createdAt;
+    attributes.ORGANIZATION = payload.organization;
+    attributes.ROLE = payload.role;
+    attributes.AUDIENCE_SIZE = payload.audienceSize;
+    attributes.MESSAGE = payload.message;
+  }
+
+  return compactAttributes(attributes);
 }
 
 async function postBrevoContact({
@@ -80,6 +82,16 @@ async function postBrevoContact({
   payload: LeadPayload;
   attributes: Record<string, string>;
 }) {
+  const body: Record<string, unknown> = {
+    email: payload.email,
+    listIds: [listId],
+    updateEnabled: true,
+  };
+
+  if (Object.keys(attributes).length > 0) {
+    body.attributes = attributes;
+  }
+
   return fetch(BREVO_CONTACTS_URL, {
     method: "POST",
     headers: {
@@ -87,12 +99,7 @@ async function postBrevoContact({
       "api-key": apiKey,
       "content-type": "application/json",
     },
-    body: JSON.stringify({
-      email: payload.email,
-      attributes,
-      listIds: [listId],
-      updateEnabled: true,
-    }),
+    body: JSON.stringify(body),
   });
 }
 
@@ -110,35 +117,29 @@ async function sendToBrevo(payload: LeadPayload): Promise<DestinationResult | nu
     return {
       ok: false,
       status: 503,
-      error:
-        payload.type === "demo"
-          ? "Brevo demo list is not configured. Set BREVO_DEMO_LIST_ID or BREVO_WAITLIST_LIST_ID."
-          : "Brevo waitlist is not configured. Set BREVO_WAITLIST_LIST_ID.",
+      error: "Lead collection is not configured yet.",
     };
   }
 
-  const fullAttributes = fullBrevoAttributes(payload);
-  const firstResponse = await postBrevoContact({ apiKey, listId, payload, attributes: fullAttributes });
+  const attributes = brevoAttributes(payload);
+  const firstResponse = await postBrevoContact({ apiKey, listId, payload, attributes });
 
   if (firstResponse.ok) return { ok: true, status: 200 };
 
-  // If custom Flowst attributes have not been created in Brevo yet, retry with
-  // only Brevo's common first-name attribute so the contact is still captured.
-  const minimalAttributes = minimalBrevoAttributes(payload);
-  const shouldRetryMinimal = Object.keys(fullAttributes).length > Object.keys(minimalAttributes).length;
-
-  if (shouldRetryMinimal) {
+  // If Brevo rejects contact attributes, still capture the email by retrying
+  // without attributes. This avoids showing a failure when the contact can be saved.
+  if (Object.keys(attributes).length > 0) {
     const retryResponse = await postBrevoContact({
       apiKey,
       listId,
       payload,
-      attributes: minimalAttributes,
+      attributes: {},
     });
 
     if (retryResponse.ok) return { ok: true, status: 200 };
   }
 
-  return { ok: false, status: 502, error: "Brevo failed to accept the lead." };
+  return { ok: false, status: 502, error: GENERIC_LEAD_ERROR };
 }
 
 async function sendToWebhook(payload: LeadPayload): Promise<DestinationResult | null> {
@@ -160,7 +161,7 @@ async function sendToWebhook(payload: LeadPayload): Promise<DestinationResult | 
   });
 
   if (!response.ok) {
-    return { ok: false, status: 502, error: "Lead webhook failed to accept the submission." };
+    return { ok: false, status: 502, error: GENERIC_LEAD_ERROR };
   }
 
   return { ok: true, status: 200 };
@@ -204,7 +205,7 @@ export async function POST(request: Request) {
   const webhookResult = await sendToWebhook(payload);
   if (webhookResult?.ok) return Response.json({ ok: true, destination: "webhook" });
 
-  const error = brevoResult?.error ?? webhookResult?.error ?? "Lead collection is not configured yet. Set BREVO_API_KEY and BREVO_WAITLIST_LIST_ID.";
+  const error = brevoResult?.error ?? webhookResult?.error ?? "Lead collection is not configured yet.";
   const status = brevoResult?.status ?? webhookResult?.status ?? 503;
 
   return Response.json({ ok: false, error }, { status });
