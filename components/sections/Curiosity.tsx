@@ -34,7 +34,7 @@ export function Curiosity() {
                 fontSize: "0.9rem",
               }}
             >
-              Recall → ownership → clarity → voice → proof
+              Goal → path → clarity → voice → proof
             </div>
             <div
               style={{
@@ -63,9 +63,9 @@ export function Curiosity() {
           >
             Most learning systems train you to remember the answer. Flowst bridges the gap between
             <Pill color="lavender"> knowing</Pill> and owning it: Miro shapes the path, Sophia turns
-            vague ideas into <Pill color="amber">clarity</Pill>, Amira gives you space to practice with
-            <Pill color="orange"> your voice</Pill>, and the final review helps you prove
-            <Pill color="sage"> explanation clarity</Pill>.
+            vague ideas into <Pill color="amber">mental modes</Pill>, Amira gives you space to practice with
+            <Pill color="orange"> your voice</Pill>, with final review that increases your 
+            <Pill color="sage"> confidence</Pill>.
           </p>
         </div>
       </div>

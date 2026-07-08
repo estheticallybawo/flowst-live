@@ -21,7 +21,7 @@ export function PartnerBanner() {
           borderRadius: "var(--radius-2xl)",
           padding: "clamp(2rem, 4vw, 3rem)",
           background:
-            "radial-gradient(circle at 12% 10%, rgba(255, 200, 97, 0.49), transparent 26rem), radial-gradient(circle at 88% 18%, rgba(255, 139, 37, 0.36), transparent 22rem), linear-gradient(135deg, rgba(130, 121, 223, 0.57), rgba(154, 166, 255, 0.38) 42%, rgba(255, 255, 255, 0.47))",
+            "radial-gradient(circle at 12% 10%, rgba(250, 214, 148, 0.93), transparent 26rem), radial-gradient(circle at 88% 18%, hsla(28, 92%, 74%, 0.86), transparent 22rem), linear-gradient(135deg, rgba(130, 121, 223, 0.9), rgba(154, 166, 255, 0.8) 42%, rgba(255, 255, 255, 0.88))",
           border: "1px solid rgba(255, 255, 255, 0.82)",
           boxShadow: "0 28px 90px rgba(129, 121, 223, 0.22), var(--shadow-inner-soft)",
           display: "grid",
