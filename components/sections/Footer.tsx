@@ -69,7 +69,7 @@ export function Footer() {
               lineHeight: 1.6,
             }}
           >
-            <div>@useflowst · TikTok &amp; Instagram</div>
+            <div>@useflowst · TikTok &amp; Instagram &amp; Facebook</div>
             <div style={{ marginTop: "0.5rem" }}>
               Built for guided learning paths. Secure payments by Paystack inside the app.
             </div>
