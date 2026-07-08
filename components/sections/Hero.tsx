@@ -107,7 +107,7 @@ export function Hero() {
       }}
     >
       <div style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", marginBottom: "1rem" }}>
-        Flowst, the guided path to bridging the knowing-speaking gap
+        Flowst, the guided path from knowing something to explaining it out loud
       </div>
       <div
         className="hero-grid"
@@ -137,9 +137,9 @@ export function Hero() {
               maxWidth: 460,
             }}
           >
-            Flowst is built as a <Pill color="blue">FlowState</Pill> for learning with agents that helps you
-            understand ideas, and concepts <Pill color="amber">Sophia</Pill>, practice out loud{" "}
-            <Pill color="orange">Amira</Pill>, and increase confidence with guided learning with <Pill color="lavender">Miro</Pill>
+            Flowst turns any topic into a guided path: understand it, say it out loud, and prove
+            you can explain it. Your three agents guide every step, so what you learn actually
+            sticks.
           </p>
           <div
             style={{

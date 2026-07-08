@@ -9,7 +9,7 @@ const faqSource = readFileSync(
 
 test("FAQ leads with methodology, use cases, and differentiation", () => {
   const expectedQuestions = [
-    "Does Flowst actually work?",
+    "How does Flowst actually work?",
     "Who is Flowst for?",
     "How is this different from courses, videos, or flashcards?",
     "How does the Flowst loop work?",

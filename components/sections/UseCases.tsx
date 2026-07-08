@@ -27,8 +27,12 @@ const USE_CASES: { ic: keyof typeof ICONS; agent: AgentId; title: string; body: 
 export function UseCases() {
   return (
     <Section>
-      <Eyebrow>Who it&apos;s for</Eyebrow>
-      <SectionTitle>Built for learners who need a route, clearer explanation, speaking confidence.</SectionTitle>
+      <div style={{ textAlign: "right" }}>
+        <Eyebrow>Who it&apos;s for</Eyebrow>
+        <SectionTitle style={{ marginLeft: "auto" }}>
+          Built for learners who need a route, clearer explanation, speaking confidence.
+        </SectionTitle>
+      </div>
       <div
         className="three-col"
         style={{

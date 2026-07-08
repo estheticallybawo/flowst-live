@@ -23,7 +23,7 @@ const STATS: { agent: AgentId; label: string; figure: string; caption: string }[
     label: "Say it out loud",
     figure: "90%",
     caption:
-      "Studies suggest learners keep far more — up to around 90% — of what they actively apply and say out loud, versus a fraction of what they passively read. That is the layer Amira is built for.",
+      "Studies suggest learners keep far more, up to around 90%, of what they actively apply and say out loud, versus a fraction of what they passively read. That is the layer Amira is built for.",
   },
 ];
 
@@ -37,7 +37,6 @@ export function Science() {
       <p
         style={{
           marginTop: "1rem",
-          maxWidth: 680,
           color: "var(--color-muted)",
           fontSize: "var(--text-body-lg)",
           lineHeight: 1.6,

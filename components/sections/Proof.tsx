@@ -6,11 +6,10 @@ import { Section, Eyebrow, SectionTitle } from "./Section";
 export function Proof() {
   return (
     <Section>
-      <div style={{ textAlign: "right" }}>
+      <div style={{ textAlign: "left" }}>
         <Eyebrow>The outcome</Eyebrow>
         <SectionTitle
           style={{
-            marginLeft: "auto",
             maxWidth: 1040,
             lineHeight: 1.08,
             textWrap: "balance",

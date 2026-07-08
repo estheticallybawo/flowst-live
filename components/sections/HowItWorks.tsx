@@ -45,8 +45,12 @@ const STEPS: { n: string; agent: AgentId; ic: keyof typeof ICONS; title: string;
 export function HowItWorks() {
   return (
     <Section id="how-it-works">
-      <Eyebrow>The product journey</Eyebrow>
-      <SectionTitle>What we are building: Learn it. Say it. Prove it.</SectionTitle>
+      <div style={{ textAlign: "right" }}>
+        <Eyebrow>The product journey</Eyebrow>
+        <SectionTitle style={{ marginLeft: "auto" }}>
+          What we are building: Learn it. Say it. Prove it.
+        </SectionTitle>
+      </div>
       <div
         className="steps"
         style={{

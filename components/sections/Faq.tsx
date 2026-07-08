@@ -3,7 +3,7 @@ import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const ITEMS: AccordionItem[] = [
   {
-    q: "Does Flowst actually work?",
+    q: "How does Flowst actually work?",
     a: "Flowst is built on established cognitive science. Without active reinforcement, most new information is forgotten within a day, so Flowst combines visual encoding, active recall, and out-loud application: the methods research most consistently links to lasting retention.",
   },
   {

@@ -7,7 +7,7 @@ export function AgentsLibrary() {
     <Section id="agents">
       <div className="agents-library__heading">
         <Eyebrow>Meet the active agents</Eyebrow>
-        <SectionTitle style={{ marginLeft: "auto" }}>
+        <SectionTitle>
           Miro builds the path. Sophia teaches clarity. Amira coaches voice.
         </SectionTitle>
         <p className="agents-library__intro">

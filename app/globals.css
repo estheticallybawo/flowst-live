@@ -53,10 +53,10 @@
   min-width: 0;
 }
 
-/* Institutions banner — mobile-only coupon CTA (hidden on desktop) */
+/* Institutions banner — student-coupon CTA, paired under Book a demo. */
 .partner-coupon-cta {
-  display: none;
-  margin-top: 1.2rem;
+  display: flex;
+  margin-top: 0.75rem;
 }
 
 /* Lead dialog — role/students row collapses on small phones */
@@ -85,9 +85,6 @@
   }
   .steps .step-arrow {
     display: none !important;
-  }
-  .partner-coupon-cta {
-    display: flex;
   }
 
   .hero-pill-field {
