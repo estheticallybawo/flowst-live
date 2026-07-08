@@ -1,7 +1,7 @@
 # Flowst AI — Miro → Nyx → Amira Product Flow
 
 **Product:** Flowst AI  
-**Flow Name:** Learn it. See it. Prove it.  
+**Flow Name:** Learn it. See it. Own it.  
 **Agents:** Miro, Nyx, Amira  
 **Purpose:** Define the premium learning flow where Miro organizes the learning journey, Nyx teaches the theory, Amira turns the learner’s mental model into images, and Miro assesses progress.
 
@@ -13,7 +13,7 @@ Flowst should not feel like a normal AI tutor that only answers questions.
 
 The core Flowst learning loop is:
 
-> **Learn it with Nyx. See it with Amira. Prove it with Miro.**
+> **Learn it with Nyx. See it with Amira. Own it with Miro.**
 
 This gives Flowst a clear educational structure:
 
@@ -249,4 +249,4 @@ Miro recommends:
 
 Short version:
 
-> **Learn it. See it. Prove it.**
+> **Learn it. See it. Own it.**

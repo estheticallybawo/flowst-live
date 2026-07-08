@@ -6,7 +6,7 @@ import type { PillColor } from "@/lib/agents";
 const PILLS: { a: string; b: string; c: PillColor }[] = [
   { a: "Learn it", b: "with a path", c: "lavender" },
   { a: "Say it", b: "out loud", c: "orange" },
-  { a: "Prove it", b: "with clarity", c: "sage" },
+  { a: "Own it", b: "with clarity", c: "sage" },
 ];
 
 export function Pillars() {

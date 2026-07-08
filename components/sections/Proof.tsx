@@ -91,7 +91,7 @@ export function Proof() {
                 padding: "0.1em 0.4em",
               }}
             >
-              Prove it
+              Own it
             </Pill>
           </div>
           <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>

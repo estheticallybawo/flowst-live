@@ -19,7 +19,7 @@ const albertSans = Albert_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Flowst - Learn it. Say it. Prove it.",
+  title: "Flowst - Learn it. Say it. Own it.",
   description:
     "Flowst turns any topic into a guided learning path with Miro, Sophia, and Amira so learners can understand it, say it clearly, and prove explanation clarity.",
   keywords: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Flowst",
-    title: "Flowst - Learn it. Say it. Prove it.",
+    title: "Flowst - Learn it. Say it. Own it.",
     description:
       "Turn a topic into a guided learning path, practice explaining it, and prove clarity with Flowst agents.",
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flowst - Learn it. Say it. Prove it.",
+    title: "Flowst - Learn it. Say it. Own it.",
     description: "Turn any topic into a guided path you can follow, explain, and prove.",
     images: ["/assets/brand/flowst-hero.png"],
   },

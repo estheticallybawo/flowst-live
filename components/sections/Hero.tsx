@@ -127,7 +127,7 @@ export function Hero() {
               fontWeight: 600,
             }}
           >
-            Learn it. Say it. Prove it.
+            Learn it. Say it. Own it.
           </h1>
           <p
             style={{

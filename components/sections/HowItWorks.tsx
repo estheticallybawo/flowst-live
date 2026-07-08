@@ -48,7 +48,7 @@ export function HowItWorks() {
       <div style={{ textAlign: "right" }}>
         <Eyebrow>The product journey</Eyebrow>
         <SectionTitle style={{ marginLeft: "auto" }}>
-          What we are building: Learn it. Say it. Prove it.
+          What we are building: Learn it. Say it. Own it.
         </SectionTitle>
       </div>
       <div

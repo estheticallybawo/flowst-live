@@ -117,7 +117,7 @@ async function sendToBrevo(payload: LeadPayload): Promise<DestinationResult | nu
     return {
       ok: false,
       status: 503,
-      error: "Lead collection is not configured yet.",
+      error: GENERIC_LEAD_ERROR,
     };
   }
 
@@ -205,7 +205,7 @@ export async function POST(request: Request) {
   const webhookResult = await sendToWebhook(payload);
   if (webhookResult?.ok) return Response.json({ ok: true, destination: "webhook" });
 
-  const error = brevoResult?.error ?? webhookResult?.error ?? "Lead collection is not configured yet.";
+  const error = brevoResult?.error ?? webhookResult?.error ?? GENERIC_LEAD_ERROR;
   const status = brevoResult?.status ?? webhookResult?.status ?? 503;
 
   return Response.json({ ok: false, error }, { status });

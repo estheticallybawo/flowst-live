@@ -95,7 +95,7 @@ export const AGENTS: readonly AgentProfile[] = [
     contextLabel: "Ready now",
     summary:
       "Sophia helps you understand ideas in plain language, explain them back, and tighten your words until the concept feels clear enough to keep learning.",
-    promise: "Make the idea understandable before you try to say it or prove it.",
+    promise: "Make the idea understandable before you try to say it or Own it.",
     personality: ["Patient", "Warm", "Plain-spoken", "Encouraging"],
     bestFor: [
       "Understanding a confusing concept",

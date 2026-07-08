@@ -19,11 +19,11 @@ const leadsRoute = read("../app/api/leads/route.ts");
 test("homepage uses the real Flowst product promise with pre-launch CTA language", () => {
   const combined = [heroSource, howSource, layoutSource, siteConfigSource].join("\n");
 
-  assert.match(combined, /Learn it\. Say it\. Prove it\./);
+  assert.match(combined, /Learn it\. Say it\. Own it\./);
   assert.match(combined, /coming soon/i);
   assert.match(combined, /Notify me/);
   assert.match(combined, /See how Flowst works/);
-  assert.doesNotMatch(combined, /Learn it\. See it\. Prove it\./);
+  assert.doesNotMatch(combined, /Learn it\. See it\. Own it\./);
   assert.doesNotMatch(combined, /Get started/);
   assert.doesNotMatch(combined, /Google sign-in/i);
 });
@@ -74,7 +74,7 @@ test("lead capture is routed through the webhook-backed API endpoint", () => {
 test("proof copy uses explanation clarity certificate language safely", () => {
   assert.match(proofSource, /Learn it/);
   assert.match(proofSource, /Say it/);
-  assert.match(proofSource, /Prove it/);
+  assert.match(proofSource, /Own it/);
   assert.match(proofSource, /Explanation Clarity Certificate/);
   assert.match(proofSource, /Final Miro Clarity Review/);
   assert.doesNotMatch(proofSource, /Certified .*Developer/i);

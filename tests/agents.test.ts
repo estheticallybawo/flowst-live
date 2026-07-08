@@ -15,7 +15,7 @@ test("the public catalog contains only the three active agents", () => {
   );
 });
 
-test("the active agents match the Learn it Say it Prove it product spec", () => {
+test("the active agents match the Learn it Say it Own it product spec", () => {
   const miro = getAgentById("miro");
   const sophia = getAgentById("sophia");
   const amira = getAgentById("amira");
