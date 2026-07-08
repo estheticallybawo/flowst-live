@@ -7,16 +7,17 @@ const faqSource = readFileSync(
   "utf8",
 );
 
-test("FAQ answers the pre-launch product-truth questions", () => {
+test("FAQ leads with methodology, use cases, and differentiation", () => {
   const expectedQuestions = [
-    "Is Flowst live yet?",
-    "What happens when I join the newsletter?",
-    "What will Flowst help me do?",
-    "Do I need to choose an agent first?",
-    "Is Amira live yet?",
-    "Can institutions use Flowst with students?",
+    "Does Flowst actually work?",
+    "Who is Flowst for?",
+    "How is this different from courses, videos, or flashcards?",
+    "How does the Flowst loop work?",
+    "Why does saying it out loud matter?",
+    "Is the voice coaching live yet?",
     "What does the certificate prove?",
     "Is Flowst a professional certification?",
+    "Is Flowst live yet, and how do I get access?",
   ];
 
   for (const question of expectedQuestions) {
@@ -24,11 +25,13 @@ test("FAQ answers the pre-launch product-truth questions", () => {
   }
 
   assert.equal((faqSource.match(/q: "/g) ?? []).length, expectedQuestions.length);
+
+  // The FAQ should no longer lead with pre-launch logistics.
+  assert.doesNotMatch(faqSource, /Before you join the launch list/i);
 });
 
 test("FAQ preserves pre-launch safety boundaries", () => {
   assert.match(faqSource, /still in build/i);
-  assert.match(faqSource, /newsletter/i);
   assert.match(faqSource, /Sophia/);
   assert.match(faqSource, /Not active yet|in progress/i);
   assert.match(faqSource, /student coupon support/i);

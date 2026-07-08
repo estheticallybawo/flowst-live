@@ -38,7 +38,7 @@ Achieving optimal performance and deep immersion through balanced cognitive chal
 
 The Neuroscience of Flow
 Transient Hypofrontality
-Flow state occurs when an individual's skills are perfectly balanced with the challenge at hand. This triggers "transient hypofrontality"—the temporary deactivation of the prefrontal cortex.
+Flow state occurs when an individual's skills are perfectly balanced with the challenge at hand. This triggers "transient hypofrontality" — the temporary deactivation of the prefrontal cortex.
 This state silences self-doubt and internal criticism, accelerating the formation of stronger neural connections. Research indicates that students experiencing flow demonstrate up to 250% higher productivity and significantly greater intrinsic motivation to learn.
 
 Rich Visual Processing

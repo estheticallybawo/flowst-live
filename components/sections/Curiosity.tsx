@@ -34,7 +34,7 @@ export function Curiosity() {
                 fontSize: "0.9rem",
               }}
             >
-              Goal → path → clarity → voice → proof
+              Set goal → get path → gain clarity → practise voice → get proof
             </div>
             <div
               style={{

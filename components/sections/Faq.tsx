@@ -3,28 +3,28 @@ import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const ITEMS: AccordionItem[] = [
   {
-    q: "Is Flowst live yet?",
-    a: "Flowst is still in build. The public site is here to explain the product direction, introduce the agents, and let early learners or institutions hear when launch access opens.",
+    q: "Does Flowst actually work?",
+    a: "Flowst is built on established cognitive science. Without active reinforcement, most new information is forgotten within a day, so Flowst combines visual encoding, active recall, and out-loud application: the methods research most consistently links to lasting retention.",
   },
   {
-    q: "What happens when I join the newsletter?",
-    a: "You will be on the list for launch updates, early-access notes, and product announcements. The current Notify Me action is a placeholder until the production newsletter endpoint is connected.",
+    q: "Who is Flowst for?",
+    a: "Self-driven learners who want to genuinely understand a topic, people preparing to explain or be interviewed on what they know, and institutions who want measurable explanation clarity for their students.",
   },
   {
-    q: "What will Flowst help me do?",
-    a: "Flowst is being built to turn a topic into a guided learning path, help you understand each idea, practice saying it out loud, and prove explanation clarity through review.",
+    q: "How is this different from courses, videos, or flashcards?",
+    a: "Most courses and videos are passive, and flashcards drill isolated facts. Flowst runs the full loop, understand it, explain it out loud, and prove your clarity, so knowledge becomes something you can use and communicate, not just recognize.",
   },
   {
-    q: "Do I need to choose an agent first?",
-    a: "No. The product is designed as a guided loop. Miro shapes the path, Sophia helps with clarity, and Amira supports voice practice as that layer comes online.",
+    q: "How does the Flowst loop work?",
+    a: "Miro turns your goal into a guided learning path, Sophia helps you understand and explain each idea in your own words, and Amira brings voice practice as that layer comes online. A final Miro clarity review checks that you can actually explain what you learned.",
   },
   {
-    q: "Is Amira live yet?",
-    a: "Amira is visible because she is part of the product loop, but her voice-coaching experience is not active yet. She is in progress and should not be treated as live voice scoring until the voice layer is connected.",
+    q: "Why does saying it out loud matter?",
+    a: "Explaining and applying an idea is one of the most proven ways to move it into long-term memory, and speaking it out loud exposes exactly where your understanding is still fuzzy so you can tighten it.",
   },
   {
-    q: "Can institutions use Flowst with students?",
-    a: "Yes. We are open to early conversations with schools, bootcamps, clubs, and learning communities that want demos, launch pilots, or student coupon support.",
+    q: "Is the voice coaching live yet?",
+    a: "Not fully. Amira is part of the Flowst loop, but her voice-coaching experience is still in progress and should not be treated as live voice scoring until that layer is connected.",
   },
   {
     q: "What does the certificate prove?",
@@ -33,6 +33,10 @@ const ITEMS: AccordionItem[] = [
   {
     q: "Is Flowst a professional certification?",
     a: "No. Flowst proof is not a professional license, school accreditation, or job credential. It shows that you completed a Flowst path and passed an explanation clarity review for a topic.",
+  },
+  {
+    q: "Is Flowst live yet, and how do I get access?",
+    a: "Flowst is still in build. Join the launch list to get early access when it opens, and institutions can book a demo or ask about student coupon support.",
   },
 ];
 
@@ -50,7 +54,7 @@ export function Faq() {
       >
         <div>
           <Eyebrow>Questions</Eyebrow>
-          <SectionTitle>Before you join the launch list.</SectionTitle>
+          <SectionTitle>How Flowst works, and why it works.</SectionTitle>
         </div>
         <Accordion items={ITEMS} />
       </div>

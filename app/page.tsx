@@ -2,6 +2,7 @@ import { NotifyProvider } from "@/components/NotifyProvider";
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
 import { Curiosity } from "@/components/sections/Curiosity";
+import { Science } from "@/components/sections/Science";
 import { UseCases } from "@/components/sections/UseCases";
 import { Proof } from "@/components/sections/Proof";
 import { HowItWorks } from "@/components/sections/HowItWorks";
@@ -20,6 +21,7 @@ export default function Home() {
         <main>
           <Hero />
           <Curiosity />
+          <Science />
           <UseCases />
           <Proof />
           <HowItWorks />

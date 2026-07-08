@@ -7,7 +7,7 @@ export function Proof() {
   return (
     <Section>
       <div style={{ textAlign: "right" }}>
-        <Eyebrow>The evidence</Eyebrow>
+        <Eyebrow>The outcome</Eyebrow>
         <SectionTitle
           style={{
             marginLeft: "auto",
