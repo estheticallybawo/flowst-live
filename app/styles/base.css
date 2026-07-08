@@ -1,5 +1,5 @@
 /* ============================================================
-   Flowst — Base elements & utility surfaces
+   Flowst â€” Base elements & utility surfaces
    Element defaults + reusable surface classes (glass card, pill,
    neumorphic well) that encode the brand's neumorphic/glass hybrid.
    ============================================================ */
@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 p { margin: 0; }
 a { color: inherit; text-decoration: none; }
 
-/* Form controls & buttons use width:100% + padding — border-box keeps
+/* Form controls & buttons use width:100% + padding â€” border-box keeps
    the padding inside the declared width so they never overflow their
    container on narrow screens (the rest of the app relies on the
    default content-box, so we scope this rather than resetting globally). */

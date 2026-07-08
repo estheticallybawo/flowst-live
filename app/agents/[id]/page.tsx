@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { AgentProfileView } from "@/components/agents/AgentProfileView";
+import { NotifyProvider } from "@/components/NotifyProvider";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { Footer } from "@/components/sections/Footer";
 import { Header } from "@/components/sections/Header";
-import { NotifyProvider } from "@/components/NotifyProvider";
 import { getAgentById, getAgentStaticParams } from "@/lib/agents";
 
 interface AgentPageProps {
@@ -66,6 +67,7 @@ export default async function AgentPage({ params }: AgentPageProps) {
         <AgentProfileView agent={agent} />
         <Footer />
       </div>
+      <ScrollReveal />
     </NotifyProvider>
   );
 }

@@ -1,5 +1,5 @@
 /* ============================================================
-   Flowst Marketing — global stylesheet entry point.
+   Flowst Marketing â€” global stylesheet entry point.
    Tokens + base, mirroring the design system's styles.css closure.
    Fonts are loaded via next/font in app/layout.tsx (not @imported).
    ============================================================ */
@@ -25,7 +25,7 @@
   }
 }
 
-/* Responsive collapse — matches the prototype's @media (max-width: 920px) */
+/* Responsive collapse â€” matches the prototype's @media (max-width: 920px) */
 .hero-pill-field {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -47,72 +47,30 @@
   gap: 0.8rem;
 }
 
-/* ---- Scroll-reveal + card hover (motion) ----
-   One shared transition so an element can be both a reveal target and a
-   hover-lift card without the two `transition` declarations clobbering
-   each other. Disabled globally under prefers-reduced-motion in base.css. */
-[data-reveal],
-.hover-lift {
+/* ---- Scroll focus motion ----
+   Text gently moves in and out of clarity as it crosses the viewport. The
+   focus value is updated with requestAnimationFrame in ScrollReveal.tsx. */
+[data-scroll-focus] {
   transition:
-    opacity var(--dur-slow) var(--ease-soft),
-    transform var(--dur-base) var(--ease-soft),
-    box-shadow var(--dur-base) var(--ease-soft);
+    opacity 220ms var(--ease-soft),
+    transform 220ms var(--ease-soft),
+    filter 220ms var(--ease-soft);
+  transform-origin: center;
+  will-change: transform, opacity, filter;
 }
-
-[data-reveal].reveal-hidden {
-  opacity: 0;
-  transform: translateY(22px);
-}
-
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card), var(--shadow-inner-soft) !important;
-}
-
-/* ---- Continuous "in and out of focus" tied to scroll position ----
-   Scroll-driven animations run on the compositor, so this stays buttery on
-   long pages. Text drifts + defocuses; cards only fade (leaving their
-   hover-lift transform free). Falls back to the one-time reveal above where
-   `animation-timeline` is unsupported, and is fully off under reduced motion. */
-@keyframes focus-text {
-  0%   { opacity: 0; transform: translateY(26px); filter: blur(3px); }
-  14%  { opacity: 1; transform: none;            filter: blur(0); }
-  86%  { opacity: 1; transform: none;            filter: blur(0); }
-  100% { opacity: 0; transform: translateY(-26px); filter: blur(3px); }
-}
-@keyframes focus-fade {
-  0%, 100% { opacity: 0; }
-  14%, 86% { opacity: 1; }
-}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    [data-focus] {
-      animation: focus-text linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-      will-change: transform, opacity;
-    }
-    [data-focus-card] {
-      animation: focus-fade linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-    }
-  }
-}
-
-/* Institutions banner — grid items must be able to shrink below their
+/* Institutions banner â€” grid items must be able to shrink below their
    content width so a long chip/word can't force the column to overflow. */
-.partner-grid > * {
+.partner-grid > div {
   min-width: 0;
 }
 
-/* Institutions banner — student-coupon CTA, paired under Book a demo. */
+/* Institutions banner â€” student-coupon CTA, paired under Book a demo. */
 .partner-coupon-cta {
   display: flex;
   margin-top: 0.75rem;
 }
 
-/* Lead dialog — role/students row collapses on small phones */
+/* Lead dialog â€” role/students row collapses on small phones */
 .lead-dialog__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -171,3 +129,7 @@
     gap: 0.55rem;
   }
 }
+
+
+
+

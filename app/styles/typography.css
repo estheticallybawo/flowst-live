@@ -1,7 +1,7 @@
 /* ============================================================
-   Flowst — Typography tokens
-   Display: Unbounded (400–600).  Body/UI: Albert Sans (400–600).
-   Headings sit at 500–600; body at 400–500. Generous leading.
+   Flowst â€” Typography tokens
+   Display: Unbounded (400â€“600).  Body/UI: Albert Sans (400â€“600).
+   Headings sit at 500â€“600; body at 400â€“500. Generous leading.
 
    The font families resolve to next/font CSS variables
    (--font-unbounded / --font-albert), assigned on <html> in

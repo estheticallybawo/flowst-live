@@ -1,5 +1,5 @@
 /* ============================================================
-   Flowst — Shadow, blur, glass & glow tokens
+   Flowst â€” Shadow, blur, glass & glow tokens
    Neumorphic + glassmorphism hybrid: soft pillowy drop shadows,
    inner highlight, frosted translucency, ambient accent glows.
    ============================================================ */
@@ -8,7 +8,7 @@
   --blur-glass: 24px;
   --blur-soft: 14px;
 
-  /* Elevation — soft, cool-grey, large-radius drop shadows */
+  /* Elevation â€” soft, cool-grey, large-radius drop shadows */
   --shadow-card: 0 24px 80px rgba(70, 81, 104, 0.14);
   --shadow-card-soft: 0 16px 48px rgba(70, 81, 104, 0.10);
   --shadow-pill: 0 8px 20px rgba(70, 81, 104, 0.12);
