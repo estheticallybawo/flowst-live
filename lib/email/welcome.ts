@@ -7,18 +7,25 @@ interface WelcomeEmailOptions {
 
 const BRAND = {
   siteUrl: SITE_URL,
-  logoUrl: `${SITE_URL}/assets/brand/flowst-mark-black.png`,
   foreground: "#0D0F14",
   muted: "#464A53",
   softMuted: "#6E7687",
-  canvas: "#F7FAFF",
+  canvas: "#EEF6FF",
   surface: "#FFFFFF",
+  panel: "#F8FBFF",
+  hairline: "rgba(13,15,20,0.08)",
   primary: "#2E2F30",
-  lavender: "#d8d3fd",
-  amber: "#f5e0b7",
-  orange: "#f8d5ae",
-  sage: "#ebf3b7",
+  lavender: "#E0DCFF",
+  amber: "#FFE5AE",
+  orange: "#FFD6B0",
+  mint: "#BFEFE6",
 };
+
+const FONT_STACK =
+  "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+// Email clients can't load web fonts, so headings use a strong web-safe stack.
+const HEADING_FONT_STACK =
+  "'Segoe UI', 'Helvetica Neue', Arial, sans-serif";
 
 function escapeHtml(value: string) {
   return value
@@ -34,92 +41,114 @@ function firstName(name?: string) {
 }
 
 function pill(label: string, color: string) {
-  return `<span style="display:inline-block;margin:0 4px 6px 0;padding:7px 12px;border-radius:999px;background:${color};border:1px solid rgba(13,15,20,0.16);font-size:13px;font-weight:800;color:${BRAND.foreground};white-space:nowrap;box-shadow:0 8px 18px rgba(70,81,104,0.10);">${label}</span>`;
+  return `<span class="flowst-pill flowst-text" style="display:inline-block;margin:0 7px 9px 0;padding:8px 14px;border-radius:999px;background:${color};border:1px solid rgba(13,15,20,0.09);font-family:${FONT_STACK};font-size:14px;line-height:1;font-weight:700;color:${BRAND.foreground};white-space:nowrap;box-shadow:0 9px 22px rgba(70,81,104,0.08);">${label}</span>`;
 }
 
 export function renderWelcomeEmail({ name, preview = false }: WelcomeEmailOptions = {}) {
   const safeName = escapeHtml(firstName(name));
-  const subject = "A personal thank you from Esther at Flowst";
-  const previewText = "Thank you for joining Flowst early. Here is why I am building it.";
+  const subject = "You're on the Flowst waitlist (a note from Esther)";
+  const previewText = "Thank you for being early. Here is what Flowst is, and what happens next.";
+
+  // The reader just came from the site, so the ask is a share, not a visit.
+  // Email can't run JS (no share sheet or clipboard), so we use prefilled links.
+  const shareLine =
+    "Just joined the waitlist for Flowst. It might be what you need to help you learn better and be able to say it out loud.";
+  const whatsappShare = `https://wa.me/?text=${encodeURIComponent(`${shareLine} ${BRAND.siteUrl}`)}`;
+  const xShare = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareLine)}&url=${encodeURIComponent(BRAND.siteUrl)}`;
 
   const html = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light only" />
+    <meta name="supported-color-schemes" content="light only" />
     <title>${subject}</title>
+    <style>
+      :root { color-scheme: light only; supported-color-schemes: light only; }
+      body, table, td, div, p, a, span, strong, h1 { color-scheme: light only; }
+      @media (prefers-color-scheme: dark) {
+        .flowst-canvas { background: #EEF6FF !important; }
+        .flowst-card, .flowst-header { background-color: #FFFFFF !important; }
+        .flowst-panel { background: #F8FBFF !important; }
+        .flowst-text { color: #0D0F14 !important; }
+        .flowst-muted { color: #464A53 !important; }
+        .flowst-soft { color: #6E7687 !important; }
+        .flowst-button { background: #2E2F30 !important; color: #FFFFFF !important; }
+      }
+      [data-ogsc] .flowst-canvas { background: #EEF6FF !important; }
+      [data-ogsc] .flowst-card, [data-ogsc] .flowst-header { background-color: #FFFFFF !important; }
+      [data-ogsc] .flowst-panel { background: #F8FBFF !important; }
+      [data-ogsc] .flowst-text { color: #0D0F14 !important; }
+      [data-ogsc] .flowst-muted { color: #464A53 !important; }
+      [data-ogsc] .flowst-soft { color: #6E7687 !important; }
+      [data-ogsc] .flowst-button { background: #2E2F30 !important; color: #FFFFFF !important; }
+    </style>
   </head>
-  <body style="margin:0;padding:0;background:${BRAND.canvas};font-family:Arial, Helvetica, sans-serif;color:${BRAND.foreground};">
+  <body class="flowst-canvas" style="margin:0;padding:0;background:${BRAND.canvas};font-family:${FONT_STACK};color:${BRAND.foreground};-webkit-font-smoothing:antialiased;color-scheme:light only;supported-color-schemes:light only;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${previewText}</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.canvas};padding:32px 12px;">
+    <table class="flowst-canvas" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.canvas};padding:34px 12px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;width:100%;">
             <tr>
-              <td style="padding:0 0 16px 0;">
+              <td style="padding:0 8px 18px;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                   <tr>
-                    <td align="left" style="vertical-align:middle;">
-                      <img src="${BRAND.logoUrl}" width="26" height="18" alt="" style="display:inline-block;vertical-align:middle;margin-right:8px;border:0;" />
-                      <span style="font-size:20px;font-weight:800;letter-spacing:-0.02em;vertical-align:middle;">Flowst</span>
-                    </td>
-                    <td align="right" style="font-size:12px;color:${BRAND.softMuted};font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Waitlist</td>
+                    <td align="left" class="flowst-text" style="font-family:${HEADING_FONT_STACK};font-size:22px;font-weight:800;letter-spacing:-0.03em;color:${BRAND.foreground};">Flowst</td>
+                    <td class="flowst-soft" align="right" style="font-size:11px;color:${BRAND.softMuted};font-weight:700;letter-spacing:0.14em;text-transform:uppercase;">Waitlist</td>
                   </tr>
                 </table>
               </td>
             </tr>
             <tr>
-              <td style="border-radius:34px;background:${BRAND.surface};border:1px solid rgba(255,255,255,0.9);box-shadow:0 24px 80px rgba(70,81,104,0.13), inset 0 1px 1px rgba(255,255,255,0.9);overflow:hidden;">
+              <td class="flowst-card" style="border-radius:32px;background:${BRAND.surface};border:1px solid rgba(255,255,255,0.88);box-shadow:0 24px 70px rgba(70,81,104,0.12);overflow:hidden;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                   <tr>
-                    <td style="padding:34px 34px 26px;background:radial-gradient(circle at 12% 10%, rgba(255,223,162,0.72), transparent 220px), radial-gradient(circle at 88% 0%, rgba(199,194,255,0.46), transparent 240px), #FFFFFF;">
-                      <div style="display:inline-block;padding:8px 13px;border-radius:999px;background:${BRAND.lavender};border:1px solid rgba(13,15,20,0.08);font-size:13px;font-weight:800;">You are in ✨</div>
-                      <h1 style="margin:18px 0 0;font-size:34px;line-height:1.08;letter-spacing:-0.035em;font-weight:900;color:${BRAND.foreground};">Hi ${safeName}, I'm Esther, and I want to personally thank you for joining Flowst early.</h1>
-                      <p style="margin:18px 0 0;font-size:17px;line-height:1.65;color:${BRAND.muted};">Flowst started from no better place than lived experience: I had spent years learning, coding, and collecting skills, but there were still moments where my mind went blank when I had to explain what I knew.</p>
-                      <p style="margin:14px 0 0;font-size:17px;line-height:1.65;color:${BRAND.muted};">The problem was not that I did not know the material. The gap was confidence, clarity, retention, and being able to say what I understood in my own words.</p>
+                    <td class="flowst-header" style="padding:38px 36px 22px;background:radial-gradient(circle at 10% 0%, rgba(255,229,174,0.78), transparent 230px), radial-gradient(circle at 92% 0%, rgba(224,220,255,0.62), transparent 250px), radial-gradient(circle at 72% 100%, rgba(191,239,230,0.42), transparent 250px), #FFFFFF;">
+                      <span class="flowst-pill flowst-text" style="display:inline-block;padding:8px 14px;border-radius:999px;background:${BRAND.amber};border:1px solid rgba(13,15,20,0.08);font-size:13px;line-height:1;font-weight:700;color:${BRAND.foreground};box-shadow:0 9px 22px rgba(70,81,104,0.07);">Launch list</span>
+                      <h1 class="flowst-text" style="margin:20px 0 0;font-family:${HEADING_FONT_STACK};font-size:34px;line-height:1.12;letter-spacing:-0.04em;font-weight:800;color:${BRAND.foreground};">Hi ${safeName}, you're in.</h1>
+                      <p class="flowst-muted" style="margin:16px 0 0;font-size:17px;line-height:1.65;color:${BRAND.muted};">Thank you for joining the Flowst waitlist. This early, that genuinely means a lot.</p>
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding:0 34px 8px;">
-                      <div style="padding:18px;border-radius:24px;background:#F7FAFF;border:1px solid rgba(13,15,20,0.06);">
-                        <div style="font-size:13px;font-weight:800;letter-spacing:0.11em;text-transform:uppercase;color:${BRAND.softMuted};margin-bottom:12px;">What Flowst is becoming</div>
-                        ${pill("Learn it", BRAND.lavender)}
-                        ${pill("Say it", BRAND.orange)}
-                        ${pill("Own it", BRAND.sage)}
+                    <td class="flowst-card" style="padding:6px 36px 0;background:${BRAND.surface};">
+                      <p class="flowst-muted" style="margin:0;font-size:16px;line-height:1.72;color:${BRAND.muted};">I'm Esther, and I'm building Flowst. It comes from something I kept running into myself. I'd spent years learning, coding, and picking up skills, and I still had moments where my mind went blank the second someone asked me to explain what I knew.</p>
+                      <p class="flowst-muted" style="margin:14px 0 0;font-size:16px;line-height:1.72;color:${BRAND.muted};">The material was never the problem. The gap was saying it out loud, in my own words, and trusting it would still be there the next day.</p>
+                      <p class="flowst-text" style="margin:14px 0 0;font-size:16px;line-height:1.72;color:${BRAND.foreground};">That gap is the whole reason Flowst exists. You don't really know something until you can say it. So Flowst helps you understand a topic, practice saying it out loud, and prove you can explain it.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="flowst-card" style="padding:26px 36px 4px;background:${BRAND.surface};">
+                      <div class="flowst-panel" style="padding:20px 20px 14px;border-radius:24px;background:${BRAND.panel};border:1px solid ${BRAND.hairline};">
+                        <div class="flowst-soft" style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND.softMuted};margin-bottom:14px;">How it works</div>
+                        ${pill("Learn it", BRAND.lavender)}${pill("Say it", BRAND.orange)}${pill("Prove it", BRAND.mint)}
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding:18px 34px 8px;">
-                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                        <tr>
-                          <td style="padding:14px 0;border-bottom:1px solid rgba(13,15,20,0.08);">
-                            <strong style="display:block;font-size:15px;color:${BRAND.foreground};">A calmer path through what you know</strong>
-                            <span style="display:block;margin-top:4px;font-size:14px;line-height:1.55;color:${BRAND.muted};">Flowst is being shaped to turn topics into guided learning paths instead of another pile of notes.</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding:14px 0;border-bottom:1px solid rgba(13,15,20,0.08);">
-                            <strong style="display:block;font-size:15px;color:${BRAND.foreground};">Clarity you can actually keep</strong>
-                            <span style="display:block;margin-top:4px;font-size:14px;line-height:1.55;color:${BRAND.muted};">The goal is to help you connect ideas, understand them deeply, and reduce the blank-mind feeling.</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding:14px 0;">
-                            <strong style="display:block;font-size:15px;color:${BRAND.foreground};">Practice saying what you know</strong>
-                            <span style="display:block;margin-top:4px;font-size:14px;line-height:1.55;color:${BRAND.muted};">Because confidence grows when knowledge can leave your head in your own words.</span>
-                          </td>
-                        </tr>
-                      </table>
+                    <td class="flowst-card" style="padding:24px 36px 0;background:${BRAND.surface};">
+                      <div class="flowst-soft" style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND.softMuted};margin-bottom:8px;">What happens next</div>
+                      <p class="flowst-muted" style="margin:0;font-size:16px;line-height:1.7;color:${BRAND.muted};">Flowst isn't live yet. You'll be among the first in when it opens. Until then I'll send the occasional honest update on what we're building, and nothing else.</p>
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding:18px 34px 34px;">
-                      <p style="margin:0;font-size:16px;line-height:1.65;color:${BRAND.muted};">I will be sharing the fears, experiments, product decisions, and behind-the-scenes lessons as Flowst gets closer to its first release. For now, thank you for being early and helping me shape this.</p>
-                      <p style="margin:22px 0 0;font-size:16px;line-height:1.65;color:${BRAND.foreground};font-weight:700;">It means more than you know.</p>
-                      <p style="margin:4px 0 0;font-size:15px;line-height:1.6;color:${BRAND.muted};">With love,<br /><strong style="color:${BRAND.foreground};">Esther from Flowst</strong></p>
-                      <div style="margin-top:26px;">
-                        <a href="${BRAND.siteUrl}" style="display:inline-block;background:${BRAND.primary};color:#FFFFFF;text-decoration:none;border-radius:16px;padding:14px 18px;font-size:14px;font-weight:800;box-shadow:0 14px 34px rgba(46,47,48,0.20);">Visit Flowst</a>
+                    <td class="flowst-card" style="padding:26px 36px 0;background:${BRAND.surface};">
+                      <div class="flowst-panel" style="padding:22px 22px 20px;border-radius:24px;background:${BRAND.panel};border:1px solid ${BRAND.hairline};">
+                        <p class="flowst-text" style="margin:0;font-size:16px;line-height:1.6;color:${BRAND.foreground};font-weight:700;">Know someone stuck at the same wall?</p>
+                        <p class="flowst-muted" style="margin:8px 0 0;font-size:15px;line-height:1.65;color:${BRAND.muted};">If a friend keeps understanding things but freezing when they have to explain them, send them our way. It genuinely helps this early.</p>
+                        <div style="margin-top:16px;">
+                          <a class="flowst-button" href="${whatsappShare}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:${BRAND.primary};color:#FFFFFF;text-decoration:none;border-radius:14px;padding:13px 20px;font-size:15px;font-weight:700;">Share on WhatsApp</a>
+                        </div>
+                        <p class="flowst-soft" style="margin:14px 0 0;font-size:13px;line-height:1.55;color:${BRAND.softMuted};">Not on WhatsApp? <a class="flowst-text" href="${xShare}" target="_blank" rel="noopener noreferrer" style="color:${BRAND.foreground};text-decoration:underline;">Share on X</a>, or just forward this email.</p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="flowst-card" style="padding:30px 36px 38px;background:${BRAND.surface};">
+                      <div style="border-top:1px solid ${BRAND.hairline};padding-top:22px;">
+                        <p class="flowst-text" style="margin:0;font-size:16px;line-height:1.65;color:${BRAND.foreground};">Thank you for being early. It helps more than you know.</p>
+                        <p class="flowst-muted" style="margin:12px 0 0;font-size:15px;line-height:1.6;color:${BRAND.muted};">Esther<br /><span class="flowst-soft" style="color:${BRAND.softMuted};">building Flowst</span></p>
                       </div>
                     </td>
                   </tr>
@@ -127,10 +156,10 @@ export function renderWelcomeEmail({ name, preview = false }: WelcomeEmailOption
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding:20px 14px 0;font-size:12px;line-height:1.55;color:${BRAND.softMuted};">
-                You are receiving this because you joined the Flowst waitlist.<br />
-                Questions? Reply to this email or write to <a href="mailto:info@useflowst.com" style="color:${BRAND.foreground};text-decoration:underline;">info@useflowst.com</a>.
-                ${preview ? '<div style="margin-top:10px;color:#9f3412;">Preview mode, this is not a live email.</div>' : ''}
+              <td class="flowst-soft" align="center" style="padding:22px 16px 0;font-size:12px;line-height:1.6;color:${BRAND.softMuted};">
+                You're getting this because you joined the Flowst waitlist.<br />
+                Reply any time, or write to <a class="flowst-text" href="mailto:info@useflowst.com" style="color:${BRAND.foreground};text-decoration:underline;">info@useflowst.com</a>.
+                ${preview ? '<div style="margin-top:10px;color:#9f3412;">Preview mode. This is not a live email.</div>' : ""}
               </td>
             </tr>
           </table>
@@ -140,24 +169,24 @@ export function renderWelcomeEmail({ name, preview = false }: WelcomeEmailOption
   </body>
 </html>`;
 
-  const text = `Hi ${safeName},
+  const text = `Hi ${safeName}, you're in.
 
-I'm Esther, and I want to personally thank you for joining Flowst early.
+Thank you for joining the Flowst waitlist. This early, that genuinely means a lot.
 
-Flowst started from a very honest place: I had spent years learning, teaching, coding, and collecting skills, but there were still moments where my mind went blank when I had to explain what I knew.
+I'm Esther, and I'm building Flowst. It comes from something I kept running into myself. I'd spent years learning, coding, and picking up skills, and I still had moments where my mind went blank the second someone asked me to explain what I knew.
 
-The problem was not that I did not know the material. The gap was confidence, clarity, retention, and being able to say what I understood in my own words.
+The material was never the problem. The gap was saying it out loud, in my own words, and trusting it would still be there the next day.
 
-Flowst is becoming a calmer way to learn, say, and own what you know. A path through what you already know. Clarity you can keep. Practice saying it in your own words.
+That gap is the whole reason Flowst exists. You don't really know something until you can say it. So Flowst helps you understand a topic, practice saying it out loud, and prove you can explain it: learn it, say it, prove it.
 
-I will be sharing the fears, experiments, product decisions, and behind-the-scenes lessons as Flowst gets closer to its first release. For now, thank you for being early and helping me shape this.
+What happens next: Flowst isn't live yet. You'll be among the first in when it opens. Until then I'll send the occasional honest update on what we're building, and nothing else.
 
-It means more than you know.
+Know someone stuck at the same wall? If a friend keeps understanding things but freezing when they have to explain them, send them our way. It genuinely helps this early: ${BRAND.siteUrl}
 
-With love,
-Esther from Flowst
+Thank you for being early. It helps more than you know.
 
-${BRAND.siteUrl}`;
+Esther
+building Flowst`;
 
   return { subject, previewText, html, text };
 }

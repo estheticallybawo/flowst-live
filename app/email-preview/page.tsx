@@ -42,15 +42,23 @@ export default function WelcomeEmailPreviewPage() {
           Subject: {email.subject}
         </div>
       </div>
-      <div
+      {/* Render the email as its own document, exactly like a mail client would.
+          An iframe keeps its full <html>/<head>/<style> isolated from this page. */}
+      <iframe
+        title="Welcome email preview"
+        srcDoc={email.html}
         style={{
+          display: "block",
+          width: "100%",
           maxWidth: 760,
+          height: "1480px",
           margin: "0 auto",
+          border: "none",
           borderRadius: 28,
           overflow: "hidden",
+          background: "#EEF6FF",
           boxShadow: "0 24px 80px rgba(70, 81, 104, 0.18)",
         }}
-        dangerouslySetInnerHTML={{ __html: email.html }}
       />
     </main>
   );
