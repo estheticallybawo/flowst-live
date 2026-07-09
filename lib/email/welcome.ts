@@ -53,7 +53,7 @@ export function renderWelcomeEmail({ name, preview = false }: WelcomeEmailOption
   // Email can't run JS (no share sheet or clipboard), so we use prefilled links.
   const shareLine =
     "Just joined the waitlist for Flowst. It might be what you need to help you learn better and be able to say it out loud.";
-  const whatsappShare = `https://wa.me/?text=${encodeURIComponent(`${shareLine} ${BRAND.siteUrl}`)}`;
+  const whatsappShare = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${shareLine} ${BRAND.siteUrl}`)}`;
   const xShare = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareLine)}&url=${encodeURIComponent(BRAND.siteUrl)}`;
 
   const html = `<!doctype html>
