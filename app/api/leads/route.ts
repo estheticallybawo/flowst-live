@@ -1,3 +1,5 @@
+import { renderWelcomeEmail } from "@/lib/email/welcome";
+
 export type LeadType = "notify" | "demo";
 
 export interface LeadPayload {
@@ -20,6 +22,7 @@ interface DestinationResult {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const BREVO_CONTACTS_URL = "https://api.brevo.com/v3/contacts";
+const BREVO_TRANSACTIONAL_EMAIL_URL = "https://api.brevo.com/v3/smtp/email";
 const GENERIC_LEAD_ERROR = "We couldn't add you to the list yet. Please try again.";
 
 function clean(value: unknown): string | undefined {
@@ -142,6 +145,71 @@ async function sendToBrevo(payload: LeadPayload): Promise<DestinationResult | nu
   return { ok: false, status: 502, error: GENERIC_LEAD_ERROR };
 }
 
+async function sendWelcomeEmail(payload: LeadPayload): Promise<DestinationResult | null> {
+  if (payload.type !== "notify") return null;
+  if (process.env.BREVO_SEND_WELCOME_EMAIL !== "true") return null;
+
+  const apiKey = process.env.BREVO_API_KEY;
+  const senderEmail = process.env.BREVO_SENDER_EMAIL;
+
+  if (!apiKey || !senderEmail) return null;
+
+  const { subject, html, text } = renderWelcomeEmail({ name: payload.name });
+  const senderName = process.env.BREVO_SENDER_NAME ?? "Flowst";
+  const replyToEmail = process.env.BREVO_REPLY_TO_EMAIL ?? senderEmail;
+
+  const body: Record<string, unknown> = {
+    sender: {
+      name: senderName,
+      email: senderEmail,
+    },
+    to: [
+      {
+        email: payload.email,
+        ...(payload.name ? { name: payload.name } : {}),
+      },
+    ],
+    subject,
+    htmlContent: html,
+    textContent: text,
+    replyTo: {
+      name: senderName,
+      email: replyToEmail,
+    },
+  };
+
+  const response = await fetch(BREVO_TRANSACTIONAL_EMAIL_URL, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "api-key": apiKey,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    return { ok: false, status: response.status, error: "Welcome email failed." };
+  }
+
+  return { ok: true, status: 200 };
+}
+
+async function safelySendWelcomeEmail(payload: LeadPayload) {
+  try {
+    const result = await sendWelcomeEmail(payload);
+
+    if (result && !result.ok) {
+      console.error("Flowst welcome email failed.", { status: result.status });
+    }
+  } catch (error) {
+    console.error(
+      "Flowst welcome email failed.",
+      error instanceof Error ? error.message : "Unknown error",
+    );
+  }
+}
+
 async function sendToWebhook(payload: LeadPayload): Promise<DestinationResult | null> {
   const webhookUrl = process.env.FLOWST_LEAD_WEBHOOK_URL;
   if (!webhookUrl) return null;
@@ -200,7 +268,10 @@ export async function POST(request: Request) {
   };
 
   const brevoResult = await sendToBrevo(payload);
-  if (brevoResult?.ok) return Response.json({ ok: true, destination: "brevo" });
+  if (brevoResult?.ok) {
+    await safelySendWelcomeEmail(payload);
+    return Response.json({ ok: true, destination: "brevo" });
+  }
 
   const webhookResult = await sendToWebhook(payload);
   if (webhookResult?.ok) return Response.json({ ok: true, destination: "webhook" });
