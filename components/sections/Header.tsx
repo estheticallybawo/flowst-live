@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "../ui/Button";
-import { DEMO_URL } from "@/lib/site";
+import { DEMO_GATE_URL } from "@/lib/site";
 
 const LINKS = [
   { label: "How it works", href: "#how-it-works" },
@@ -71,7 +71,7 @@ export function Header() {
             </a>
           ))}
         </div>
-        <Button variant="accent" href={DEMO_URL} target="_blank" rel="noreferrer">
+        <Button variant="accent" href={DEMO_GATE_URL}>
           Try demo
         </Button>
       </nav>

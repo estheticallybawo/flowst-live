@@ -5,7 +5,7 @@ import { Pill } from "../ui/Pill";
 import { Bell, Nodes, ICONS } from "../Icons";
 import { useNotify } from "../NotifyProvider";
 import { AGENTS } from "@/lib/agents";
-import { DEMO_URL } from "@/lib/site";
+import { DEMO_GATE_URL } from "@/lib/site";
 import type { AgentId, PillColor } from "@/lib/agents";
 
 interface HeroAgent {
@@ -183,7 +183,7 @@ export function Hero() {
                 one focused loop.
               </span>
             </div>
-            <Button variant="accent" size="lg" href={DEMO_URL} target="_blank" rel="noreferrer">
+            <Button variant="accent" size="lg" href={DEMO_GATE_URL}>
               Try the demo
             </Button>
             <Button variant="ghost" size="lg" onClick={notify} iconRight={<Bell size={18} />}>

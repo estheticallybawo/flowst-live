@@ -129,7 +129,13 @@
     gap: 0.55rem;
   }
 }
+.demo-access-card {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+}
 
-
-
-
+@media (max-width: 860px) {
+  .demo-access-card {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+  }
+}
