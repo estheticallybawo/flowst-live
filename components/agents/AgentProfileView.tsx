@@ -6,8 +6,9 @@ import { Pill } from "../ui/Pill";
 
 const AGENT_PILL_COLORS: Record<AgentId, PillColor> = {
   miro: "lavender",
-  sophia: "amber",
+  sofia: "amber",
   amira: "orange",
+  kai: "mint",
 };
 
 function ProfilePill({ agentId, children }: { agentId: AgentId; children: React.ReactNode }) {

@@ -6,33 +6,33 @@ import type { AgentId } from "@/lib/agents";
 const STATS: { agent: AgentId; label: string; figure: string; caption: string }[] = [
   {
     agent: "miro",
-    label: "The forgetting curve",
-    figure: "66%",
+    label: "Bounded focus",
+    figure: "1",
     caption:
-      "of new information is forgotten within 24 hours without active reinforcement. Miro rebuilds your topic into a guided path so it is encoded, not just seen once.",
+      "the public demo keeps the Flowstate to one concept and one definition, so learners can complete the loop without cognitive overload.",
   },
   {
-    agent: "sophia",
-    label: "Active recall",
-    figure: "+50%",
+    agent: "sofia",
+    label: "Fresh teaching",
+    figure: "6",
     caption:
-      "stronger retention comes from recalling and explaining material than from re-reading it. Sophia makes explaining each idea back, in your own words, the default step.",
+      "teaching strategies can shape Sofia's explanation, from simple breakdowns to analogies, comparisons, scenarios, predictions, or misconception checks.",
   },
   {
     agent: "amira",
-    label: "Say it out loud",
-    figure: "90%",
+    label: "Voice practice",
+    figure: "1",
     caption:
-      "Studies suggest learners keep far more, up to around 90%, of what they actively apply and say out loud, versus a fraction of what they passively read. That is the layer Amira is built for.",
+      "real spoken explanation is captured in the demo before Kai checks understanding, because clarity needs to leave the learner's head in their own words.",
   },
 ];
 
 export function Science() {
   return (
     <Section id="science">
-      <Eyebrow>The science</Eyebrow>
+      <Eyebrow>The method</Eyebrow>
       <SectionTitle style={{ maxWidth: 820 }}>
-        The Flowst loop is built on how memory actually works.
+        The demo is small on purpose, so the learning loop can be felt end to end.
       </SectionTitle>
       <p
         style={{
@@ -42,9 +42,9 @@ export function Science() {
           lineHeight: 1.6,
         }}
       >
-        Grounded in decades of cognitive-science research, the forgetting curve, active recall,
-        dual coding, and flow. Flowst pairs visual encoding with retrieval and out-loud practice,
-        then paces you into flow, so understanding turns into knowledge you keep.
+        Flowst is being tuned as cognitive health support for learning: focused scope, active
+        explanation, voice practice, and supportive assessment. The goal is to reduce the mental
+        burden of studying, not add another overwhelming tool.
       </p>
       <div
         className="three-col"

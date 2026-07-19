@@ -5,6 +5,7 @@ import { Pill } from "../ui/Pill";
 import { Bell, Nodes, ICONS } from "../Icons";
 import { useNotify } from "../NotifyProvider";
 import { AGENTS } from "@/lib/agents";
+import { DEMO_URL } from "@/lib/site";
 import type { AgentId, PillColor } from "@/lib/agents";
 
 interface HeroAgent {
@@ -30,21 +31,21 @@ const FLOATERS: {
   row: number;
   rotate: string;
 }[] = [
-  { t: "Goal", c: "blue", column: "1 / 3", row: 1, rotate: "-7deg" },
-  { t: "Knowledge", c: "lavender", column: "3 / 5", row: 1, rotate: "-5deg" },
-  { t: "Clarity", c: "amber", column: "5 / 7", row: 1, rotate: "7deg" },
+  { t: "No account", c: "blue", column: "1 / 3", row: 1, rotate: "-7deg" },
+  { t: "Guided Learning", c: "lavender", column: "3 / 5", row: 1, rotate: "-5deg" },
+  { t: "One concept", c: "amber", column: "5 / 7", row: 1, rotate: "7deg" },
   { t: "Voice practice", c: "orange", column: "7 / 9", row: 1, rotate: "-7deg" },
-  { t: "Focus", c: "sage", column: "2 / 4", row: 2, rotate: "6deg" },
-  { t: "Feedback", c: "rose", column: "4 / 6", row: 2, rotate: "7deg" },
-  { t: "Confidence", c: "mint", column: "6 / 8", row: 2, rotate: "-6deg" },
+  { t: "Focus block", c: "sage", column: "2 / 4", row: 2, rotate: "6deg" },
+  { t: "Kai check", c: "rose", column: "4 / 6", row: 2, rotate: "7deg" },
+  { t: "Proof", c: "mint", column: "6 / 8", row: 2, rotate: "-6deg" },
 ];
 
 const FEATURES: { ic: keyof typeof ICONS; a: string; b: string }[] = [
-  { ic: "Target", a: "Miro path", b: "Generated from your goal" },
-  { ic: "Brain", a: "Sophia clarity", b: "Understand and explain" },
-  { ic: "Nodes", a: "Say it", b: "Practice out loud" },
-  { ic: "Chart", a: "Progress", b: "Badges and weak areas" },
-  { ic: "Shield", a: "Proof", b: "Final clarity review" },
+  { ic: "Target", a: "24-hour demo", b: "No account needed" },
+  { ic: "Nodes", a: "Miro path", b: "Built from your topic" },
+  { ic: "Brain", a: "Sofia teaches", b: "Fresh clarity strategy" },
+  { ic: "Bulb", a: "Amira listens", b: "One spoken attempt" },
+  { ic: "Shield", a: "Kai checks", b: "Badge and certificate" },
 ];
 
 function MascotColumn({ a }: { a: HeroAgent }) {
@@ -107,7 +108,7 @@ export function Hero() {
       }}
     >
       <div style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", marginBottom: "1rem" }}>
-        Flowst, the guided path from knowing something to explaining it out loud
+        Flowst, a guided demo for turning one topic into something you can explain out loud
       </div>
       <div
         className="hero-grid"
@@ -127,19 +128,19 @@ export function Hero() {
               fontWeight: 600,
             }}
           >
-            Learn it. Say it. Own it.
+            Learn it. Say it. Prove it.
           </h1>
           <p
             style={{
               marginTop: "1.4rem",
               fontSize: "var(--text-body-lg)",
               color: "var(--color-muted)",
-              maxWidth: 460,
+              maxWidth: 500,
             }}
           >
-            Flowst turns any topic into a guided path: understand it, say it out loud, and prove
-            you can explain it. Your three agents guide every step, so what you learn actually
-            sticks.
+            Try the current Flowst demo without creating an account. Choose a topic, let Miro build
+            a focused Flowstate, learn with Sofia, speak with Amira, get checked by Kai, and finish
+            with proof you can download.
           </p>
           <div
             style={{
@@ -177,16 +178,16 @@ export function Hero() {
                 <Nodes size={20} />
               </span>
               <span style={{ fontSize: "0.92rem", lineHeight: 1.25 }}>
-                Be first
+                Public demo
                 <br />
-                to know when we launch.
+                one focused loop.
               </span>
             </div>
-            <Button variant="accent" size="lg" onClick={notify} iconRight={<Bell size={18} />}>
-              Notify me
+            <Button variant="accent" size="lg" href={DEMO_URL} target="_blank" rel="noreferrer">
+              Try the demo
             </Button>
-            <Button href="#how-it-works" variant="ghost" size="lg">
-              See how Flowst works
+            <Button variant="ghost" size="lg" onClick={notify} iconRight={<Bell size={18} />}>
+              Join the waitlist
             </Button>
           </div>
         </div>
@@ -242,5 +243,3 @@ export function Hero() {
     </section>
   );
 }
-
-

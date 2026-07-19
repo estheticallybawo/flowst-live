@@ -2,15 +2,16 @@ import type { CSSProperties, ReactNode } from "react";
 import type { AgentId } from "@/lib/agents";
 
 /**
- * Flowst Card — the brand's signature soft surface. Two finishes:
- *  - glass: frosted translucent, thin white rim, soft drop + inner highlight
+ * Flowst Card: the brand's signature soft surface. Two finishes:
+ *  - glass: frosted translucent, thin white rim, soft drop and inner highlight
  *  - solid: opaque white, larger radius, deeper pillowy shadow
- * Optional ambient accent `glow` behind the card (agent-colored).
+ * Optional ambient accent `glow` behind the card.
  */
 const GLOWS: Record<AgentId, string> = {
   miro: "var(--glow-miro)",
-  sophia: "var(--glow-sophia)",
+  sofia: "var(--glow-sofia)",
   amira: "var(--glow-amira)",
+  kai: "var(--glow-kai)",
 };
 
 interface GlassCardProps {

@@ -3,40 +3,36 @@ import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const ITEMS: AccordionItem[] = [
   {
-    q: "How does Flowst actually work?",
-    a: "Flowst is built on established cognitive science. Without active reinforcement, most new information is forgotten within a day, so Flowst combines visual encoding, active recall, and out-loud application: the methods research most consistently links to lasting retention.",
+    q: "Can I try Flowst now?",
+    a: "Yes. The current public demo is available at demo.useflowst.com. It creates a 24-hour demo learner session, so you do not need an account, email, or password to try the guided loop.",
   },
   {
-    q: "Who is Flowst for?",
-    a: "Self-driven learners who want to genuinely understand a topic, people preparing to explain or be interviewed on what they know, and institutions who want measurable explanation clarity for their students.",
+    q: "What happens in the demo?",
+    a: "You choose Guided Learning, pick a topic or upload material, choose a scope and focus duration, then Flowst runs one focused loop: Miro prepares the Flowstate, Sofia teaches, Amira records one spoken explanation, Kai checks understanding, and Miro closes with proof.",
   },
   {
-    q: "How is this different from courses, videos, or flashcards?",
-    a: "Most courses and videos are passive, and flashcards drill isolated facts. Flowst runs the full loop, understand it, explain it out loud, and prove your clarity, so knowledge becomes something you can use and communicate, not just recognize.",
+    q: "Why is the demo only one concept?",
+    a: "That is intentional. The demo is designed to be finishable and low-pressure, especially for judges and first-time learners. A focused scope lets you feel the full learn, say, prove loop without turning studying into another mental burden.",
   },
   {
-    q: "How does the Flowst loop work?",
-    a: "Miro turns your goal into a guided learning path, Sophia helps you understand and explain each idea in your own words, and Amira brings voice practice as that layer comes online. A final Miro clarity review checks that you can actually explain what you learned.",
+    q: "What is Brain Canvas?",
+    a: "Brain Canvas is visible in the demo as coming soon. Guided Learning is the active demo route right now, so the current experience stays focused on one clear Flowstate.",
   },
   {
-    q: "Why does saying it out loud matter?",
-    a: "Explaining and applying an idea is one of the most proven ways to move it into long-term memory, and speaking it out loud exposes exactly where your understanding is still fuzzy so you can tighten it.",
+    q: "What do the agents do?",
+    a: "Miro prepares and closes the Flowstate, Sofia teaches the selected definition, Amira handles one real voice-practice attempt, and Kai checks the explanation before proof is shown.",
   },
   {
-    q: "Is the voice coaching live yet?",
-    a: "Not fully. Amira is part of the Flowst loop, but her voice-coaching experience is still in progress and should not be treated as live voice scoring until that layer is connected.",
+    q: "Does the voice practice work in the demo?",
+    a: "Yes. Amira asks for one spoken explanation and the browser requests microphone permission. The demo records one voice-practice attempt before handing the learner to Kai.",
   },
   {
     q: "What does the certificate prove?",
-    a: "The certificate represents explanation clarity inside Flowst: completed subtopics, badges, practice history, and a final review. For example, it may read JavaScript Explanation Clarity Certificate.",
+    a: "The Explanation Clarity Certificate represents clarity inside Flowst: the completed Flowstate, the earned badge, and the understanding check. It is a Flowst proof artifact, not a professional license or school accreditation.",
   },
   {
-    q: "Is Flowst a professional certification?",
-    a: "No. Flowst proof is not a professional license, school accreditation, or job credential. It shows that you completed a Flowst path and passed an explanation clarity review for a topic.",
-  },
-  {
-    q: "Is Flowst live yet, and how do I get access?",
-    a: "Flowst is still in build. Join the launch list to get early access when it opens, and institutions can book a demo or ask about student coupon support.",
+    q: "Is Flowst fully launched?",
+    a: "Not yet. The public demo is live, while the full signed-in product is still being fine-tuned. Join the waitlist for launch updates, and institutions can book a demo or ask about student coupon support.",
   },
 ];
 
@@ -54,7 +50,7 @@ export function Faq() {
       >
         <div>
           <Eyebrow>Questions</Eyebrow>
-          <SectionTitle>How Flowst works, and why it works.</SectionTitle>
+          <SectionTitle>What the demo does now, and what is still coming.</SectionTitle>
         </div>
         <Accordion items={ITEMS} />
       </div>

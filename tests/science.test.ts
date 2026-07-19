@@ -7,15 +7,16 @@ const scienceSource = readFileSync(
   "utf8",
 );
 
-test("science section leads with defensible, grounded framing", () => {
-  assert.match(scienceSource, /cognitive[- ]science/i);
-  assert.match(scienceSource, /forgetting curve/i);
-  assert.match(scienceSource, /active recall/i);
+test("method section leads with defensible, demo-grounded framing", () => {
+  assert.match(scienceSource, /cognitive health support/i);
+  assert.match(scienceSource, /focused scope/i);
+  assert.match(scienceSource, /active\s+explanation/i);
+  assert.match(scienceSource, /voice practice/i);
+  assert.match(scienceSource, /supportive assessment/i);
+  assert.match(scienceSource, /cognitive overload/i);
 
-  // Softer, contested stats must be hedged, not stated as hard fact.
-  assert.match(scienceSource, /studies suggest|research suggests/i);
-
-  // Keep the debunked / dubious multipliers off the page.
+  // Keep the debunked or overconfident multipliers off the page.
   assert.doesNotMatch(scienceSource, /60,?000/);
   assert.doesNotMatch(scienceSource, /400%/);
+  assert.doesNotMatch(scienceSource, /90%/);
 });

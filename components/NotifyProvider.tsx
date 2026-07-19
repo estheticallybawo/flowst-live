@@ -173,7 +173,7 @@ function LeadDialog({ mode, onClose, onSuccess }: { mode: LeadMode; onClose: () 
           borderRadius: "var(--radius-2xl)",
           border: "1px solid var(--color-glass-border)",
           background:
-            "linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,255,255,0.86)), linear-gradient(135deg, var(--agent-miro-soft), var(--agent-sophia-soft), var(--agent-amira-soft))",
+            "linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,255,255,0.86)), linear-gradient(135deg, var(--agent-miro-soft), var(--agent-sofia-soft), var(--agent-amira-soft))",
           boxShadow: "var(--shadow-card), var(--shadow-inner-soft)",
           padding: "clamp(1.4rem, 4vw, 2rem)",
         }}

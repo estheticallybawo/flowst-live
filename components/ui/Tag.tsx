@@ -2,16 +2,16 @@ import type { CSSProperties, ReactNode } from "react";
 import type { AgentId } from "@/lib/agents";
 
 /**
- * Flowst Tag — small agent-accented chip for labels / metadata (world
- * names, frameworks, statuses). Soft pastel fill, dark text, optional
- * leading dot in the agent accent.
+ * Flowst Tag, small agent-accented chip for labels, metadata, and statuses.
+ * Soft pastel fill, dark text, optional leading dot in the agent accent.
  */
 type TagAccent = AgentId | "neutral";
 
 const ACCENTS: Record<TagAccent, [string, string]> = {
   miro: ["var(--agent-miro-soft)", "var(--agent-miro)"],
-  sophia: ["var(--agent-sophia-soft)", "var(--agent-sophia)"],
+  sofia: ["var(--agent-sofia-soft)", "var(--agent-sofia)"],
   amira: ["var(--agent-amira-soft)", "var(--agent-amira)"],
+  kai: ["var(--agent-kai-soft)", "var(--agent-kai)"],
   neutral: ["var(--color-surface-glass-strong)", "var(--color-soft-muted)"],
 };
 

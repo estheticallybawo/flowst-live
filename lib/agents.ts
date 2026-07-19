@@ -1,7 +1,12 @@
-export type AgentId = "miro" | "sophia" | "amira";
+export type AgentId = "miro" | "sofia" | "amira" | "kai";
 
-export type FeatureStatus = "Available" | "Premium" | "Not active yet";
-export type ContextLabel = "Ready now" | "Requires Miro Path" | "In progress";
+export type FeatureStatus = "Demo live" | "Available" | "Coming soon";
+export type ContextLabel =
+  | "Starts the Flowstate"
+  | "Teaches the concept"
+  | "Voice practice"
+  | "Checks understanding"
+  | "In progress";
 
 export interface AgentFlowStep {
   title: string;
@@ -43,43 +48,43 @@ export const AGENTS: readonly AgentProfile[] = [
   {
     id: "miro",
     name: "Miro",
-    role: "Learning Path Guide",
-    world: "Premium path guide",
-    status: "Premium",
-    contextLabel: "Requires Miro Path",
+    role: "Flowstate Guide",
+    world: "Guided Learning",
+    status: "Demo live",
+    contextLabel: "Starts the Flowstate",
     summary:
-      "Miro turns your topic into a learning path, previews the route before payment, remembers weak areas, and returns for the final Miro Clarity Review.",
-    promise: "Build the path, guide the work, and help you prove explanation clarity.",
+      "Miro turns the learner's topic, scope, and focus time into a bounded Flowstate, then returns at the end with the completion message and proof moment.",
+    promise: "Shape the route, keep the loop focused, and close the learning session with proof.",
     personality: ["Calm", "Structured", "Observant", "Strategic"],
     bestFor: [
-      "Turning a messy topic into a guided learning path",
-      "Previewing what Premium will unlock before checkout",
-      "Tracking progress, weak areas, and completed subtopics",
-      "Running the final Miro Clarity Review",
+      "Turning a topic into a focused one-concept demo path",
+      "Preparing the Flowstate from the learner's scope and duration",
+      "Keeping the learning loop predictable while the content stays dynamic",
+      "Closing the session after Sofia, Amira, and Kai complete their parts",
     ],
-    flowName: "Miro Path and Review Loop",
+    flowName: "Miro Flowstate Setup and Close",
     flow: [
-      { title: "Onboarding", description: "Ask the 7 setup questions that define the learner's goal, level, time, and outcome." },
-      { title: "Path Preview", description: "Generate a clear path preview so the learner sees the plan before choosing Premium." },
-      { title: "Daily Focus", description: "Route the learner through Today, Path, Progress, and Agents inside the Premium workspace." },
-      { title: "Memory", description: "Carry weak areas forward so review sessions stay personal and useful." },
-      { title: "Final Review", description: "Run the final clarity check and prepare proof for the shareable certificate." },
+      { title: "Topic", description: "Receive the learner's chosen topic or uploaded material." },
+      { title: "Scope", description: "Keep the public demo focused on one concept and one definition to explain back." },
+      { title: "Preview", description: "Show the selected concept before the learner begins." },
+      { title: "Route", description: "Hand the learner into Sofia, then Amira, then Kai." },
+      { title: "Close", description: "Return with the final completion/proof message after the loop is done." },
     ],
     model: {
-      name: "Qwen",
+      name: "Server-owned Flowstate protocol",
     },
     goals: [
-      "Create one coherent learning path from the learner's topic",
-      "Make the next step obvious after every session",
-      "Connect Sophia clarity work and Amira voice practice into one record",
-      "Validate readiness with a final explanation clarity review",
+      "Make the demo easy to start without account friction",
+      "Keep the path bounded enough for a judge or first-time learner to finish",
+      "Connect teaching, voice practice, assessment, and proof into one coherent loop",
+      "Represent completed work in Progress/Proof with badges and downloadable assets",
     ],
     teachingNotes: [
-      "Miro is the premium guide and memory orchestrator, not a standalone free tutor.",
-      "The path preview should be useful before checkout without pretending Premium has already started.",
-      "Miro's final review proves explanation clarity, not professional accreditation.",
+      "The public demo uses a trusted 24-hour demo session, not a full account.",
+      "For demo identities, the protocol remains one concept even if the client requests another flow.",
+      "Miro's completion message appears in the proof experience, not as the main assessment modal.",
     ],
-    tags: ["Path", "Memory", "Final review"],
+    tags: ["Path", "Flowstate", "Proof"],
     assets: {
       avatar: "/assets/mascots/miro/avatar.png",
       portrait: "/assets/mascots/miro/portrait.png",
@@ -87,46 +92,45 @@ export const AGENTS: readonly AgentProfile[] = [
     },
   },
   {
-    id: "sophia",
-    name: "Sophia",
+    id: "sofia",
+    name: "Sofia",
     role: "Clarity Teacher",
-    world: "Ready now",
-    status: "Available",
-    contextLabel: "Ready now",
+    world: "Fresh teaching strategy",
+    status: "Demo live",
+    contextLabel: "Teaches the concept",
     summary:
-      "Sophia helps you understand ideas in plain language, explain them back, and tighten your words until the concept feels clear enough to keep learning.",
-    promise: "Make the idea understandable before you try to say it or Own it.",
-    personality: ["Patient", "Warm", "Plain-spoken", "Encouraging"],
+      "Sofia teaches the selected definition with a fresh strategy, such as a simple explanation, analogy, comparison, scenario, prediction, or misconception check.",
+    promise: "Make the idea clear enough that the learner can explain it in their own words.",
+    personality: ["Patient", "Warm", "Plain-spoken", "Adaptive"],
     bestFor: [
-      "Understanding a confusing concept",
-      "Explaining an idea in your own words",
-      "Finding gaps in a first explanation",
-      "Getting one limited clarity mini-session before Premium",
+      "Understanding one selected concept without overwhelm",
+      "Getting a teaching strategy that can vary between attempts",
+      "Turning passive recognition into explainable knowledge",
+      "Preparing the learner for one real spoken explanation",
     ],
-    flowName: "Sophia Clarity Session",
+    flowName: "Sofia Teaching Segment",
     flow: [
-      { title: "Topic", description: "Start with the subtopic from Miro or a limited free clarity prompt." },
-      { title: "Plain English", description: "Break the idea into simple parts and useful relationships." },
-      { title: "Explain Back", description: "Ask the learner to explain the concept in their own words." },
-      { title: "Tighten", description: "Name what is unclear and help rewrite it more clearly." },
-      { title: "Hand Off", description: "Send clear wording back into the path for voice practice and review." },
+      { title: "Receive", description: "Take the concept Miro selected for the Flowstate." },
+      { title: "Teach", description: "Explain the definition using a strategy suited to the attempt." },
+      { title: "Adapt", description: "Use recent attempt context to avoid simply replaying the same wording." },
+      { title: "Prepare", description: "Set the learner up to say the idea out loud with Amira." },
     ],
     model: {
-      name: "Provider-switchable clarity model",
+      name: "Provider-switchable teaching model",
       voice: "Warm, calm, plain-spoken",
     },
     goals: [
-      "Help learners understand concepts before rushing forward",
-      "Turn fragile knowledge into explainable language",
-      "Surface confusion early and kindly",
-      "Support Miro's path with clearer explanations",
+      "Help learners understand before they perform",
+      "Make one concept feel less mentally heavy",
+      "Support clearer self-explanation",
+      "Hand off into voice practice without rushing the learner",
     ],
     teachingNotes: [
-      "Sophia uses temporary mascot artwork until dedicated Sophia artwork is added.",
-      "Sophia is available for limited clarity support outside Premium.",
-      "Sophia should focus on understanding and explanation, not image generation.",
+      "Sofia currently uses temporary mascot artwork until dedicated Sofia artwork is added.",
+      "Sofia is active in the public Guided Learning demo.",
+      "Sofia teaches the concept, while Kai checks the learner's understanding after voice practice.",
     ],
-    tags: ["Clarity", "Explain", "Free limited"],
+    tags: ["Clarity", "Teach", "Explain"],
     assets: {
       avatar: "/assets/mascots/nyx/avatar.png",
       portrait: "/assets/mascots/nyx/portrait.png",
@@ -136,48 +140,92 @@ export const AGENTS: readonly AgentProfile[] = [
   {
     id: "amira",
     name: "Amira",
-    role: "Voice Coach",
-    world: "Voice practice",
-    status: "Not active yet",
-    contextLabel: "In progress",
+    role: "Voice Practice Coach",
+    world: "Say it out loud",
+    status: "Demo live",
+    contextLabel: "Voice practice",
     summary:
-      "Amira is the in-progress voice coach for practicing knowledge out loud, shaping spoken clarity, and helping learners say what they know with confidence.",
-    promise: "Practice saying the idea until your explanation sounds clear, calm, and real.",
+      "Amira asks for one real spoken explanation in the demo, requests microphone permission, records the attempt, and hands the learner to Kai.",
+    promise: "Give the learner a real moment to turn quiet understanding into spoken clarity.",
     personality: ["Warm", "Direct", "Encouraging", "Attentive"],
     bestFor: [
-      "Practicing an explanation out loud",
-      "Building confidence before the final review",
-      "Finding where spoken answers become vague",
-      "Preparing for the Say it step once voice is live",
+      "Practicing one explanation out loud",
+      "Reducing the blank-mind feeling that can happen when speaking",
+      "Making knowledge leave the learner's head in their own words",
+      "Preparing a spoken attempt for Kai's assessment",
     ],
     flowName: "Amira Voice Practice",
     flow: [
-      { title: "Prompt", description: "Receive a concept or subtopic from the Miro path." },
-      { title: "Speak", description: "Ask the learner to say the explanation out loud." },
-      { title: "Listen", description: "Capture the spoken answer once voice is connected." },
-      { title: "Coach", description: "Reflect where the explanation is clear, rushed, or missing a key idea." },
-      { title: "Prepare", description: "Send voice-practice notes toward the final Miro review." },
+      { title: "Prompt", description: "Receive the concept after Sofia's teaching segment." },
+      { title: "Permission", description: "Ask the browser for microphone access." },
+      { title: "Record", description: "Capture one voice-practice attempt in the bounded demo." },
+      { title: "Hand off", description: "Send the attempt to Kai for understanding assessment." },
     ],
     teachingNotes: [
-      "Amira should remain publicly visible as in progress until the voice experience is active.",
-      "Do not promise live voice scoring before ElevenLabs voice agents are connected.",
-      "Amira is a voice coach, not a visual-learning or image-generation agent.",
+      "Amira's public demo role is one bounded spoken explanation, not an unlimited voice coach yet.",
+      "Voice practice exists to support clarity and confidence, not to make studying feel more stressful.",
+      "The demo records one attempt before Kai checks understanding.",
     ],
     model: {
-      name: "ElevenLabs voice agents",
+      name: "Browser voice-practice layer",
       voice: "Warm, focused voice coach",
     },
     goals: [
-      "Help learners practice saying knowledge out loud",
-      "Improve spoken clarity before final proof",
-      "Make the Say it step feel guided rather than intimidating",
-      "Feed useful practice signals into Miro's final review",
+      "Make saying knowledge out loud feel guided rather than intimidating",
+      "Capture a real spoken explanation inside the demo",
+      "Support confidence without turning practice into pressure",
+      "Feed the explanation into Kai's understanding check",
     ],
-    tags: ["Voice", "Practice", "In progress"],
+    tags: ["Voice", "Practice", "Spoken clarity"],
     assets: {
       avatar: "/assets/mascots/amira/avatar.png",
       portrait: "/assets/mascots/amira/portrait.png",
       profileBoard: "/assets/mascots/amira/profile-board.png",
+    },
+  },
+  {
+    id: "kai",
+    name: "Kai",
+    role: "Understanding Checker",
+    world: "Assessment moment",
+    status: "Demo live",
+    contextLabel: "Checks understanding",
+    summary:
+      "Kai checks understanding from the learner's spoken explanation in a focused modal, then either passes the attempt, identifies a review need, or sends the learner into a focused recheck.",
+    promise: "Turn one spoken answer into a clear signal of what the learner understands next.",
+    personality: ["Clear", "Fair", "Grounded", "Supportive"],
+    bestFor: [
+      "Checking whether an explanation shows real understanding",
+      "Naming where review is still needed",
+      "Keeping assessment focused and low-pressure",
+      "Helping the demo end with proof instead of vague encouragement",
+    ],
+    flowName: "Kai Understanding Check",
+    flow: [
+      { title: "Receive", description: "Take Amira's recorded voice-practice attempt." },
+      { title: "Assess", description: "Check whether the explanation shows understanding of the selected definition." },
+      { title: "Decide", description: "Pass, identify a review need, or route to a focused recheck." },
+      { title: "Hand back", description: "Send the result toward Miro's completion and the Proof/Progress state." },
+    ],
+    model: {
+      name: "Understanding assessment agent",
+    },
+    goals: [
+      "Make assessment feel like support, not judgment",
+      "Give the learner a clear result from one spoken attempt",
+      "Protect proof from being just a decorative badge",
+      "Connect assessment to the downloadable badge and certificate state",
+    ],
+    teachingNotes: [
+      "Kai is the primary assessment modal in the current public demo.",
+      "Kai checks explanation clarity inside Flowst, not professional certification.",
+      "Kai's result leads into Miro's completion/proof experience.",
+    ],
+    tags: ["Check", "Review", "Proof"],
+    assets: {
+      avatar: "/assets/mascots/kai/avatar.png",
+      portrait: "/assets/mascots/kai/portrait.png",
+      profileBoard: "/assets/mascots/kai/profile-board.png",
     },
   },
 ] as const;
@@ -203,5 +251,3 @@ export type PillColor =
   | "orange"
   | "magenta"
   | "lavender";
-
-

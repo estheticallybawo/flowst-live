@@ -15,7 +15,7 @@ export function Proof() {
             textWrap: "balance",
           }}
         >
-          Flowst turns learning into explainable knowledge, spoken clarity, and reviewable proof.
+          The demo ends with proof because clarity should be visible, not just felt.
         </SectionTitle>
       </div>
       <div
@@ -28,12 +28,10 @@ export function Proof() {
         }}
       >
         <GlassCard variant="solid" padding="2rem">
-          <Tag agent="sophia" dot>
+          <Tag agent="sofia" dot>
             Explainable Knowledge
           </Tag>
-          <div
-            style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}
-          >
+          <div style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}>
             <Pill
               color="amber"
               style={{
@@ -47,17 +45,15 @@ export function Proof() {
             </Pill>
           </div>
           <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Sophia pushes learners beyond passive reading by asking them to connect key ideas,
-            explain the concept in their own words, and tighten what still feels vague.
+            Sofia teaches the selected definition with a fresh framing so the learner can understand
+            the concept before trying to perform it.
           </p>
         </GlassCard>
         <GlassCard variant="solid" padding="2rem">
           <Tag agent="amira" dot>
             Spoken Clarity
           </Tag>
-          <div
-            style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}
-          >
+          <div style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}>
             <Pill
               color="orange"
               style={{
@@ -71,19 +67,17 @@ export function Proof() {
             </Pill>
           </div>
           <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Amira turns quiet understanding into spoken practice, helping learners hear where an
-            answer is clear, rushed, or missing the point.
+            Amira creates one real voice-practice moment, so the learner can hear their knowledge in
+            their own words instead of only recognizing it silently.
           </p>
         </GlassCard>
         <GlassCard variant="solid" padding="2rem">
-          <Tag agent="miro" dot>
-            Final Miro Clarity Review
+          <Tag agent="kai" dot>
+            Understanding Check
           </Tag>
-          <div
-            style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}
-          >
+          <div style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}>
             <Pill
-              color="lavender"
+              color="mint"
               style={{
                 fontFamily: "var(--font-heading)",
                 fontWeight: 600,
@@ -91,16 +85,15 @@ export function Proof() {
                 padding: "0.1em 0.4em",
               }}
             >
-              Own it
+              Prove it
             </Pill>
           </div>
           <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Proof means completed subtopics, badges, weak-area review, and a final explanation check
-            that unlocks a shareable Explanation Clarity Certificate.
+            Kai checks the explanation, then the completed Flowstate appears in Progress/Proof with
+            a badge and downloadable Explanation Clarity Certificate.
           </p>
         </GlassCard>
       </div>
     </Section>
   );
 }
-

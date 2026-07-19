@@ -2,19 +2,21 @@ import type { CSSProperties } from "react";
 import type { AgentId } from "@/lib/agents";
 
 /**
- * Flowst AgentAvatar — a mascot portrait seated in a soft pastel "well"
+ * Flowst AgentAvatar, a mascot portrait seated in a soft pastel well
  * tinted to the agent's accent, with an ambient glow. The mascots are
  * 3D vinyl-toy renders; pass the image via `src`.
  */
 const SOFT: Record<AgentId, string> = {
   miro: "var(--agent-miro-soft)",
-  sophia: "var(--agent-sophia-soft)",
+  sofia: "var(--agent-sofia-soft)",
   amira: "var(--agent-amira-soft)",
+  kai: "var(--agent-kai-soft)",
 };
 const GLOW: Record<AgentId, string> = {
   miro: "var(--glow-miro)",
-  sophia: "var(--glow-sophia)",
+  sofia: "var(--glow-sofia)",
   amira: "var(--glow-amira)",
+  kai: "var(--glow-kai)",
 };
 
 interface AgentAvatarProps {
@@ -29,7 +31,7 @@ interface AgentAvatarProps {
 export function AgentAvatar({
   src,
   alt = "",
-  agent = "sophia",
+  agent = "sofia",
   size = 120,
   glow = true,
   style,

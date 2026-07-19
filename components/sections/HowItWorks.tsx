@@ -9,36 +9,43 @@ const STEPS: { n: string; agent: AgentId; ic: keyof typeof ICONS; title: string;
     n: "01",
     agent: "miro",
     ic: "Target",
-    title: "Join the launch list",
-    body: "Follow the build and be first to know when the Flowst learning loop opens for early users.",
+    title: "Open the public demo",
+    body: "The demo starts at demo.useflowst.com with a 24-hour learner session. No account, email, or password is required.",
   },
   {
     n: "02",
     agent: "miro",
     ic: "Nodes",
-    title: "Tell Miro what you want to learn",
-    body: "Miro will shape your topic, level, time, and learning goal into a path you can actually follow.",
+    title: "Choose Guided Learning",
+    body: "Guided Learning is live in the demo. Brain Canvas is visible as coming soon, so the experience stays focused.",
   },
   {
     n: "03",
     agent: "miro",
     ic: "Chart",
-    title: "Preview the learning path",
-    body: "You will see the route before committing deeper, including subtopics, practice moments, and the final review goal.",
+    title: "Pick a topic and scope",
+    body: "Choose a topic, optional material, focused or broad scope, and a 5 to 25 minute focus block. The demo keeps the route to one concept.",
   },
   {
     n: "04",
-    agent: "sophia",
+    agent: "sofia",
     ic: "Bulb",
-    title: "Learn with Sophia clarity sessions",
-    body: "Sophia helps you understand each idea, explain it back, and tighten what still feels vague.",
+    title: "Learn with Sofia",
+    body: "Sofia teaches the selected definition with a fresh strategy, so the concept feels clearer before you try to explain it.",
   },
   {
     n: "05",
     agent: "amira",
     ic: "Brain",
-    title: "Say it, review it, share proof",
-    body: "Amira voice practice comes online as the Say it layer, then Miro runs the final clarity review and prepares a shareable explanation-clarity certificate.",
+    title: "Say it with Amira",
+    body: "Amira asks for one real spoken explanation, requests microphone access, records the attempt, and hands it to Kai.",
+  },
+  {
+    n: "06",
+    agent: "kai",
+    ic: "Shield",
+    title: "Kai checks, Miro closes",
+    body: "Kai checks understanding, then Miro closes the loop with proof, a badge, and a downloadable explanation-clarity certificate.",
   },
 ];
 
@@ -46,9 +53,9 @@ export function HowItWorks() {
   return (
     <Section id="how-it-works">
       <div style={{ textAlign: "right" }}>
-        <Eyebrow>The product journey</Eyebrow>
+        <Eyebrow>The live demo journey</Eyebrow>
         <SectionTitle style={{ marginLeft: "auto" }}>
-          What we are building: Learn it. Say it. Own it.
+          One focused Flowstate: learn it, say it, prove it.
         </SectionTitle>
       </div>
       <div
@@ -137,4 +144,3 @@ export function HowItWorks() {
     </Section>
   );
 }
-

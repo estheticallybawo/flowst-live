@@ -8,30 +8,33 @@ import {
   isAgentId,
 } from "../lib/agents.ts";
 
-test("the public catalog contains only the three active agents", () => {
+test("the public catalog matches the current demo agent loop", () => {
   assert.deepEqual(
     AGENTS.map((agent) => agent.id),
-    ["miro", "sophia", "amira"],
+    ["miro", "sofia", "amira", "kai"],
   );
 });
 
-test("the active agents match the Learn it Say it Own it product spec", () => {
+test("the active agents match the demo Flowstate contract", () => {
   const miro = getAgentById("miro");
-  const sophia = getAgentById("sophia");
+  const sofia = getAgentById("sofia");
   const amira = getAgentById("amira");
+  const kai = getAgentById("kai");
 
-  assert.equal(miro?.role, "Learning Path Guide");
-  assert.equal(sophia?.role, "Clarity Teacher");
-  assert.equal(amira?.role, "Voice Coach");
+  assert.equal(miro?.role, "Flowstate Guide");
+  assert.equal(sofia?.role, "Clarity Teacher");
+  assert.equal(amira?.role, "Voice Practice Coach");
+  assert.equal(kai?.role, "Understanding Checker");
 
-  assert.equal(miro?.status, "Premium");
-  assert.equal(sophia?.status, "Available");
-  assert.equal(amira?.status, "Not active yet");
+  assert.equal(miro?.status, "Demo live");
+  assert.equal(sofia?.status, "Demo live");
+  assert.equal(amira?.status, "Demo live");
+  assert.equal(kai?.status, "Demo live");
 
-  assert.match(miro?.summary ?? "", /learning path/i);
-  assert.match(miro?.summary ?? "", /clarity review/i);
-  assert.match(sophia?.summary ?? "", /explain/i);
-  assert.match(amira?.summary ?? "", /voice/i);
+  assert.match(miro?.summary ?? "", /Flowstate/i);
+  assert.match(sofia?.summary ?? "", /teaches/i);
+  assert.match(amira?.summary ?? "", /spoken explanation|microphone/i);
+  assert.match(kai?.summary ?? "", /checks.*understanding/i);
   assert.doesNotMatch(JSON.stringify(AGENTS), /"nyx"/i);
   assert.doesNotMatch(JSON.stringify(amira), /image generator|visual learning|visual memory/i);
   assert.doesNotMatch(JSON.stringify(amira), /German/i);
@@ -59,10 +62,12 @@ test("every agent exposes complete structured profile content", () => {
 });
 
 test("agent lookup and static params stay aligned with the catalog", () => {
-  assert.equal(isAgentId("sophia"), true);
+  assert.equal(isAgentId("sofia"), true);
+  assert.equal(isAgentId("sophia"), false);
   assert.equal(isAgentId("nyx"), false);
   assert.equal(isAgentId("quen"), false);
   assert.equal(getAgentById("miro")?.name, "Miro");
+  assert.equal(getAgentById("kai")?.name, "Kai");
   assert.equal(getAgentById("missing"), undefined);
   assert.deepEqual(
     getAgentStaticParams(),

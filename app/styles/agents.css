@@ -1,12 +1,14 @@
 /* Active agent accents and agent-specific layouts. */
 :root {
-  --agent-sophia: #fad795;
+  --agent-sofia: #fad795;
   --agent-miro: #b3adf5;
   --agent-amira: #fab87f;
+  --agent-kai: #9eebdd;
 
-  --agent-sophia-soft: rgba(255, 200, 97, 0.24);
+  --agent-sofia-soft: rgba(255, 200, 97, 0.24);
   --agent-miro-soft: rgba(129, 121, 223, 0.18);
   --agent-amira-soft: rgba(255, 138, 37, 0.18);
+  --agent-kai-soft: rgba(30, 190, 166, 0.18);
 
   --pill-amber: #FFDFA2;
   --pill-mint: #9EEBDD;
@@ -30,22 +32,22 @@
 
 .agent-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
   margin-top: 2.5rem;
 }
 
 .agent-card,
 .agent-profile {
-  --agent-accent: var(--agent-sophia);
-  --agent-soft: var(--agent-sophia-soft);
-  --agent-glow: var(--glow-sophia);
+  --agent-accent: var(--agent-sofia);
+  --agent-soft: var(--agent-sofia-soft);
+  --agent-glow: var(--glow-sofia);
 }
 
-[data-agent="sophia"] {
-  --agent-accent: var(--agent-sophia);
-  --agent-soft: var(--agent-sophia-soft);
-  --agent-glow: var(--glow-sophia);
+[data-agent="sofia"] {
+  --agent-accent: var(--agent-sofia);
+  --agent-soft: var(--agent-sofia-soft);
+  --agent-glow: var(--glow-sofia);
 }
 
 [data-agent="miro"] {
@@ -58,6 +60,12 @@
   --agent-accent: var(--agent-amira);
   --agent-soft: var(--agent-amira-soft);
   --agent-glow: var(--glow-amira);
+}
+
+[data-agent="kai"] {
+  --agent-accent: var(--agent-kai);
+  --agent-soft: var(--agent-kai-soft);
+  --agent-glow: var(--glow-kai);
 }
 
 .agent-card {
@@ -329,8 +337,13 @@
   font-size: 0.9rem;
 }
 
+@media (max-width: 1100px) {
+  .agent-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 920px) {
-  .agent-grid,
   .agent-profile__grid {
     grid-template-columns: 1fr;
   }
@@ -351,6 +364,10 @@
 }
 
 @media (max-width: 620px) {
+  .agent-grid {
+    grid-template-columns: 1fr;
+  }
+
   .agent-card {
     border-radius: var(--radius-lg);
   }
@@ -367,5 +384,3 @@
     aspect-ratio: 1;
   }
 }
-
-

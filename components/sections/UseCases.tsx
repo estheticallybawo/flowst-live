@@ -7,20 +7,26 @@ const USE_CASES: { ic: keyof typeof ICONS; agent: AgentId; title: string; body: 
   {
     ic: "Nodes",
     agent: "miro",
-    title: "The learner with a messy topic",
-    body: "They know what they want to learn, but not where to begin. Miro turns the goal into a path, preview, daily focus, and final review.",
+    title: "The learner who needs a first step",
+    body: "They know what they want to learn, but need a bounded route. The demo turns one topic into one focused Flowstate.",
   },
   {
     ic: "Bulb",
-    agent: "sophia",
+    agent: "sofia",
     title: "The learner who needs the idea to click",
-    body: "They need patient explanation, plain words, and a chance to explain the idea back before moving deeper into the path.",
+    body: "They need plain explanation and a fresh teaching angle before they try to explain the concept themselves.",
   },
   {
     ic: "Target",
     agent: "amira",
     title: "The learner preparing to say it out loud",
-    body: "They need guided voice practice so knowledge becomes spoken clarity, not just notes they silently recognize.",
+    body: "They need one guided voice-practice moment so knowledge becomes spoken clarity, not just silent recognition.",
+  },
+  {
+    ic: "Shield",
+    agent: "kai",
+    title: "The learner who needs a clear check",
+    body: "They need supportive assessment that says whether the explanation passed, needs review, or should be rechecked.",
   },
 ];
 
@@ -28,16 +34,16 @@ export function UseCases() {
   return (
     <Section>
       <div style={{ textAlign: "right" }}>
-        <Eyebrow>Who it&apos;s for</Eyebrow>
+        <Eyebrow>Who it is for</Eyebrow>
         <SectionTitle style={{ marginLeft: "auto" }}>
-          Built for learners who need a route, clearer explanation, speaking confidence.
+          Built for learners who need clarity without more cognitive load.
         </SectionTitle>
       </div>
       <div
         className="three-col"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1.5rem",
           marginTop: "2.5rem",
         }}

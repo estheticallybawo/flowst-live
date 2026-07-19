@@ -19,40 +19,40 @@ const albertSans = Albert_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Flowst - Learn it. Say it. Own it.",
+  title: "Flowst - Learn it. Say it. Prove it.",
   description:
-    "Flowst turns any topic into a guided learning path with Miro, Sophia, and Amira so learners can understand it, say it clearly, and prove explanation clarity.",
+    "Try the Flowst guided learning demo: Miro prepares a focused Flowstate, Sofia teaches, Amira guides voice practice, Kai checks understanding, and proof is saved.",
   keywords: [
     "Flowst",
-    "learning path",
+    "Flowst demo",
+    "guided learning",
     "AI learning agents",
     "active recall",
     "spoken clarity",
     "explanation clarity",
-    "guided learning",
-    "Miro Sophia Amira",
+    "Miro Sofia Amira Kai",
   ],
   authors: [{ name: "Flowst AI" }],
   openGraph: {
     type: "website",
     url: SITE_URL,
     siteName: "Flowst",
-    title: "Flowst - Learn it. Say it. Own it.",
+    title: "Flowst - Learn it. Say it. Prove it.",
     description:
-      "Turn a topic into a guided learning path, practice explaining it, and prove clarity with Flowst agents.",
+      "Try a no-account Flowst demo that turns one topic into a guided loop for understanding, voice practice, assessment, and proof.",
     images: [
       {
         url: "/assets/brand/flowst-hero.png",
         width: 1731,
         height: 909,
-        alt: "Flowst guided learning agents",
+        alt: "Flowst guided learning demo agents",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flowst - Learn it. Say it. Own it.",
-    description: "Turn any topic into a guided path you can follow, explain, and prove.",
+    title: "Flowst - Learn it. Say it. Prove it.",
+    description: "Try the public demo: one topic, one Flowstate, one spoken explanation, and proof.",
     images: ["/assets/brand/flowst-hero.png"],
   },
   icons: {
@@ -77,4 +77,3 @@ export default function RootLayout({
     </html>
   );
 }
-

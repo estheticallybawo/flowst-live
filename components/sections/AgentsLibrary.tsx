@@ -6,14 +6,14 @@ export function AgentsLibrary() {
   return (
     <Section id="agents">
       <div className="agents-library__heading">
-        <Eyebrow>Meet the active agents</Eyebrow>
+        <Eyebrow>Meet the demo agents</Eyebrow>
         <SectionTitle>
-          Miro builds the path. Sophia teaches clarity. Amira coaches voice.
+          Miro starts the Flowstate. Sofia teaches. Amira listens. Kai checks understanding.
         </SectionTitle>
         <p className="agents-library__intro">
-          Each agent has a clear product role: Miro guides the learning path and final review,
-          Sophia helps you understand and explain, and Amira is the in-progress voice coach for
-          saying knowledge out loud.
+          The current public demo is a bounded one-concept loop. Each agent has a clear job so the
+          learner can move from topic to explanation, voice practice, assessment, and proof without
+          studying becoming another mental burden.
         </p>
       </div>
       <div className="agent-grid">

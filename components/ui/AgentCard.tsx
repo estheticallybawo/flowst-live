@@ -7,8 +7,9 @@ import { Pill } from "./Pill";
 
 const AGENT_PILL_COLORS: Record<AgentId, PillColor> = {
   miro: "lavender",
-  sophia: "amber",
+  sofia: "amber",
   amira: "orange",
+  kai: "mint",
 };
 
 function AgentPill({ agentId, children }: { agentId: AgentId; children: React.ReactNode }) {

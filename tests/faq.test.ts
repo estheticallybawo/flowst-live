@@ -7,17 +7,16 @@ const faqSource = readFileSync(
   "utf8",
 );
 
-test("FAQ leads with methodology, use cases, and differentiation", () => {
+test("FAQ leads with current demo logistics and product truth", () => {
   const expectedQuestions = [
-    "How does Flowst actually work?",
-    "Who is Flowst for?",
-    "How is this different from courses, videos, or flashcards?",
-    "How does the Flowst loop work?",
-    "Why does saying it out loud matter?",
-    "Is the voice coaching live yet?",
+    "Can I try Flowst now?",
+    "What happens in the demo?",
+    "Why is the demo only one concept?",
+    "What is Brain Canvas?",
+    "What do the agents do?",
+    "Does the voice practice work in the demo?",
     "What does the certificate prove?",
-    "Is Flowst a professional certification?",
-    "Is Flowst live yet, and how do I get access?",
+    "Is Flowst fully launched?",
   ];
 
   for (const question of expectedQuestions) {
@@ -25,17 +24,17 @@ test("FAQ leads with methodology, use cases, and differentiation", () => {
   }
 
   assert.equal((faqSource.match(/q: "/g) ?? []).length, expectedQuestions.length);
-
-  // The FAQ should no longer lead with pre-launch logistics.
-  assert.doesNotMatch(faqSource, /Before you join the launch list/i);
 });
 
-test("FAQ preserves pre-launch safety boundaries", () => {
-  assert.match(faqSource, /still in build/i);
-  assert.match(faqSource, /Sophia/);
-  assert.match(faqSource, /Not active yet|in progress/i);
+test("FAQ preserves demo and launch safety boundaries", () => {
+  assert.match(faqSource, /demo\.useflowst\.com/);
+  assert.match(faqSource, /do not need an account, email, or password/i);
+  assert.match(faqSource, /Sofia/);
+  assert.match(faqSource, /Kai checks/);
+  assert.match(faqSource, /coming soon/i);
   assert.match(faqSource, /student coupon support/i);
   assert.match(faqSource, /Explanation Clarity Certificate/);
+  assert.match(faqSource, /not a professional license or school accreditation/i);
   assert.doesNotMatch(faqSource, /Google sign-in/i);
   assert.doesNotMatch(faqSource, /N19,999|N200,000|\$19|\$190/);
   assert.doesNotMatch(faqSource, /Certified .*Developer/i);
