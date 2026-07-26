@@ -23,8 +23,8 @@ const FEATURES: { icon: keyof typeof ICONS; title: string; body: string }[] = [
 
 export function LearningMode() {
   return (
-    <Section id="learning-mode">
-      <Eyebrow>Available today</Eyebrow>
+    <Section id="Features">
+      <Eyebrow>Features</Eyebrow>
       <SectionTitle style={{ maxWidth: 900 }}>
         Learning Mode turns your material into a clear way forward.
       </SectionTitle>

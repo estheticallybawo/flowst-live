@@ -4,10 +4,11 @@ import { Button } from "../ui/Button";
 import { DEMO_GATE_URL } from "@/lib/site";
 
 const LINKS = [
-  { label: "Learning Mode", href: "#learning-mode" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "What's next", href: "#whats-next" },
-  { label: "Institutions", href: "#institutions" },
+  { label: "Features", href: "#Features" },
+  { label: "About", href: "#how-it-works" },
+  { label: "Roadmap", href: "#roadmap" },
+  { label: "Blog", href: "#blog" },
+  { label: "Partnership", href: "#institutions" },
   { label: "FAQ", href: "#faq" },
 ];
 

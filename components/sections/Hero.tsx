@@ -1,12 +1,8 @@
 "use client";
 
 import { Button } from "../ui/Button";
-import { Pill } from "../ui/Pill";
-import { useNotify } from "../NotifyProvider";
 
 export function Hero() {
-  const { notify } = useNotify();
-
   return (
     <section
       className="flowst-card hero-card"
@@ -22,13 +18,12 @@ export function Hero() {
         className="hero-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "1.05fr 1.35fr",
+          gridTemplateColumns: "1.1fr 1fr",
           gap: "2rem",
           alignItems: "center",
         }}
       >
         <div>
-      
           <h1
             style={{
               fontSize: "clamp(2.8rem, 5vw, 4.7rem)",
@@ -48,9 +43,15 @@ export function Hero() {
               maxWidth: 500,
             }}
           >
-           Flowst is that somewhere where you turn any knowledge into a guided learning experience that helps knowledge stick.
+            Flowst is that somewhere where you turn any knowledge into a guided learning experience that helps knowledge stick.
           </p>
-          <div style={{ marginTop: "2rem" }}>
+          <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <Button href="https://demo.useflowst.com/demo" target="_blank" rel="noreferrer">
+              Try the demo
+            </Button>
+            <Button variant="ghost" href="#learning-mode">
+              Explore learning mode
+            </Button>
           </div>
         </div>
         <div
@@ -65,7 +66,7 @@ export function Hero() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/assets/brand/flowst-hero.png"
-            alt="A Flowst learning experience"
+            alt="Flowst guided learning experience"
             style={{ width: "100%", height: "100%", minHeight: 320, objectFit: "cover" }}
           />
         </div>

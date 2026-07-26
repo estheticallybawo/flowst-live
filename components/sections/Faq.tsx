@@ -3,32 +3,32 @@ import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const ITEMS: AccordionItem[] = [
   {
-    q: "What is Learning Mode?",
-    a: "Learning Mode is Flowst's available experience today. It turns PDFs, documents, research papers, notes, and new topics into structured lessons designed for understanding and retention.",
+    q: "What is Flowst and how does it help me learn faster?",
+    a: "Flowst turns your notes, PDFs, and learning material into a guided path with lessons, practice prompts, and understanding checks that help knowledge stick.",
   },
   {
-    q: "Can I try Flowst now?",
-    a: "Yes. The current guided-learning demo is available through a controlled access gate at demo.useflowst.com. The gate helps keep the pre-launch experience stable for early users and testers.",
+    q: "Can I watch Flowst in action before I sign up?",
+    a: "Yes — the demo walkthrough shows the current experience and lets you preview the guided learning flow before you request access.",
   },
   {
-    q: "What happens in the demo?",
-    a: "You choose Guided Learning, add a topic or material, set a focused scope, learn a selected concept, practise explaining it, and receive a focused understanding check with proof of progress.",
+    q: "Do I need an account or payment details to start?",
+    a: "No account is required for the current demo preview. The early access gate keeps the experience stable while we prepare the broader launch.",
   },
   {
-    q: "What do the learning guides do?",
-    a: "Miro structures the learning route, Sofia teaches for clarity, Amira supports spoken practice, and Kai checks understanding before the learner moves into progress and proof.",
+    q: "What type of material can I use with Flowst?",
+    a: "You can bring study notes, articles, research papers, and other text-based material. Flowst turns those resources into lessons, practice checks, and a proof-driven learning path.",
   },
   {
-    q: "What is coming next?",
-    a: "Flowst is developing Cognitive Exercise, Interview Prep, and Thought Leader modes, along with Perks: for personal progress and community participation.",
+    q: "How does Flowst help me know I really understand something?",
+    a: "Flowst asks you to explain and apply what you’re learning, then checks whether your understanding is clear before you move on, making learning more active and memorable.",
   },
   {
-    q: "Is Flowst fully launched?",
-    a: "Not yet. The PWA is still in development while Learning Mode is being shaped through the current demo. Join the launch list for updates and early access.",
+    q: "What is available in the current demo today?",
+    a: "The current preview includes Learning Mode, topic import, focused study sessions, and progress proof. Future releases will add deeper practice, interview prep, and creative learning workflows.",
   },
   {
-    q: "What does Flowst proof mean?",
-    a: "Flowst proof reflects progress and clarity within the Flowst learning experience. It is not a professional licence, formal certification, or school accreditation.",
+    q: "When will Flowst be available more widely?",
+    a: "Flowst is still pre-launch. We’re opening access in phases, starting with early users and testers through the demo gate before a broader release.",
   },
 ];
 
@@ -46,7 +46,7 @@ export function Faq() {
       >
         <div>
           <Eyebrow>Questions</Eyebrow>
-          <SectionTitle>What Flowst offers today, and what is next.</SectionTitle>
+          <SectionTitle>What new users want to know before they try Flowst.</SectionTitle>
         </div>
         <Accordion items={ITEMS} />
       </div>
