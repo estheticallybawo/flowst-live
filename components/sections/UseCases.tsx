@@ -33,7 +33,7 @@ export function ForLearners() {
   return (
     <Section>
       <SectionTitle style={{ maxWidth: 760 }}>
-        Built for people who want learning to move them forward.
+        Built for people who want to be high performers and achievers
       </SectionTitle>
       <div
         className="for-learners-grid"
@@ -51,12 +51,14 @@ export function ForLearners() {
               <span
                 style={{
                   display: "inline-flex",
-                  width: 44,
-                  height: 44,
+                  width: 46,
+                  height: 46,
                   alignItems: "center",
                   justifyContent: "center",
                   borderRadius: "var(--radius-md)",
-                  background: learner.tint,
+                  background: "var(--color-surface-sunken)",
+                  boxShadow: "var(--shadow-inset-well)",
+                  
                 }}
               >
                 <Icon size={22} />

@@ -3,10 +3,10 @@ import { Pill } from "../ui/Pill";
 import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const JOURNEY = [
-  { title: "Learn", body: "Start with material that matters to you.", color: "lavender" as const },
+  { title: "Learn", body: "Start with material that matters to you.", color: "mint" as const },
   { title: "Think", body: "Connect ideas until they make sense.", color: "lavender" as const },
-  { title: "Speak", body: "Practise explaining with clarity and confidence.", color: "lavender" as const },
-  { title: "Become", body: "Turn consistent learning into genuine expertise.", color: "lavender" as const },
+  { title: "Speak", body: "Practise explaining with clarity and confidence.", color: "amber" as const },
+  { title: "Become", body: "Turn consistent learning into genuine expertise.", color: "blue" as const },
 ];
 
 export function Journey() {
@@ -14,7 +14,7 @@ export function Journey() {
     <Section>
       <Eyebrow>Your Flowst journey</Eyebrow>
       <SectionTitle style={{ maxWidth: 820 }}>
-        Learning is the beginning. Expertise is where it can take you.
+        Learning is the beginning. Expertise is where Flowst can take you.
       </SectionTitle>
       <div
         className="journey-grid"

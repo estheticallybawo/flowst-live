@@ -33,7 +33,7 @@ export function ExpertiseOutcomes() {
   return (
     <Section>
       <SectionTitle style={{ maxWidth: 840 }}>
-        The future of Flowst is a future where more people can build real expertise.
+         Flowst is people can begin to build real clarity and expertise.
       </SectionTitle>
       <p style={{ maxWidth: 700, marginTop: "1rem", color: "var(--color-muted)", fontSize: "var(--text-body-lg)", lineHeight: 1.6 }}>
         Not just learning more, but becoming someone who can think clearly, speak with confidence, and be worth listening to.
@@ -56,11 +56,11 @@ export function ExpertiseOutcomes() {
                   display: "inline-flex",
                   width: 46,
                   height: 46,
-                  flex: "none",
                   alignItems: "center",
                   justifyContent: "center",
                   borderRadius: "var(--radius-md)",
-                  background: outcome.tint,
+                  background: "var(--color-surface-sunken)",
+                  boxShadow: "var(--shadow-inset-well)",
                 }}
               >
                 <Icon size={23} />

@@ -19,7 +19,7 @@ export function FutureVision() {
         style={{ background: "linear-gradient(135deg, #FFFFFF, #F0F5FF)" }}
       >
         <SectionTitle style={{ maxWidth: 760, fontSize: "clamp(2rem, 4vw, 3.1rem)" }}>
-          Flowst is building for the person you are becoming.
+          Flowst prepares you for the person you are becoming.
         </SectionTitle>
         <div
           className="future-list"
@@ -35,13 +35,14 @@ export function FutureVision() {
               <span
                 style={{
                   display: "inline-flex",
-                  width: 30,
-                  height: 30,
-                  flex: "none",
+                  width: 36,
+                  height: 36,
                   alignItems: "center",
                   justifyContent: "center",
-                  borderRadius: "50%",
-                  background: "var(--pill-mint)",
+                  borderRadius: "var(--radius-md)",
+                  background: "var(--color-surface-sunken)",
+                  boxShadow: "var(--shadow-inset-well)",
+                 
                 }}
               >
                 <ICONS.Shield size={16} />

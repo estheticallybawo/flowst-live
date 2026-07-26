@@ -57,13 +57,14 @@ export function LearningFlow() {
               >
                 <span
                   style={{
-                    display: "inline-flex",
-                    width: 46,
-                    height: 46,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "var(--radius-md)",
-                    background: step.tint,
+                  display: "inline-flex",
+                  width: 46,
+                  height: 46,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "var(--radius-md)",
+                  background: "var(--color-surface-sunken)",
+                  boxShadow: "var(--shadow-inset-well)",
                   }}
                 >
                   <Icon size={23} />
