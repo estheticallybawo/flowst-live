@@ -1,4 +1,4 @@
-# Flowst Ã¢â‚¬â€ Marketing Site
+# Flowst Marketing Site
 
 Production implementation of the Flowst landing page, built from the
 Claude Design handoff in [`../project/`](../project). **Flowst AI Ã¢â‚¬â€ the flow
@@ -76,6 +76,6 @@ system. The one change from the source: fonts are loaded with `next/font`
 ## Deployment
 
 The site is fully static-capable. Deploy to any Next.js host (Vercel, etc.),
-or add `output: "export"` in `next.config.mjs` to emit a static bundle Ã¢â‚¬â€
+or add `output: "export"` in `next.config.mjs` to emit a static bundle
 note that would disable the Next image optimizer (this site uses plain
 `<img>` for the oversized object-cover mascot crops, so export works as-is).
