@@ -1,14 +1,14 @@
 import { NotifyProvider } from "@/components/NotifyProvider";
-import { ScrollReveal } from "@/components/ScrollReveal";
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
-import { Curiosity } from "@/components/sections/Curiosity";
-import { Science } from "@/components/sections/Science";
-import { UseCases } from "@/components/sections/UseCases";
-import { Proof } from "@/components/sections/Proof";
-import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Journey } from "@/components/sections/Curiosity";
+import { LearningMode } from "@/components/sections/Science";
+import { ForLearners } from "@/components/sections/UseCases";
+import { LearningFlow } from "@/components/sections/HowItWorks";
 import { AgentsLibrary } from "@/components/sections/AgentsLibrary";
-import { Pillars } from "@/components/sections/Pillars";
+import { Roadmap } from "@/components/sections/Roadmap";
+import { ExpertiseOutcomes } from "@/components/sections/Proof";
+import { FutureVision } from "@/components/sections/Pillars";
 import { Faq } from "@/components/sections/Faq";
 import { PartnerBanner } from "@/components/sections/PartnerBanner";
 import { MailSignup } from "@/components/sections/MailSignup";
@@ -21,20 +21,20 @@ export default function Home() {
         <Header />
         <main>
           <Hero />
-          <Curiosity />
-          <Science />
-          <UseCases />
-          <Proof />
-          <HowItWorks />
+          <Journey />
+          <LearningMode />
+          <ForLearners />
+          <LearningFlow />
           <AgentsLibrary />
-          <Pillars />
+          <Roadmap />
+          <ExpertiseOutcomes />
+          <FutureVision />
           <Faq />
           <PartnerBanner />
           <MailSignup />
         </main>
         <Footer />
       </div>
-      <ScrollReveal />
     </NotifyProvider>
   );
 }

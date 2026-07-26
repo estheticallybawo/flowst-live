@@ -1,91 +1,69 @@
 import { GlassCard } from "../ui/GlassCard";
 import { ICONS } from "../Icons";
-import { Section, Eyebrow, SectionTitle } from "./Section";
-import type { AgentId } from "@/lib/agents";
+import { Section, SectionTitle } from "./Section";
 
-const USE_CASES: { ic: keyof typeof ICONS; agent: AgentId; title: string; body: string }[] = [
+const LEARNERS: { icon: keyof typeof ICONS; title: string; body: string; tint: string }[] = [
   {
-    ic: "Nodes",
-    agent: "miro",
-    title: "The learner who needs a first step",
-    body: "They know what they want to learn, but need a bounded route. The demo turns one topic into one focused Flowstate.",
+    icon: "Bulb",
+    title: "Students",
+    body: "Build a clearer path through coursework, reading, and unfamiliar concepts.",
+    tint: "var(--pill-amber)",
   },
   {
-    ic: "Bulb",
-    agent: "sofia",
-    title: "The learner who needs the idea to click",
-    body: "They need plain explanation and a fresh teaching angle before they try to explain the concept themselves.",
+    icon: "Chart",
+    title: "Professionals",
+    body: "Turn complex information into knowledge you can use and explain at work.",
+    tint: "var(--pill-lavender)",
   },
   {
-    ic: "Target",
-    agent: "amira",
-    title: "The learner preparing to say it out loud",
-    body: "They need one guided voice-practice moment so knowledge becomes spoken clarity, not just silent recognition.",
+    icon: "Target",
+    title: "Career changers",
+    body: "Create momentum when you are learning a new field from the ground up.",
+    tint: "var(--pill-mint)",
   },
   {
-    ic: "Shield",
-    agent: "kai",
-    title: "The learner who needs a clear check",
-    body: "They need supportive assessment that says whether the explanation passed, needs review, or should be rechecked.",
+    icon: "Heart",
+    title: "Lifelong learners",
+    body: "Stay curious without losing track of the ideas you want to keep.",
+    tint: "var(--pill-rose)",
   },
 ];
 
-export function UseCases() {
+export function ForLearners() {
   return (
     <Section>
-      <div style={{ textAlign: "right" }}>
-        <Eyebrow>Who it is for</Eyebrow>
-        <SectionTitle style={{ marginLeft: "auto" }}>
-          Built for learners who need clarity without more cognitive load.
-        </SectionTitle>
-      </div>
+      <SectionTitle style={{ maxWidth: 760 }}>
+        Built for people who want learning to move them forward.
+      </SectionTitle>
       <div
-        className="three-col"
+        className="for-learners-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "1.5rem",
-          marginTop: "2.5rem",
+          gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+          gap: "1rem",
+          marginTop: "2.4rem",
         }}
       >
-        {USE_CASES.map((c) => {
-          const I = ICONS[c.ic];
+        {LEARNERS.map((learner) => {
+          const Icon = ICONS[learner.icon];
           return (
-            <GlassCard key={c.title} padding="1.75rem" glow={c.agent}>
+            <GlassCard key={learner.title} variant="solid" padding="1.5rem">
               <span
                 style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: "var(--radius-md)",
-                  flex: "none",
-                  background: `var(--agent-${c.agent}-soft)`,
-                  boxShadow: "var(--shadow-inner-soft)",
                   display: "inline-flex",
+                  width: 44,
+                  height: 44,
                   alignItems: "center",
                   justifyContent: "center",
+                  borderRadius: "var(--radius-md)",
+                  background: learner.tint,
                 }}
               >
-                <I size={24} />
+                <Icon size={22} />
               </span>
-              <h3
-                style={{
-                  fontSize: "1.18rem",
-                  fontWeight: 600,
-                  marginTop: "1.1rem",
-                  lineHeight: 1.25,
-                }}
-              >
-                {c.title}
-              </h3>
-              <p
-                style={{
-                  marginTop: "0.7rem",
-                  color: "var(--color-muted)",
-                  fontSize: "0.95rem",
-                  lineHeight: 1.55,
-                }}
-              >
-                {c.body}
+              <h3 style={{ marginTop: "1.1rem", fontSize: "1.15rem", fontWeight: 600 }}>{learner.title}</h3>
+              <p style={{ marginTop: "0.65rem", color: "var(--color-muted)", lineHeight: 1.55 }}>
+                {learner.body}
               </p>
             </GlassCard>
           );

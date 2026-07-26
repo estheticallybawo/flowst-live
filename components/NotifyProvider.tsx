@@ -6,8 +6,8 @@ import { Bell } from "./Icons";
 import { Button } from "./ui/Button";
 
 interface NotifyContextValue {
-  notify: () => void;
-  demo: () => void;
+  notify: (source?: string) => void;
+  demo: (source?: string) => void;
 }
 
 type LeadMode = "notify" | "demo";
@@ -92,7 +92,7 @@ function Field({
   );
 }
 
-function LeadDialog({ mode, onClose, onSuccess }: { mode: LeadMode; onClose: () => void; onSuccess: (message: string) => void }) {
+function LeadDialog({ mode, source, onClose, onSuccess }: { mode: LeadMode; source: string; onClose: () => void; onSuccess: (message: string) => void }) {
   const [state, setState] = useState<SubmitState>("idle");
   const [error, setError] = useState("");
   const firstField = useRef<HTMLInputElement | null>(null);
@@ -121,7 +121,7 @@ function LeadDialog({ mode, onClose, onSuccess }: { mode: LeadMode; onClose: () 
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ ...payload, type: mode, source: "useflowst.com" }),
+        body: JSON.stringify({ ...payload, type: mode, source }),
       });
 
       const data = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -277,6 +277,7 @@ function LeadDialog({ mode, onClose, onSuccess }: { mode: LeadMode; onClose: () 
 
 export function NotifyProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<LeadMode | null>(null);
+  const [source, setSource] = useState("useflowst.com");
   const [toast, setToast] = useState("");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -286,13 +287,13 @@ export function NotifyProvider({ children }: { children: ReactNode }) {
     timer.current = setTimeout(() => setToast(""), 3000);
   }, []);
 
-  const notify = useCallback(() => setMode("notify"), []);
-  const demo = useCallback(() => setMode("demo"), []);
+  const notify = useCallback((nextSource = "useflowst.com/notify") => { setSource(nextSource); setMode("notify"); }, []);
+  const demo = useCallback((nextSource = "useflowst.com/demo-request") => { setSource(nextSource); setMode("demo"); }, []);
 
   return (
     <NotifyContext.Provider value={{ notify, demo }}>
       {children}
-      {mode ? <LeadDialog mode={mode} onClose={() => setMode(null)} onSuccess={showToast} /> : null}
+      {mode ? <LeadDialog mode={mode} source={source} onClose={() => setMode(null)} onSuccess={showToast} /> : null}
       <Toast show={Boolean(toast)} message={toast} />
     </NotifyContext.Provider>
   );

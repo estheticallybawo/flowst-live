@@ -26,10 +26,10 @@ test("the active agents match the demo Flowstate contract", () => {
   assert.equal(amira?.role, "Voice Practice Coach");
   assert.equal(kai?.role, "Understanding Checker");
 
-  assert.equal(miro?.status, "Demo live");
-  assert.equal(sofia?.status, "Demo live");
-  assert.equal(amira?.status, "Demo live");
-  assert.equal(kai?.status, "Demo live");
+  assert.equal(miro?.status, "Live");
+  assert.equal(sofia?.status, "Live");
+  assert.equal(amira?.status, "Live");
+  assert.equal(kai?.status, "Live");
 
   assert.match(miro?.summary ?? "", /Flowstate/i);
   assert.match(sofia?.summary ?? "", /teaches/i);

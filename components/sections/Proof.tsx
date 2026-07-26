@@ -1,98 +1,77 @@
 import { GlassCard } from "../ui/GlassCard";
-import { Pill } from "../ui/Pill";
-import { Tag } from "../ui/Tag";
-import { Section, Eyebrow, SectionTitle } from "./Section";
+import { ICONS } from "../Icons";
+import { Section, SectionTitle } from "./Section";
 
-export function Proof() {
+const OUTCOMES: { icon: keyof typeof ICONS; title: string; body: string; tint: string }[] = [
+  {
+    icon: "Bulb",
+    title: "Learn deeply",
+    body: "Build a real grasp of the ideas behind the material in front of you.",
+    tint: "var(--pill-amber)",
+  },
+  {
+    icon: "Brain",
+    title: "Think critically",
+    body: "Connect information, spot weak points, and form a stronger point of view.",
+    tint: "var(--pill-lavender)",
+  },
+  {
+    icon: "Mic",
+    title: "Speak confidently",
+    body: "Practise putting knowledge into your own words when clarity matters.",
+    tint: "var(--pill-orange)",
+  },
+  {
+    icon: "Chart",
+    title: "Build expertise",
+    body: "Return to what you are learning and make consistent progress visible over time.",
+    tint: "var(--pill-mint)",
+  },
+];
+
+export function ExpertiseOutcomes() {
   return (
     <Section>
-      <div style={{ textAlign: "left" }}>
-        <Eyebrow>The outcome</Eyebrow>
-        <SectionTitle
-          style={{
-            maxWidth: 1040,
-            lineHeight: 1.08,
-            textWrap: "balance",
-          }}
-        >
-          The demo ends with proof because clarity should be visible, not just felt.
-        </SectionTitle>
-      </div>
+      <SectionTitle style={{ maxWidth: 840 }}>
+        The future of Flowst is a future where more people can build real expertise.
+      </SectionTitle>
+      <p style={{ maxWidth: 700, marginTop: "1rem", color: "var(--color-muted)", fontSize: "var(--text-body-lg)", lineHeight: 1.6 }}>
+        Not just learning more, but becoming someone who can think clearly, speak with confidence, and be worth listening to.
+      </p>
       <div
-        className="three-col"
+        className="outcomes-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "1.5rem",
-          marginTop: "2.5rem",
+          gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+          gap: "1rem",
+          marginTop: "2.4rem",
         }}
       >
-        <GlassCard variant="solid" padding="2rem">
-          <Tag agent="sofia" dot>
-            Explainable Knowledge
-          </Tag>
-          <div style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}>
-            <Pill
-              color="amber"
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontWeight: 600,
-                fontSize: "1.8rem",
-                padding: "0.1em 0.4em",
-              }}
-            >
-              Learn it
-            </Pill>
-          </div>
-          <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Sofia teaches the selected definition with a fresh framing so the learner can understand
-            the concept before trying to perform it.
-          </p>
-        </GlassCard>
-        <GlassCard variant="solid" padding="2rem">
-          <Tag agent="amira" dot>
-            Spoken Clarity
-          </Tag>
-          <div style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}>
-            <Pill
-              color="orange"
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontWeight: 600,
-                fontSize: "1.8rem",
-                padding: "0.1em 0.4em",
-              }}
-            >
-              Say it
-            </Pill>
-          </div>
-          <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Amira creates one real voice-practice moment, so the learner can hear their knowledge in
-            their own words instead of only recognizing it silently.
-          </p>
-        </GlassCard>
-        <GlassCard variant="solid" padding="2rem">
-          <Tag agent="kai" dot>
-            Understanding Check
-          </Tag>
-          <div style={{ marginTop: "1.2rem", display: "flex", alignItems: "baseline", gap: "0.6rem" }}>
-            <Pill
-              color="mint"
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontWeight: 600,
-                fontSize: "1.8rem",
-                padding: "0.1em 0.4em",
-              }}
-            >
-              Prove it
-            </Pill>
-          </div>
-          <p style={{ marginTop: "1.1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
-            Kai checks the explanation, then the completed Flowstate appears in Progress/Proof with
-            a badge and downloadable Explanation Clarity Certificate.
-          </p>
-        </GlassCard>
+        {OUTCOMES.map((outcome) => {
+          const Icon = ICONS[outcome.icon];
+          return (
+            <GlassCard key={outcome.title} variant="solid" padding="1.5rem" style={{ display: "flex", gap: "1rem" }}>
+              <span
+                style={{
+                  display: "inline-flex",
+                  width: 46,
+                  height: 46,
+                  flex: "none",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "var(--radius-md)",
+                  background: outcome.tint,
+                }}
+              >
+                <Icon size={23} />
+              </span>
+              <div>
+                <h3 style={{ fontSize: "1.15rem", fontWeight: 600 }}>{outcome.title}</h3>
+                <p style={{ marginTop: "0.5rem", color: "var(--color-muted)", lineHeight: 1.55 }}>{outcome.body}</p>
+              </div>
+            </GlassCard>
+          );
+        })}
       </div>
     </Section>
   );

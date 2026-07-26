@@ -19,40 +19,39 @@ const albertSans = Albert_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Flowst - Learn it. Say it. Prove it.",
+  title: "Flowst - Learn, think, speak, become.",
   description:
-    "Try the Flowst guided learning demo: Miro prepares a focused Flowstate, Sofia teaches, Amira guides voice practice, Kai checks understanding, and proof is saved.",
+    "Flowst is an Multi agents assisted learning platform designed to help you move beyond consuming information. Every learning journey is built around a simple progression: understand the material, explain it in your own words, and then apply it to real-world scenarios. This approach ensures that you not only retain knowledge but also develop the ability to think critically and communicate effectively.",
   keywords: [
     "Flowst",
-    "Flowst demo",
-    "guided learning",
-    "AI learning agents",
-    "active recall",
+    "Multi agents assisted learning",
+    "guided learning paths",
+    "active learning",
+    "learning retention",
     "spoken clarity",
-    "explanation clarity",
-    "Miro Sofia Amira Kai",
+    "career learning",
   ],
-  authors: [{ name: "Flowst AI" }],
+  authors: [{ name: "Flowst" }],
   openGraph: {
     type: "website",
-    url: SITE_URL,
+    url: "https://useflowst.com",
     siteName: "Flowst",
-    title: "Flowst - Learn it. Say it. Prove it.",
+    title: "Flowst - Every expert starts somewhere.",
     description:
-      "Try a no-account Flowst demo that turns one topic into a guided loop for understanding, voice practice, assessment, and proof.",
+      "Turn pre-exisitng knowledge into a structured learning experience that helps you understand deeply and build real expertise.",
     images: [
       {
         url: "/assets/brand/flowst-hero.png",
         width: 1731,
         height: 909,
-        alt: "Flowst guided learning demo agents",
+        alt: "Flowst learning experience",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flowst - Learn it. Say it. Prove it.",
-    description: "Try the public demo: one topic, one Flowstate, one spoken explanation, and proof.",
+    title: "Flowst - Learn, think, speak, become.",
+    description: "A multi-agents assisted learning platform for building understanding, confidence, and expertise.",
     images: ["/assets/brand/flowst-hero.png"],
   },
   icons: {

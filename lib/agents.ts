@@ -1,6 +1,6 @@
 export type AgentId = "miro" | "sofia" | "amira" | "kai";
 
-export type FeatureStatus = "Demo live" | "Available" | "Coming soon";
+export type FeatureStatus = "Live" | "Coming soon";
 export type ContextLabel =
   | "Starts the Flowstate"
   | "Teaches the concept"
@@ -50,7 +50,7 @@ export const AGENTS: readonly AgentProfile[] = [
     name: "Miro",
     role: "Flowstate Guide",
     world: "Guided Learning",
-    status: "Demo live",
+    status: "Live",
     contextLabel: "Starts the Flowstate",
     summary:
       "Miro turns the learner's topic, scope, and focus time into a bounded Flowstate, then returns at the end with the completion message and proof moment.",
@@ -96,7 +96,7 @@ export const AGENTS: readonly AgentProfile[] = [
     name: "Sofia",
     role: "Clarity Teacher",
     world: "Fresh teaching strategy",
-    status: "Demo live",
+    status: "Live",
     contextLabel: "Teaches the concept",
     summary:
       "Sofia teaches the selected definition with a fresh strategy, such as a simple explanation, analogy, comparison, scenario, prediction, or misconception check.",
@@ -142,7 +142,7 @@ export const AGENTS: readonly AgentProfile[] = [
     name: "Amira",
     role: "Voice Practice Coach",
     world: "Say it out loud",
-    status: "Demo live",
+    status: "Live",
     contextLabel: "Voice practice",
     summary:
       "Amira asks for one real spoken explanation in the demo, requests microphone permission, records the attempt, and hands the learner to Kai.",
@@ -188,7 +188,7 @@ export const AGENTS: readonly AgentProfile[] = [
     name: "Kai",
     role: "Understanding Checker",
     world: "Assessment moment",
-    status: "Demo live",
+    status: "Live",
     contextLabel: "Checks understanding",
     summary:
       "Kai checks understanding from the learner's spoken explanation in a focused modal, then either passes the attempt, identifies a review need, or sends the learner into a focused recheck.",

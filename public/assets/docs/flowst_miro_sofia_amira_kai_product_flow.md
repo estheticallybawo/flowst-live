@@ -1,4 +1,4 @@
-# Flowst AI — Miro → Nyx → Amira Product Flow
+# Flowst Learning Mode — Miro → Nyx → Amira Product Flow
 
 **Product:** Flowst AI  
 **Flow Name:** Learn it. See it. Own it.  
@@ -18,7 +18,7 @@ The core Flowst learning loop is:
 This gives Flowst a clear educational structure:
 
 1. **Miro** organizes the learning goal only on premium.
-2. **Nyx** teaches the concept with the goal to help the user communicate clearly free but limited usage, Pro plan unlock more usage.
+2. **Sofia** teaches the concept with the goal to help the user communicate clearly free but limited usage, Pro plan unlock more usage.
 3. **Amira** turns concepts into personalized mental models then into a visual images only avaliable on with Premium plan.
 4. **Miro** evaluates what the user understood, remembered, and should review next.
 

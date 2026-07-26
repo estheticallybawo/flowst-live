@@ -3,36 +3,32 @@ import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const ITEMS: AccordionItem[] = [
   {
+    q: "What is Learning Mode?",
+    a: "Learning Mode is Flowst's available experience today. It turns PDFs, documents, research papers, notes, and new topics into structured lessons designed for understanding and retention.",
+  },
+  {
     q: "Can I try Flowst now?",
-    a: "Yes. The current public demo is available at demo.useflowst.com. It creates a 24-hour demo learner session, so you do not need an account, email, or password to try the guided loop.",
+    a: "Yes. The current guided-learning demo is available through a controlled access gate at demo.useflowst.com. The gate helps keep the pre-launch experience stable for early users and testers.",
   },
   {
     q: "What happens in the demo?",
-    a: "You choose Guided Learning, pick a topic or upload material, choose a scope and focus duration, then Flowst runs one focused loop: Miro prepares the Flowstate, Sofia teaches, Amira records one spoken explanation, Kai checks understanding, and Miro closes with proof.",
+    a: "You choose Guided Learning, add a topic or material, set a focused scope, learn a selected concept, practise explaining it, and receive a focused understanding check with proof of progress.",
   },
   {
-    q: "Why is the demo only one concept?",
-    a: "That is intentional. The demo is designed to be finishable and low-pressure, especially for judges and first-time learners. A focused scope lets you feel the full learn, say, prove loop without turning studying into another mental burden.",
+    q: "What do the learning guides do?",
+    a: "Miro structures the learning route, Sofia teaches for clarity, Amira supports spoken practice, and Kai checks understanding before the learner moves into progress and proof.",
   },
   {
-    q: "What is Brain Canvas?",
-    a: "Brain Canvas is visible in the demo as coming soon. Guided Learning is the active demo route right now, so the current experience stays focused on one clear Flowstate.",
-  },
-  {
-    q: "What do the agents do?",
-    a: "Miro prepares and closes the Flowstate, Sofia teaches the selected definition, Amira handles one real voice-practice attempt, and Kai checks the explanation before proof is shown.",
-  },
-  {
-    q: "Does the voice practice work in the demo?",
-    a: "Yes. Amira asks for one spoken explanation and the browser requests microphone permission. The demo records one voice-practice attempt before handing the learner to Kai.",
-  },
-  {
-    q: "What does the certificate prove?",
-    a: "The Explanation Clarity Certificate represents clarity inside Flowst: the completed Flowstate, the earned badge, and the understanding check. It is a Flowst proof artifact, not a professional license or school accreditation.",
+    q: "What is coming next?",
+    a: "Flowst is developing Cognitive Exercise, Interview Prep, and Thought Leader modes, along with Perks: for personal progress and community participation.",
   },
   {
     q: "Is Flowst fully launched?",
-    a: "Not yet. The public demo is live, while the full signed-in product is still being fine-tuned. Join the waitlist for launch updates, and institutions can book a demo or ask about student coupon support.",
+    a: "Not yet. The PWA is still in development while Learning Mode is being shaped through the current demo. Join the launch list for updates and early access.",
+  },
+  {
+    q: "What does Flowst proof mean?",
+    a: "Flowst proof reflects progress and clarity within the Flowst learning experience. It is not a professional licence, formal certification, or school accreditation.",
   },
 ];
 
@@ -50,7 +46,7 @@ export function Faq() {
       >
         <div>
           <Eyebrow>Questions</Eyebrow>
-          <SectionTitle>What the demo does now, and what is still coming.</SectionTitle>
+          <SectionTitle>What Flowst offers today, and what is next.</SectionTitle>
         </div>
         <Accordion items={ITEMS} />
       </div>

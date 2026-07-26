@@ -87,23 +87,11 @@ export function PartnerBanner() {
             variant="accent"
             size="lg"
             iconRight={<Arrow size={18} />}
-            onClick={demo}
+            onClick={() => demo("useflowst.com/institutions")}
             style={{ marginTop: "1.2rem", width: "100%" }}
           >
             Book a demo
           </Button>
-          {/* Student-coupon CTA, paired under Book a demo as an outlined action (mobile-only) */}
-          <div className="partner-coupon-cta">
-            <Button
-              variant="ghost"
-              size="lg"
-              iconRight={<Arrow size={18} />}
-              onClick={notify}
-              style={{ width: "100%" }}
-            >
-              Get a student coupon
-            </Button>
-          </div>
         </div>
       </div>
     </Section>

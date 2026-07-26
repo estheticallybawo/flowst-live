@@ -1,41 +1,56 @@
 import { GlassCard } from "../ui/GlassCard";
-import { Pill } from "../ui/Pill";
+import { ICONS } from "../Icons";
 import { Section, SectionTitle } from "./Section";
-import type { PillColor } from "@/lib/agents";
 
-const PILLS: { a: string; b: string; c: PillColor }[] = [
-  { a: "Learn it", b: "with Sofia", c: "lavender" },
-  { a: "Say it", b: "with Amira", c: "orange" },
-  { a: "Prove it", b: "with Kai", c: "mint" },
+const FUTURE = [
+  "Learn deeply",
+  "Think critically",
+  "Speak confidently",
+  "Build genuine expertise",
+  "Become someone worth listening to",
 ];
 
-export function Pillars() {
+export function FutureVision() {
   return (
     <Section>
-      <div style={{ textAlign: "center" }}>
-        <SectionTitle
-          style={{ margin: "0 auto", maxWidth: 820, fontSize: "clamp(2.4rem, 4.5vw, 3.6rem)" }}
-        >
-          Learning should become something you can explain, not another mental burden to carry.
+      <GlassCard
+        variant="solid"
+        padding="clamp(2rem, 5vw, 3.5rem)"
+        style={{ background: "linear-gradient(135deg, #FFFFFF, #F0F5FF)" }}
+      >
+        <SectionTitle style={{ maxWidth: 760, fontSize: "clamp(2rem, 4vw, 3.1rem)" }}>
+          Flowst is building for the person you are becoming.
         </SectionTitle>
         <div
+          className="future-list"
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "1rem",
-            justifyContent: "center",
-            marginTop: "2.5rem",
+            display: "grid",
+            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+            gap: "0.9rem 1.5rem",
+            marginTop: "2rem",
           }}
         >
-          {PILLS.map((p) => (
-            <GlassCard key={p.b} variant="solid" padding="1.1rem 1.6rem">
-              <span style={{ fontFamily: "var(--font-heading)", fontWeight: 500, fontSize: "1.15rem" }}>
-                {p.a} <Pill color={p.c}>{p.b}</Pill>
+          {FUTURE.map((item) => (
+            <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.7rem", fontWeight: 600 }}>
+              <span
+                style={{
+                  display: "inline-flex",
+                  width: 30,
+                  height: 30,
+                  flex: "none",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  background: "var(--pill-mint)",
+                }}
+              >
+                <ICONS.Shield size={16} />
               </span>
-            </GlassCard>
+              {item}
+            </div>
           ))}
         </div>
-      </div>
+      </GlassCard>
     </Section>
   );
 }

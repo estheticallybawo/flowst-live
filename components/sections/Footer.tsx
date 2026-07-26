@@ -17,7 +17,7 @@ export function Footer() {
             textDecoration: "none",
           }}
         >
-          Back to top ↑
+          Back to top
         </a>
       </div>
       <footer
@@ -42,9 +42,7 @@ export function Footer() {
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/brand/flowst-mark-black.png" alt="" style={{ height: 22 }} />
-              <span
-                style={{ fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "1.15rem" }}
-              >
+              <span style={{ fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "1.15rem" }}>
                 Flowst
               </span>
             </div>
@@ -57,7 +55,7 @@ export function Footer() {
                 lineHeight: 1.55,
               }}
             >
-              A guided way to learn, say, and prove what you understand.
+              A multi-agents assisted learning platform for understanding deeply, thinking clearly, and speaking with confidence.
             </p>
           </div>
           <div
@@ -69,7 +67,7 @@ export function Footer() {
               lineHeight: 1.6,
             }}
           >
-            <div>@useflowst · TikTok, Instagram &amp; Facebook</div>
+            <div>@useflowst on TikTok, Instagram, and Facebook</div>
             <div style={{ marginTop: "0.5rem" }}>
               Built for guided learning paths. Secure payments by Paystack inside the app.
             </div>

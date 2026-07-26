@@ -7,7 +7,7 @@ import type { PillColor } from "@/lib/agents";
  */
 const FILLS: Record<PillColor, string> = {
   amber: "#f5e5c8d0",
-  mint: "#9eebddb9",
+  mint: "#c89eebd0",
   sage: "#dde6a9be",
   rose: "#ffc5bad3",
   blue: "#c9dbffd0",
