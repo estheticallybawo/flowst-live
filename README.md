@@ -1,81 +1,137 @@
-# Flowst Marketing Site
+# Flowst
 
-Production implementation of the Flowst landing page, built from the
-Claude Design handoff in [`../project/`](../project). **Flowst AI Ã¢â‚¬â€ the flow
-state of learning.** _Understand, then express. For minds that think in
-pictures._
+## Turn Information Into Expertise
 
-Built with **Next.js 16 (App Router) + React 19 + TypeScript**. Pages are
-statically prerendered; the design tokens, surface language, and components
-are ported faithfully from the design system.
+Flowst is an AI-powered learning platform designed to help you move
+beyond consuming information. Every learning journey is built around a
+simple progression:
 
-## Getting started
+> **Learn → Think → Speak → Become**
 
-```bash
-npm install
-npm run dev      # http://localhost:3000
-```
+Whether you're preparing for an interview, mastering a new skill,
+strengthening your thinking, or becoming someone others trust for
+insight, Flowst guides you every step of the way.
 
-```bash
-npm run build    # production build (static prerender)
-npm run start    # serve the production build
-npm run typecheck
-```
+------------------------------------------------------------------------
 
-Node 20+ recommended (developed on Node 22).
+# The Flowst Journey
 
-## Architecture
+## 1. Learn
 
-```
-app/
-  layout.tsx          Root layout Ã¢â‚¬â€ next/font (Unbounded + Albert Sans), SEO + OpenGraph metadata
-  page.tsx            Composes the landing page sections in order
-  agents/[id]/        Statically generated active-agent profile pages
-  globals.css         Imports the design tokens + base, plus responsive helpers
-  styles/             Design tokens, ported from ../project/tokens (+ base.css)
-    colors.css agents.css typography.css spacing.css effects.css base.css
-components/
-  Icons.tsx           Line-icon set (currentColor, 1.7px stroke)
-  NotifyProvider.tsx  "Notify Me" toast context, shared by header/hero
-  agents/             Profile layout + accessible profile-board dialog
-  ui/                 Design-system primitives
-    Button Pill Tag GlassCard Input Accordion AgentAvatar AgentCard
-  sections/           Landing-page sections
-    Header Hero Curiosity UseCases Proof HowItWorks
-    AgentsLibrary Pillars Faq PartnerBanner MailSignup Footer Section
-lib/
-  agents.ts           The active agent catalog, profile content, and shared types
-public/assets/        Brand marks + mascot renders (copied from the design system)
-```
+Build deep understanding instead of memorising information.
 
-Server components render all static content; only the interactive pieces
-(`Button`, `Input`, `Accordion`, `AgentCard`, `Header`, `Hero`, `MailSignup`,
-`NotifyProvider`) are client components.
+### Available Today
 
-### Design tokens
+-   Learn from YouTube videos
+-   Learn from PDFs and documents
+-   Learn from websites and articles
+-   Learn from research papers
+-   Generate structured learning guides
+-   Reinforce learning through interactive lessons
 
-All color, type, spacing, and effect values live as CSS custom properties in
-`app/styles/*` and are consumed via `var(--token)` Ã¢â‚¬â€ identical to the design
-system. The one change from the source: fonts are loaded with `next/font`
-(self-hosted, no layout shift) instead of a remote `@import`, and
-`--font-heading` / `--font-body` resolve to the generated font variables.
+------------------------------------------------------------------------
 
-## Production caveats (carried over from the design handoff)
+## 2. Think
 
-- **Lead collection requires environment variables.** The forms are wired to `/api/leads`, which sends contacts to Brevo when `BREVO_API_KEY` and list IDs are configured. See the Lead collection section above.
-- **Icons are a substitution.** The brand spec calls for **Supercons**;
-  this site ships Feather/Lucide-weight inline SVGs in `components/Icons.tsx`
-  as the closest CDN-free match. Swap for Supercons when available.
-- **Mascot renders.** Each active agent owns an `avatar.png`, `portrait.png`,
-  and `profile-board.png` under `public/assets/mascots/<agent>/`. Miro
-  currently reuses the square avatar as the profile portrait until a separate
-  full-body render is available.
-- **Nav links + footer links** are placeholders (`href="#"`); point them at
-  real routes once those pages exist.
+Develop the ability to analyse, reason, and solve problems.
 
-## Deployment
+### Available Today
 
-The site is fully static-capable. Deploy to any Next.js host (Vercel, etc.),
-or add `output: "export"` in `next.config.mjs` to emit a static bundle
-note that would disable the Next image optimizer (this site uses plain
-`<img>` for the oversized object-cover mascot crops, so export works as-is).
+-   Cognitive exercises
+-   Critical thinking practice
+-   Memory and recall training
+-   Pattern recognition challenges
+-   Reasoning exercises
+-   Problem-solving activities
+
+------------------------------------------------------------------------
+
+## 3. Speak
+
+Transform understanding into confident communication.
+
+### Available Today
+
+-   AI-powered interview practice
+-   Technical interview preparation
+-   Behavioural interview preparation
+-   Personalised feedback
+-   Follow-up questioning
+-   Communication coaching
+
+### Coming Soon
+
+-   Voice discussions around any topic
+-   Explain concepts aloud to an AI
+-   Debate different viewpoints
+-   Practice difficult conversations
+-   Build confidence before interviews, presentations, or public
+    speaking
+
+------------------------------------------------------------------------
+
+## 4. Become
+
+Grow into someone recognised for their expertise.
+
+### Coming Soon
+
+#### Learn from Anything
+
+Bring knowledge into Flowst from:
+
+-   TikTok
+-   YouTube
+-   Podcasts
+-   Articles
+-   Research papers
+-   PDFs
+-   Notes
+-   Websites
+
+Flowst transforms it into a guided learning journey before helping you
+practise and discuss it.
+
+------------------------------------------------------------------------
+
+### Mastery Badges
+
+-   Earn achievement badges
+-   Unlock learning milestones
+-   Track mastery levels
+-   Build learning streaks
+-   Share achievements
+
+------------------------------------------------------------------------
+
+### Public Learning Profile
+
+-   Showcase your progress
+-   Display earned badges
+-   Highlight completed learning journeys
+-   Share milestones with others
+
+------------------------------------------------------------------------
+
+### Community Rewards
+
+Reward meaningful participation through:
+
+-   Referral rewards
+-   Community contribution rewards
+-   Progress-based unlocks
+
+------------------------------------------------------------------------
+
+# Our Vision
+
+Flowst is building a future where anyone can:
+
+-   Learn deeply
+-   Think critically
+-   Speak confidently
+-   Build genuine expertise
+-   Become someone worth listening to
+
+Learning is only the beginning. Flowst helps you become the person your
+knowledge makes possible.
