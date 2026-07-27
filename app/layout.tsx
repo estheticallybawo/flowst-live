@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "Turn pre-exisitng knowledge into a structured learning experience that helps you understand deeply and build real expertise.",
     images: [
       {
-        url: "/assets/brand/flowst-hero.png",
+        url: "/assets/brand/flowsthero.png",
         width: 1731,
         height: 1009,
         alt: "Flowst learning experience",

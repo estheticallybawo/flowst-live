@@ -1,6 +1,6 @@
 import { GlassCard } from "../ui/GlassCard";
 import { ICONS } from "../Icons";
-import { Section, SectionTitle } from "./Section";
+import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const LEARNERS: { icon: keyof typeof ICONS; title: string; body: string; tint: string }[] = [
   {
@@ -32,9 +32,12 @@ const LEARNERS: { icon: keyof typeof ICONS; title: string; body: string; tint: s
 export function ForLearners() {
   return (
     <Section>
-      <SectionTitle style={{ maxWidth: 1180 }}>
-        Built for people who want to be high performers and achievers
-      </SectionTitle>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
+        <Eyebrow>Audience</Eyebrow>
+        <SectionTitle style={{ maxWidth: 1180 }}>
+          Built for people who want to be high performers and achievers
+        </SectionTitle>
+      </div>
       <div
         className="for-learners-grid"
         style={{
