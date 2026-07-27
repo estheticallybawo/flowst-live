@@ -172,4 +172,8 @@
     grid-column: auto !important;
     grid-row: auto !important;
   }
+
+  .guide-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
 }

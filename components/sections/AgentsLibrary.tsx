@@ -26,6 +26,7 @@ export function AgentsLibrary() {
         Each guide has one clear responsibility, so the learning experience stays focused from the first explanation to the next useful step.
       </p>
       <div
+        className="guide-grid"
         style={{
           marginTop: "2.4rem",
           display: "grid",
@@ -35,6 +36,7 @@ export function AgentsLibrary() {
         }}
       >
         <div
+          className="guide-cards-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, minmax(0, 1fr))",

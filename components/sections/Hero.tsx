@@ -45,7 +45,7 @@ export function Hero() {
           textAlign: "center",
           justifyContent: "center",
           height: "100%",
-          padding: "clamp(2rem, 2vw, 1.5rem)",
+          padding: "clamp(2rem, 4vw, 4rem)",
           gap: "1.5rem",
         }}
       >
