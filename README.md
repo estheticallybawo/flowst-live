@@ -20,7 +20,7 @@ insight, Flowst guides you every step of the way.
 
 Build deep understanding instead of memorising information.
 
-### Available Today
+### With
 
 -   Learn from YouTube videos
 -   Learn from PDFs and documents
@@ -35,7 +35,7 @@ Build deep understanding instead of memorising information.
 
 Develop the ability to analyse, reason, and solve problems.
 
-### Available Today
+### With
 
 -   Cognitive exercises
 -   Critical thinking practice
@@ -50,7 +50,7 @@ Develop the ability to analyse, reason, and solve problems.
 
 Transform understanding into confident communication.
 
-### Available Today
+### With
 
 -   AI-powered interview practice
 -   Technical interview preparation
@@ -90,7 +90,7 @@ Bring knowledge into Flowst from:
 -   Websites
 
 Flowst transforms it into a guided learning journey before helping you
-practise and discuss it.
+Practise and discuss it.
 
 ------------------------------------------------------------------------
 
