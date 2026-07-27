@@ -77,7 +77,7 @@ export function Header() {
           }}
         >
           <span aria-hidden="true" style={{ fontSize: "1.25rem", lineHeight: 1 }}>
-            ☰
+            {menuOpen ? "✕" : "☰"}
           </span>
         </button>
         <div
@@ -103,8 +103,17 @@ export function Header() {
               {link.label}
             </a>
           ))}
+          <Button
+            variant="accent"
+            href={DEMO_GATE_URL}
+            className="nav-menu-cta"
+            style={{ width: "50%" }}
+            onClick={() => setMenuOpen(false)}
+          >
+            Try demo
+          </Button>
         </div>
-        <Button variant="accent" href={DEMO_GATE_URL}>
+        <Button className="desktop-cta" variant="accent" href={DEMO_GATE_URL}>
           Try demo
         </Button>
       </nav>

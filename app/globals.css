@@ -94,6 +94,9 @@
   .nav-toggle {
     display: inline-flex !important;
   }
+  .desktop-cta {
+    display: none !important;
+  }
   .nav-links.nav-open {
     display: flex !important;
     position: absolute;
@@ -109,7 +112,8 @@
     padding: 1rem;
     box-shadow: var(--shadow-pill), var(--shadow-inner-soft);
   }
-  .nav-links a {
+  .nav-links a,
+  .nav-menu-cta {
     width: 100%;
   }
   .steps {

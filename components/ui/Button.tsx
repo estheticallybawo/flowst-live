@@ -23,6 +23,7 @@ interface ButtonProps {
   href?: string;
   target?: string;
   rel?: string;
+  className?: string;
   style?: CSSProperties;
   "aria-label"?: string;
 }
@@ -77,6 +78,7 @@ export function Button({
   href,
   target,
   rel,
+  className,
   style,
   ...rest
 }: ButtonProps) {
@@ -135,6 +137,7 @@ export function Button({
           if (disabled) e.preventDefault();
           else onClick?.();
         }}
+        className={className}
         style={base}
         onMouseEnter={(e) => hover(e, true)}
         onMouseLeave={(e) => hover(e, false)}
@@ -156,6 +159,7 @@ export function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
+      className={className}
       style={base}
       onMouseEnter={(e) => hover(e, true)}
       onMouseLeave={(e) => hover(e, false)}
