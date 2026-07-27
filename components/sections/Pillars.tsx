@@ -18,7 +18,7 @@ export function FutureVision() {
         padding="clamp(2rem, 5vw, 3.5rem)"
         style={{ background: "linear-gradient(135deg, #FFFFFF, #F0F5FF)" }}
       >
-        <SectionTitle style={{ maxWidth: 760, fontSize: "clamp(2rem, 4vw, 3.1rem)" }}>
+        <SectionTitle style={{ maxWidth: 1180, fontSize: "clamp(2rem, 4vw, 3.1rem)" }}>
           Flowst prepares you for the person you are becoming.
         </SectionTitle>
         <div

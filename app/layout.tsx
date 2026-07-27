@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Flowst - Learn, think, speak, become.",
   description:
-    "Flowst is an Multi agents assisted learning platform designed to help you move beyond consuming information. Every learning journey is built around a simple progression: understand the material, explain it in your own words, and then apply it to real-world scenarios. This approach ensures that you not only retain knowledge but also develop the ability to think critically and communicate effectively.",
+    "Flowst is a Multi agents assisted learning platform designed to help you move beyond consuming information. Every learning journey is built around a simple progression: understand the material, explain it in your own words, and then apply it to real-world scenarios. This approach ensures that you not only retain knowledge but also develop the ability to think critically and communicate effectively.",
   keywords: [
     "Flowst",
     "Multi agents assisted learning",

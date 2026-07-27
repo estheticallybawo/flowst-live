@@ -32,7 +32,7 @@ const LEARNERS: { icon: keyof typeof ICONS; title: string; body: string; tint: s
 export function ForLearners() {
   return (
     <Section>
-      <SectionTitle style={{ maxWidth: 760 }}>
+      <SectionTitle style={{ maxWidth: 1180 }}>
         Built for people who want to be high performers and achievers
       </SectionTitle>
       <div

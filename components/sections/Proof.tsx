@@ -32,10 +32,10 @@ const OUTCOMES: { icon: keyof typeof ICONS; title: string; body: string; tint: s
 export function ExpertiseOutcomes() {
   return (
     <Section>
-      <SectionTitle style={{ maxWidth: 840 }}>
+      <SectionTitle style={{ maxWidth: 1180 }}>
          Flowst is people can begin to build real clarity and expertise.
       </SectionTitle>
-      <p style={{ maxWidth: 700, marginTop: "1rem", color: "var(--color-muted)", fontSize: "var(--text-body-lg)", lineHeight: 1.6 }}>
+      <p style={{ maxWidth: 1180, marginTop: "1rem", color: "var(--color-muted)", fontSize: "var(--text-body-lg)", lineHeight: 1.6 }}>
         Not just learning more, but becoming someone who can think clearly, speak with confidence, and be worth listening to.
       </p>
       <div
@@ -50,7 +50,13 @@ export function ExpertiseOutcomes() {
         {OUTCOMES.map((outcome) => {
           const Icon = ICONS[outcome.icon];
           return (
-            <GlassCard key={outcome.title} variant="solid" padding="1.5rem" style={{ display: "flex", gap: "1rem" }}>
+            <GlassCard
+              key={outcome.title}
+              variant="solid"
+              padding="1.5rem"
+              className="outcome-card"
+              style={{ display: "flex", gap: "1rem" }}
+            >
               <span
                 style={{
                   display: "inline-flex",

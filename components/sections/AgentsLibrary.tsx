@@ -18,11 +18,11 @@ export function AgentsLibrary() {
     <Section id="guides">
       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "right" }}>
         <Eyebrow>Meet the guides</Eyebrow>
-        <SectionTitle style={{ maxWidth: 860 }}>
+        <SectionTitle style={{ maxWidth: 1180 }}>
           Specialized guides work together behind Learning Mode.
         </SectionTitle>
       </div>
-      <p style={{ maxWidth: 680, marginTop: "1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
+      <p style={{ maxWidth: 1180, fontSize: "1.2rem", marginLeft: "auto", textAlign: "right", marginTop: "1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
         Each guide has one clear responsibility, so the learning experience stays focused from the first explanation to the next useful step.
       </p>
       <div

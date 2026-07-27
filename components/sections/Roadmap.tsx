@@ -42,9 +42,9 @@ export function  Roadmap() {
     <Section id="roadmap">
       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
         <Eyebrow>Roadmap</Eyebrow>
-        <SectionTitle style={{ maxWidth: 780 }}>More ways to grow with Flowst are on the way.</SectionTitle>
+        <SectionTitle style={{ maxWidth: 1180 }}>More ways to grow with Flowst are on the way.</SectionTitle>
       </div>
-      <p style={{ maxWidth: 670, marginTop: "1rem", color: "var(--color-muted)", fontSize: "var(--text-body-lg)", lineHeight: 1.6 }}>
+      <p style={{ maxWidth: 1180, marginTop: "1rem", color: "var(--color-muted)", fontSize: "var(--text-body-lg)", lineHeight: 1.6 }}>
         Learning Mode is the first step. Future modes will bring purpose-built guidance to the moments where thinking and communication matter most.
       </p>
       <div className="roadmap-grid" style={{ marginTop: "2.5rem" }}>

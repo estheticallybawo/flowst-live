@@ -26,7 +26,7 @@ export function LearningMode() {
     <Section id="Features">
       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
         <Eyebrow>Features</Eyebrow>
-        <SectionTitle style={{ maxWidth: 900 }}>
+        <SectionTitle style={{ maxWidth: 1180 }}>
           Learning Mode turns your material into a clear way forward.
         </SectionTitle>
       </div>

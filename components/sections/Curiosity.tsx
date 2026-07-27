@@ -1,12 +1,33 @@
+import { Fragment } from "react";
 import { GlassCard } from "../ui/GlassCard";
-import { Pill } from "../ui/Pill";
+import { Arrow, ICONS } from "../Icons";
 import { Section, Eyebrow, SectionTitle } from "./Section";
 
-const JOURNEY = [
-  { title: "Learn", body: "Start with material that matters to you.", color: "mint" as const },
-  { title: "Think", body: "Connect ideas until they make sense.", color: "lavender" as const },
-  { title: "Speak", body: "Practise explaining with clarity and confidence.", color: "amber" as const },
-  { title: "Become", body: "Turn consistent learning into genuine expertise.", color: "blue" as const },
+const STEPS: { icon: keyof typeof ICONS; title: string; body: string; tint: string }[] = [
+  {
+    icon: "Nodes",
+    title: "Choose your Flowst Mode",
+    body: "Select the Flowst Mode that best matches what you want to achieve, from learning to interview prep to cognitive training and communication practice.",
+    tint: "var(--pill-lavender)",
+  },
+  {
+    icon: "Target",
+    title: "Start with your goal",
+    body: "Whether you're learning a new skill, preparing for an interview, strengthening your thinking, or exploring a new topic, every journey begins with a goal.",
+    tint: "var(--pill-amber)",
+  },
+  {
+    icon: "Bulb",
+    title: "Get specialized team of agents",
+    body: "Instead of one AI assistant, Flowst combines specialized agents that each focus on specialized tasks like for your learning goal.",
+    tint: "var(--pill-orange)",
+  },
+  {
+    icon: "Shield",
+    title: "Complete Flows and FlowStates",
+    body: "Each Flow and FlowState is designed to move you one step closer to understanding, helping you build knowledge through focused, interactive experiences.",
+    tint: "var(--pill-mint)",
+  },
 ];
 
 export function Journey() {
@@ -14,28 +35,56 @@ export function Journey() {
     <Section>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "right" }}>
         <Eyebrow>Flowst Journey</Eyebrow>
-        <SectionTitle style={{ maxWidth: 820 }}>
+        <SectionTitle style={{ maxWidth: 1180 }}>
           Learning is the beginning. Expertise is where Flowst can take you.
         </SectionTitle>
       </div>
       <div
-        className="journey-grid"
+        className="steps"
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-          gap: "1rem",
-          marginTop: "2.4rem",
+          display: "flex",
+          alignItems: "stretch",
+          gap: "0.75rem",
+          marginTop: "2.5rem",
         }}
       >
-        {JOURNEY.map((step, index) => (
-          <GlassCard key={step.title} variant="solid" padding="1.5rem" style={{ minHeight: 180 }}>
-            <Pill color={step.color}>{index === 0 ? "Start" : index === 1 ? "Connect" : index === 2 ? "Practice" : "Become"}</Pill>
-            <h3 style={{ marginTop: "1.25rem", fontSize: "1.25rem", fontWeight: 600 }}>{step.title}</h3>
-            <p style={{ marginTop: "0.7rem", color: "var(--color-muted)", lineHeight: 1.55 }}>
-              {step.body}
-            </p>
-          </GlassCard>
-        ))}
+        {STEPS.map((step, index) => {
+          const Icon = ICONS[step.icon];
+          return (
+            <Fragment key={step.title}>
+              <GlassCard
+                variant="solid"
+                padding="1.5rem"
+                className="step-card"
+                style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column" }}
+              >
+                <span
+                  style={{
+                    display: "inline-flex",
+                    width: 46,
+                    height: 46,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "var(--radius-md)",
+                    background: "var(--color-surface-sunken)",
+                    boxShadow: "var(--shadow-inset-well)",
+                  }}
+                >
+                  <Icon size={23} />
+                </span>
+                <h3 style={{ fontSize: "1.08rem", fontWeight: 600, marginTop: "1.2rem" }}>{step.title}</h3>
+                <p style={{ marginTop: "0.6rem", color: "var(--color-muted)", lineHeight: 1.55 }}>
+                  {step.body}
+                </p>
+              </GlassCard>
+              {index < STEPS.length - 1 ? (
+                <div className="step-arrow" style={{ display: "flex", alignItems: "center", color: "var(--color-soft-muted)" }}>
+                  <Arrow size={20} />
+                </div>
+              ) : null}
+            </Fragment>
+          );
+        })}
       </div>
     </Section>
   );

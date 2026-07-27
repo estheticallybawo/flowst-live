@@ -217,4 +217,9 @@
   .guide-cards-grid {
     grid-template-columns: 1fr !important;
   }
+
+  .outcome-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
 }
