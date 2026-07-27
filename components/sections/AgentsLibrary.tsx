@@ -16,10 +16,12 @@ const GUIDE_COPY: Record<AgentId, string> = {
 export function AgentsLibrary() {
   return (
     <Section id="guides">
-      <Eyebrow>Meet the guides</Eyebrow>
-      <SectionTitle style={{ maxWidth: 860 }}>
-        Specialized guides work together behind Learning Mode.
-      </SectionTitle>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "right" }}>
+        <Eyebrow>Meet the guides</Eyebrow>
+        <SectionTitle style={{ maxWidth: 860 }}>
+          Specialized guides work together behind Learning Mode.
+        </SectionTitle>
+      </div>
       <p style={{ maxWidth: 680, marginTop: "1rem", color: "var(--color-muted)", lineHeight: 1.6 }}>
         Each guide has one clear responsibility, so the learning experience stays focused from the first explanation to the next useful step.
       </p>

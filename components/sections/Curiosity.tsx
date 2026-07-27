@@ -12,10 +12,12 @@ const JOURNEY = [
 export function Journey() {
   return (
     <Section>
-      <Eyebrow>Flowst Journey</Eyebrow>
-      <SectionTitle style={{ maxWidth: 820 }}>
-        Learning is the beginning. Expertise is where Flowst can take you.
-      </SectionTitle>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "right" }}>
+        <Eyebrow>Flowst Journey</Eyebrow>
+        <SectionTitle style={{ maxWidth: 820 }}>
+          Learning is the beginning. Expertise is where Flowst can take you.
+        </SectionTitle>
+      </div>
       <div
         className="journey-grid"
         style={{

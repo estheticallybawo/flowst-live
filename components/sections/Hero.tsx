@@ -20,7 +20,7 @@ export function Hero() {
           position: "absolute",
           inset: 0,
           zIndex: 0,
-          backgroundImage: "url('/assets/brand/flowst-hero.png')",
+          backgroundImage: "url('/assets/brand/flowsthero.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

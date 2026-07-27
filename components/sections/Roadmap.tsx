@@ -40,8 +40,10 @@ const ROADMAP: { title: string; body: string; color: "lavender" | "amber" | "ora
 export function  Roadmap() {
   return (
     <Section id="roadmap">
-      <Eyebrow>Roadmap</Eyebrow>
-      <SectionTitle style={{ maxWidth: 780 }}>More ways to grow with Flowst are on the way.</SectionTitle>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
+        <Eyebrow>Roadmap</Eyebrow>
+        <SectionTitle style={{ maxWidth: 780 }}>More ways to grow with Flowst are on the way.</SectionTitle>
+      </div>
       <p style={{ maxWidth: 670, marginTop: "1rem", color: "var(--color-muted)", fontSize: "var(--text-body-lg)", lineHeight: 1.6 }}>
         Learning Mode is the first step. Future modes will bring purpose-built guidance to the moments where thinking and communication matter most.
       </p>

@@ -33,10 +33,12 @@ const STEPS: { icon: keyof typeof ICONS; title: string; body: string; tint: stri
 export function LearningFlow() {
   return (
     <Section id="how-it-works">
-      <Eyebrow>ABOUT</Eyebrow>
-      <SectionTitle style={{ maxWidth: 760 }}>
-       Various teams of AI agents working together to help you learn, think, speak, and become
-      </SectionTitle>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
+        <Eyebrow>ABOUT</Eyebrow>
+        <SectionTitle style={{ maxWidth: 760 }}>
+         Various teams of AI agents working together to help you learn, think, speak, and become
+        </SectionTitle>
+      </div>
       <div
         className="steps"
         style={{
