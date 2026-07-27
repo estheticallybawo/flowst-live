@@ -79,7 +79,7 @@
 
 @media (max-width: 920px) {
   .hero-card {
-    min-height: 90vh !important;
+    min-height: 70vh !important;
   }
   .hero-grid {
     padding: clamp(1.5rem, 6vw, 2.5rem) !important;
