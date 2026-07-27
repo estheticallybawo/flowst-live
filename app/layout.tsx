@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://useflowst.com",
     siteName: "Flowst",
-    title: "Flowst - Every expert starts somewhere.",
+    title: "Flowst - Learn, think, practice, become.",
     description:
       "Turn pre-exisitng knowledge into a structured learning experience that helps you understand deeply and build real expertise.",
     images: [
       {
         url: "/assets/brand/flowst-hero.png",
         width: 1731,
-        height: 909,
+        height: 1009,
         alt: "Flowst learning experience",
       },
     ],

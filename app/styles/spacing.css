@@ -28,6 +28,6 @@
   --space-24: 6rem;
 
   /* Layout */
-  --container-max: 1200px;
-  --container-pad: clamp(1.25rem, 4vw, 3rem);
+  --container-max: 1500px;
+  --container-pad: clamp(1rem, 2vw, 2rem);
 }

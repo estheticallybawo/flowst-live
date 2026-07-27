@@ -7,68 +7,100 @@ export function Hero() {
     <section
       className="flowst-card hero-card"
       style={{
+        position: "relative",
         maxWidth: "var(--container-max)",
-        margin: "28px auto 0",
-        padding: "clamp(1.5rem, 3vw, 2.75rem)",
+        margin: "2px auto 0",
+        minHeight: "min(1200px, calc(100vh - 1rem))",
         borderRadius: "var(--radius-2xl)",
         overflow: "hidden",
       }}
     >
       <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          backgroundImage: "url('/assets/brand/flowst-hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          background: "linear-gradient(360deg, rgba(138, 134, 134, 0.37) 10%, rgba(49, 49, 70, 0.33) 25%, rgba(83, 83, 83, 0.38) 48%, rgba(56, 65, 78, 0.37) 60%, rgba(15, 23, 42, 0.84) 100%)",
+        }}
+      />
+      <div
         className="hero-grid"
         style={{
-          display: "grid",
-          gridTemplateColumns: "1.1fr 1fr",
-          gap: "2rem",
+          position: "relative",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "column",
           alignItems: "center",
+          textAlign: "center",
+          justifyContent: "center",
+          height: "100%",
+          padding: "clamp(2rem, 2vw, 1.5rem)",
+          gap: "1.5rem",
         }}
       >
-        <div>
+        <div style={{ maxWidth: 980 }}>
           <h1
             style={{
-              fontSize: "clamp(2.8rem, 5vw, 4.7rem)",
-              lineHeight: 1.02,
-              letterSpacing: "-0.02em",
-              fontWeight: 600,
-              marginTop: "1.15rem",
+              fontSize: "clamp(1rem, 1.5vw, 1.6rem)",
+              lineHeight: 1.2,
+              letterSpacing: "-0.03em",
+              fontWeight: 300,
+              color: "white",
+              paddingTop: "1rem",
             }}
           >
-            Every expert starts somewhere.
+             Join a growing community of learners using specialized team of agents for learning guidance to understand more, retain more, and become more confident on
           </h1>
-          <p
-            style={{
-              marginTop: "1.4rem",
-              fontSize: "var(--text-body-lg)",
-              color: "var(--color-muted)",
-              maxWidth: 500,
-            }}
-          >
-            Flowst is that somewhere where you turn any knowledge into a guided learning experience that helps knowledge stick.
-          </p>
-          <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <Button href="https://demo.useflowst.com/demo" target="_blank" rel="noreferrer">
-              Try the demo
+          <h1 
+          style={{
+            fontSize: "clamp(2.5rem, 4vw, 4.5rem)",
+            lineHeight: 1.02, 
+            fontWeight: 700,
+            paddingTop: "1.5rem",
+            color: "white",
+
+          }}>
+            Flowst</h1>
+          <div style={{ marginTop: "2.5rem", display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
+            <Button
+              href="https://useflowst.com/demo-access"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                minWidth: 170,
+                padding: "1rem 1.95rem",
+                borderRadius: "999px",
+                fontWeight: 700,
+              }}
+            >
+              Try demo
             </Button>
-            <Button variant="ghost" href="#learning-mode">
-              Explore learning mode
+            <Button
+              variant="ghost"
+              href="#learning-mode"
+              style={{
+                minWidth: 170,
+                padding: "1rem 1.95rem",
+                borderRadius: "999px",
+                background: "rgb(206, 206, 207)",
+                color: "rgb(255, 255, 255)",
+                border: "2px solid rgb(212, 212, 212)",
+              }}
+            >
+              Get Notified
             </Button>
           </div>
-        </div>
-        <div
-          style={{
-            minHeight: 320,
-            borderRadius: "var(--radius-xl)",
-            overflow: "hidden",
-            background: "var(--color-surface-sunken)",
-            boxShadow: "var(--shadow-card-soft), var(--shadow-inner-soft)",
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/brand/flowst-hero.png"
-            alt="Flowst guided learning experience"
-            style={{ width: "100%", height: "100%", minHeight: 320, objectFit: "cover" }}
-          />
         </div>
       </div>
     </section>
