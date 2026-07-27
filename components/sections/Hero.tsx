@@ -79,10 +79,11 @@ export function Hero() {
           <div style={{ marginTop: "2.5rem", display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
             <Button
               href="https://useflowst.com/demo-access"
-              target="_blank"
               rel="noreferrer"
               style={{
-                minWidth: 170,
+                width: "220px",
+                minWidth: "220px",
+                boxSizing: "border-box",
                 padding: "1rem 1.95rem",
                 borderRadius: "999px",
                 fontWeight: 700,
@@ -94,7 +95,9 @@ export function Hero() {
               variant="ghost"
               onClick={() => notify("useflowst.com/hero-notify")}
               style={{
-                minWidth: 170,
+                width: "220px",
+                minWidth: "220px",
+                boxSizing: "border-box",
                 padding: "1rem 1.95rem",
                 borderRadius: "999px",
                 background: "rgb(206, 206, 207)",
