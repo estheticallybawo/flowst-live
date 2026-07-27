@@ -89,7 +89,7 @@ export function Hero() {
             </Button>
             <Button
               variant="ghost"
-              href="#learning-mode"
+              href="#blog"
               style={{
                 minWidth: 170,
                 padding: "1rem 1.95rem",
