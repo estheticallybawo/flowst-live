@@ -16,6 +16,7 @@ export function Hero() {
       }}
     >
       <div
+        className="hero-background"
         style={{
           position: "absolute",
           inset: 0,

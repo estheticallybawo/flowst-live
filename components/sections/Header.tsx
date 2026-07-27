@@ -107,7 +107,7 @@ export function Header() {
             variant="accent"
             href={DEMO_GATE_URL}
             className="nav-menu-cta"
-            style={{ width: "100%", display: menuOpen ? "inline-flex" : "none" }}
+            style={{ width: "80%", display: menuOpen ? "inline-flex" : "none" }}
             onClick={() => setMenuOpen(false)}
           >
             Try demo
