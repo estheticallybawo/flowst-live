@@ -97,6 +97,9 @@
   .desktop-cta {
     display: none !important;
   }
+  .nav-menu-cta {
+    display: none;
+  }
   .nav-links.nav-open {
     display: flex !important;
     position: absolute;
@@ -112,8 +115,11 @@
     padding: 1rem;
     box-shadow: var(--shadow-pill), var(--shadow-inner-soft);
   }
+  .nav-links.nav-open .nav-menu-cta {
+    display: inline-flex !important;
+  }
   .nav-links a,
-  .nav-menu-cta {
+  .nav-links.nav-open .nav-menu-cta {
     width: 100%;
   }
   .steps {
