@@ -87,7 +87,7 @@
   }
   .hero-background {
     background-size: contain !important;
-    background-position: top center !important;
+    background-position: bottom center !important;
   }
   .hero-features {
     grid-template-columns: repeat(2, 1fr) !important;
