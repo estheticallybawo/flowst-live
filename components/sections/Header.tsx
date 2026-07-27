@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "../ui/Button";
 import { DEMO_GATE_URL } from "@/lib/site";
 
@@ -13,6 +14,8 @@ const LINKS = [
 ];
 
 export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header
       style={{
@@ -40,6 +43,7 @@ export function Header() {
           backdropFilter: "blur(var(--blur-glass))",
           WebkitBackdropFilter: "blur(var(--blur-glass))",
           padding: "0.55rem 0.7rem 0.55rem 1.4rem",
+          position: "relative",
         }}
       >
         <a
@@ -53,7 +57,34 @@ export function Header() {
             Flowst
           </span>
         </a>
-        <div style={{ display: "flex", gap: "1.9rem" }} className="nav-links">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="header-nav"
+          onClick={() => setMenuOpen((open) => !open)}
+          style={{
+            display: "none",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 40,
+            height: 40,
+            border: "1px solid var(--color-glass-border)",
+            borderRadius: "50%",
+            background: "transparent",
+            color: "var(--color-foreground)",
+            cursor: "pointer",
+          }}
+        >
+          <span aria-hidden="true" style={{ fontSize: "1.25rem", lineHeight: 1 }}>
+            ☰
+          </span>
+        </button>
+        <div
+          id="header-nav"
+          className={`nav-links ${menuOpen ? "nav-open" : ""}`}
+          style={{ display: "flex", gap: "1.9rem", alignItems: "center" }}
+        >
           {LINKS.map((link) => (
             <a
               key={link.href}
@@ -65,6 +96,7 @@ export function Header() {
                 opacity: 0.85,
                 transition: "opacity var(--dur-fast) var(--ease-soft)",
               }}
+              onClick={() => setMenuOpen(false)}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.85")}
             >
