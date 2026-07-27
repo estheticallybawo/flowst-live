@@ -1,8 +1,11 @@
 "use client";
 
+import { useNotify } from "../NotifyProvider";
 import { Button } from "../ui/Button";
 
 export function Hero() {
+  const { notify } = useNotify();
+
   return (
     <section
       className="flowst-card hero-card"
@@ -89,7 +92,7 @@ export function Hero() {
             </Button>
             <Button
               variant="ghost"
-              href="#blog"
+              onClick={() => notify("useflowst.com/hero-notify")}
               style={{
                 minWidth: 170,
                 padding: "1rem 1.95rem",
