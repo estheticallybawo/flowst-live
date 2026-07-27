@@ -12,7 +12,7 @@ const JOURNEY = [
 export function Journey() {
   return (
     <Section>
-      <Eyebrow>Your Flowst journey</Eyebrow>
+      <Eyebrow>Flowst Journey</Eyebrow>
       <SectionTitle style={{ maxWidth: 820 }}>
         Learning is the beginning. Expertise is where Flowst can take you.
       </SectionTitle>

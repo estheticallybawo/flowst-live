@@ -4,8 +4,8 @@ import { Button } from "../ui/Button";
 import { DEMO_GATE_URL } from "@/lib/site";
 
 const LINKS = [
-  { label: "Features", href: "#Features" },
   { label: "About", href: "#how-it-works" },
+  { label: "Features", href: "#Features" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "Blog", href: "#blog" },
   { label: "Partnership", href: "#institutions" },

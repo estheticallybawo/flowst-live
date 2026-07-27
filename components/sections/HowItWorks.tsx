@@ -1,31 +1,31 @@
 import { Fragment } from "react";
 import { GlassCard } from "../ui/GlassCard";
 import { Arrow, ICONS } from "../Icons";
-import { Section, SectionTitle } from "./Section";
+import { Section, Eyebrow, SectionTitle } from "./Section";
 
 const STEPS: { icon: keyof typeof ICONS; title: string; body: string; tint: string }[] = [
   {
     icon: "Nodes",
-    title: "Bring your source material",
-    body: "Choose a topic or bring in the PDFs, documents, research, and notes you want to work through.",
+    title: "Choose your Flowst Mode",
+    body: "Select the Flowst Mode that best matches what you want to achieve, from learning to interview prep to cognitive training and communication practice.",
     tint: "var(--pill-lavender)",
   },
   {
     icon: "Target",
-    title: "Get a learning path",
-    body: "Your material becomes a focused route that helps you see what matters and where to begin.",
+    title: "Start with your goal",
+    body: "Whether you're learning a new skill, preparing for an interview, strengthening your thinking, or exploring a new topic, every journey begins with a goal.",
     tint: "var(--pill-amber)",
   },
   {
     icon: "Bulb",
-    title: "Learn actively",
-    body: "Use guided explanations and interactive moments to turn information into understanding.",
+    title: "Get specialized team of agents",
+    body: "Instead of one AI assistant, Flowst combines specialized agents that each focus on specialized tasks like for your learning goal.",
     tint: "var(--pill-orange)",
   },
   {
     icon: "Shield",
-    title: "Practise and check understanding",
-    body: "Put learning into your own words, notice gaps, and return with a clearer next step.",
+    title: "Complete Flows and FlowStates",
+    body: "Each Flow and FlowState is designed to move you one step closer to understanding, helping you build knowledge through focused, interactive experiences.",
     tint: "var(--pill-mint)",
   },
 ];
@@ -33,8 +33,9 @@ const STEPS: { icon: keyof typeof ICONS; title: string; body: string; tint: stri
 export function LearningFlow() {
   return (
     <Section id="how-it-works">
+      <Eyebrow>ABOUT</Eyebrow>
       <SectionTitle style={{ maxWidth: 760 }}>
-        A multi-agents assisted learning platform that moves with you.
+       Various teams of AI agents working together to help you learn, think, speak, and become
       </SectionTitle>
       <div
         className="steps"

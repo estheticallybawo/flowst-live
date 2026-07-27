@@ -21,10 +21,10 @@ export default function Home() {
         <Header />
         <main>
           <Hero />
+          <LearningFlow />
           <Journey />
           <LearningMode />
           <ForLearners />
-          <LearningFlow />
           <AgentsLibrary />
           <Roadmap />
           <ExpertiseOutcomes />
