@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flowst Pre-Seed Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Anybody:wdth,wght@120,400;120,600;125,700;125,800&display=swap"
+    rel="stylesheet">
+  <!-- Use html2pdf for client-side PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root {
+      --font-heading: 'Unbounded', sans-serif;
+      --font-body: 'Albert Sans', sans-serif;
+      --bg-color: #f7f7f7;
+      --text-color: #06101c;
+      --accent-blue: #40a6ff;
+      --accent-purple: #9d78ff;
+      --card-bg: #FFFFFF;
+      --border-color: rgba(6, 16, 28, 0.08);
+      --slide-width: 1920px;
+      --slide-height: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f2f4f8;
+      font-family: var(--font-body);
+      color: var(--text-color);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Controls */
+    .controls {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 16px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 24px;
+      border-radius: 100px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Hide controls when printing */
+    .exporting-pdf .controls {
+      display: none !important;
+    }
+
+    .btn {
+      background: transparent;
+      border: none;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: rgba(64, 166, 255, 0.1);
+      color: var(--accent-blue);
+    }
+
+    .btn.primary {
+      background: var(--text-color);
+      color: white;
+    }
+
+    .btn.primary:hover {
+      background: var(--accent-blue);
+    }
+
+    .page-indicator {
+      display: flex;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 0 16px;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+    }
+
+    /* Deck Container */
+    #deck-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* When exporting, we override scaling so html2pdf captures exact dimensions */
+    .exporting-pdf body {
+      overflow: visible !important;
+      height: auto !important;
+      position: static !important;
+    }
+
+    .exporting-pdf #deck-container {
+      width: 1920px !important;
+      height: auto !important;
+      display: block !important;
+      overflow: visible !important;
+      position: static !important;
+    }
+
+    #presentation {
+      position: relative;
+      width: var(--slide-width);
+      height: var(--slide-height);
+      background: var(--bg-color);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      transform-origin: center center;
+      overflow: hidden;
+    }
+
+    .exporting-pdf #presentation {
+      width: 1920px !important;
+      height: auto !important;
+      box-shadow: none !important;
+      transform: none !important;
+      position: static !important;
+      overflow: visible !important;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-color);
+      padding: 100px 140px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(20px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      z-index: 10;
+    }
+
+    /* For PDF export, unstack all slides and make them static blocks */
+    .exporting-pdf .slide {
+      position: relative !important;
+      width: 1920px !important;
+      height: 1080px !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      display: flex !important;
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .slide-tag {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+
+    .slide-title {
+      font-size: 72px;
+      margin-bottom: 60px;
+      color: var(--text-color);
+    }
+
+    p {
+      font-size: 32px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      color: #334155;
+    }
+
+    ul {
+      margin-left: 40px;
+      margin-bottom: 32px;
+    }
+
+    li {
+      font-size: 32px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: #334155;
+    }
+
+    .highlight {
+      color: var(--accent-blue);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      height: 100%;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .flex-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    /* Slide 19: dark overlay and white text for better contrast */
+    #slide-19 {
+      position: relative;
+    }
+
+    #slide-19::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #slide-19 .flex-center {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Brand row for logo + title */
+    #slide-19 .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    /* Reduce brand mark bottom margin on this slide */
+    #slide-19 .brand-mark {
+      margin-bottom: 0 !important;
+      width: 120px;
+      height: 120px;
+    }
+
+    #slide-19 .flex-center *,
+    #slide-19 .flex-center {
+      gap: 12px;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+
+    #slide-19 .flex-center h1,
+    #slide-19 .flex-center p {
+      text-shadow: 0 4px 12px rgba(0,0,0,0.45);
+    }
+
+    /* Components */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: 0 10px 30px rgba(6, 16, 28, 0.05);
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #e2e8f0;
+      border-radius: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #94a3b8;
+      font-family: var(--font-heading);
+      font-size: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .footer-number {
+      position: absolute;
+      bottom: 60px;
+      right: 140px;
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    .footer-logo {
+      position: absolute;
+      bottom: 60px;
+      left: 140px;
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 6px;
+    }
+
+    /* Flowst polish pass */
+    :root {
+      --bg-color: #f4faff;
+      --text-color: #06101c;
+      --muted-text: #506176;
+      --accent-blue: #0787d8;
+      --accent-purple: #6f5cff;
+      --soft-blue: #dff4ff;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(6, 16, 28, 0.1);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 18% 12%, rgba(7, 135, 216, 0.2), transparent 34%),
+        radial-gradient(circle at 84% 90%, rgba(111, 92, 255, 0.16), transparent 32%),
+        #f2f4f7;
+    }
+
+    #presentation {
+      box-shadow: 0 28px 90px rgba(6, 16, 28, 0.24);
+    }
+
+    .slide {
+      background:
+        linear-gradient(135deg, rgba(249, 252, 253, 0.72), rgba(244, 250, 255, 0.9)),
+        radial-gradient(circle at 88% 12%, rgba(7, 135, 216, 0.16), transparent 25%),
+        radial-gradient(circle at 10% 88%, rgba(111, 92, 255, 0.1), transparent 24%),
+        var(--bg-color);
+    }
+
+    #presentation[contenteditable="true"]:focus {
+      outline: none;
+    }
+
+    #presentation[contenteditable="true"] .slide.active :is(h1, h2, h3, p, li, div):focus {
+      outline: 3px solid rgba(7, 135, 216, 0.28);
+      outline-offset: 6px;
+      border-radius: 12px;
+    }
+
+    .slide-tag {
+      letter-spacing: 1.6px;
+    }
+
+    .slide-title {
+      font-size: 68px;
+      letter-spacing: -1px;
+    }
+
+    p,
+    li {
+      color: var(--muted-text);
+    }
+
+    .card {
+      border-radius: 28px;
+      box-shadow: 0 18px 50px rgba(6, 16, 28, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .image-placeholder {
+      background: var(--soft-blue);
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(6, 16, 28, 0.12);
+    }
+
+    .footer-logo::before {
+      width: 28px;
+      height: 28px;
+      background-image: url('../assets/brand/flowst-mark-black.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      border-radius: 8px;
+    }
+
+    .brand-mark {
+      width: 104px;
+      height: 104px;
+      object-fit: contain;
+      margin-bottom: 40px;
+      filter: drop-shadow(0 18px 30px rgba(7, 135, 216, 0.16));
+    }
+
+    .deck-note {
+      color: var(--muted-text);
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(7, 135, 216, 0.18);
+      border-radius: 999px;
+      color: var(--accent-blue);
+      background: rgba(223, 244, 255, 0.74);
+      font-size: 22px;
+      font-weight: 700;
+      padding: 12px 22px;
+      white-space: nowrap;
+    }
+
+    .controls {
+      border: 1px solid rgba(6, 16, 28, 0.08);
+    }
+
+    /* Source-deck alignment pass: closer to the uploaded Flowst PDF */
+    :root {
+      --font-heading: 'Anybody', 'Arial Black', sans-serif;
+      --font-body: 'Albert Sans', Arial, sans-serif;
+      --bg-color: #f6f3ec;
+      --text-color: #1d1d21;
+      --muted-text: #3f4148;
+      --accent-blue: #1d1d21;
+      --accent-purple: #1d1d21;
+      --soft-blue: #ece8df;
+      --card-bg: transparent;
+      --border-color: rgba(29, 29, 33, 0.28);
+    }
+
+    body {
+      background: #d8dce2 !important;
+    }
+
+    #presentation {
+      background: #f6f3ec !important;
+      box-shadow: 0 22px 70px rgba(29, 29, 33, 0.2) !important;
+    }
+
+    .slide {
+      background: #f6f3ec !important;
+      padding: 92px 124px !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .slide-title,
+    .slide-tag,
+    .footer-logo,
+    .footer-number,
+    .page-indicator,
+    .btn {
+      font-family: var(--font-heading) !important;
+      color: #1d1d21 !important;
+    }
+
+    .slide-title {
+      font-size: 76px !important;
+      line-height: 1.05 !important;
+      letter-spacing: -1.5px !important;
+      margin-bottom: 54px !important;
+      max-width: 1500px;
+    }
+
+    .slide-tag {
+      font-size: 32px !important;
+      text-transform: none !important;
+      letter-spacing: -0.5px !important;
+      margin-bottom: 28px !important;
+    }
+
+    p,
+    li {
+      color: #3f4148 !important;
+      font-size: 31px !important;
+      line-height: 1.38 !important;
+    }
+
+    .highlight,
+    .gradient-text {
+      color: #1d1d21 !important;
+      background: none !important;
+      -webkit-text-fill-color: #1d1d21 !important;
+      text-decoration: underline;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.12em;
+    }
+
+    .card {
+      background: transparent !important;
+      border: 2px solid rgba(29, 29, 33, 0.28) !important;
+      border-radius: 30px !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+
+    .image-placeholder {
+      background: transparent !important;
+      border: 2px solid rgba(29, 29, 33, 0.18) !important;
+      border-radius: 30px !important;
+      box-shadow: none !important;
+    }
+
+    .image-placeholder img {
+      border-radius: 24px !important;
+    }
+
+    .footer-logo,
+    .footer-number {
+      bottom: 48px !important;
+      color: rgba(29, 29, 33, 0.56) !important;
+    }
+
+    .footer-logo {
+      left: 124px !important;
+      font-size: 22px !important;
+      letter-spacing: 0.08em !important;
+    }
+
+    .footer-number {
+      right: 124px !important;
+      font-size: 22px !important;
+    }
+
+    .brand-mark {
+      width: 130px !important;
+      height: 130px !important;
+      filter: none !important;
+    }
+
+    .controls {
+      background: rgba(246, 243, 236, 0.94) !important;
+      border: 1px solid rgba(29, 29, 33, 0.16) !important;
+      box-shadow: 0 12px 40px rgba(29, 29, 33, 0.13) !important;
+    }
+
+    .btn.primary {
+      background: #1d1d21 !important;
+      color: #f6f3ec !important;
+    }
+
+    .grid-3 .card,
+    .grid-4 .card {
+      padding: 34px !important;
+    }
+
+    #slide-1 h1,
+    #slide-19 h1 {
+      font-size: 116px !important;
+      letter-spacing: -3px !important;
+    }
+
+    #slide-1 p,
+    #slide-19 p:last-child {
+      font-family: var(--font-heading) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.16em !important;
+      color: #1d1d21 !important;
+      font-size: 24px !important;
+      max-width: 1180px !important;
+    }
+
+    #slide-3 h1,
+    #slide-18 h1 {
+      font-size: 82px !important;
+      line-height: 1.08 !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="controls" id="controls">
+    <button class="btn" id="prevBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+      Prev
+    </button>
+    <div class="page-indicator"><span id="pageNum">1</span> / 20</div>
+    <button class="btn" id="nextBtn">
+      Next
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    </button>
+    <button class="btn primary" id="downloadBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+      Download PDF
+    </button>
+  </div>
+
+  <div id="deck-container">
+    <div id="presentation" contenteditable="true" spellcheck="true" aria-label="Editable Flowst pitch deck">
+
+      <!-- SLIDE 1: TITLE -->
+      <div class="slide active" id="slide-1">
+        <div class="flex-center">
+          <img class="brand-mark" src="../assets/brand/flowst-mark-black.png" alt="Flowst mark">
+          <h1 style="font-size: 100px; margin-bottom: 24px; color: var(--text-color);">Flowst</h1>
+          <p style="font-size: 40px; max-width: 1000px; color: #64748b;">The future of digital learning experiences with immersive AI</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: AGENDA -->
+      <div class="slide" id="slide-2">
+        <span class="slide-tag">Agenda</span>
+        <h1 class="slide-title">Content Walkthrough</h1>
+        <div class="grid-2" style="font-size: 28px; line-height: 1.8;">
+          <div>
+            <div><strong class="highlight">01</strong> The Shift</div>
+            <div><strong class="highlight">02</strong> Why Flowst Matters</div>
+            <div><strong class="highlight">03</strong> The Real Problem</div>
+            <div><strong class="highlight">04</strong> Our Solution</div>
+            <div><strong class="highlight">05</strong> Why Multi-Agent?</div>
+            <div><strong class="highlight">06</strong> The Product</div>
+            <div><strong class="highlight">07</strong> Meet the Agents</div>
+          </div>
+          <div>
+            <div><strong class="highlight">08</strong> Why Now?</div>
+            <div><strong class="highlight">09</strong> Market Opportunity</div>
+            <div><strong class="highlight">10</strong> Go-to-Market</div>
+            <div><strong class="highlight">11</strong> Competitive Edge</div>
+            <div><strong class="highlight">12</strong> Business Model</div>
+            <div><strong class="highlight">13</strong> Roadmap</div>
+            <div><strong class="highlight">14</strong> Founder & The Ask</div>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">02</div>
+      </div>
+
+      <!-- SLIDE 3: THE SHIFT -->
+      <div class="slide" id="slide-3">
+        <span class="slide-tag">The Shift</span>
+        <div class="flex-center" style="align-items: flex-start; text-align: left;">
+          <h1 style="font-size: 80px; margin-bottom: 60px; line-height: 1.2;">The next decade belongs to companies that
+            help people <span class="gradient-text">become</span>, not just learn.</h1>
+            <p style="font-size: 36px;">The internet has moved from just passing information to facilitating meaningful interactions and experiences that facilitates the increase in human potential. The internet democratized <strong> information</strong><br> and AI made
+            <strong> intelligence</strong> accessible.</p>
+          <p style="font-size: 36px; margin-bottom: 60px;">But they are yet to be combined to bridge the final gap to human development:
+            <strong class="highlight">Accelerate Expertise</strong> While AI is rapidly evolving, how can we ensure humans are also evolving simultaneously developing their skills and leveraging AI effectively?</p>
+          
+          <p style="margin: 0; font-size: 38px; font-weight: 500;">This is why Flowst exists and we want to be nicely positioned as <b>The home for immersive digital learning experiences</b> with increase in human potential as our core mission</p>
+          
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">03</div>
+      </div>
+
+      <!-- SLIDE 4: WHY FLOWST MATTERS -->
+      <div class="slide" id="slide-4">
+        <span class="slide-tag">The world with Flowst in it</span>
+        <h1 class="slide-title">Why Flowst Matters</h1>
+        <div class="grid-2">
+          <div>
+            <p style="font-size: 40px; font-weight: 500; color: var(--text-color); margin-bottom: 40px;">The next
+              generation will enter careers where AI is a collaborator from day one the questions still remains how
+              early they can leverage it.</p>
+            <p>The gap between education and reality is widening, and Nigerian Gen Alpha deserve equal footing among
+              their peers across the globe.</p>
+            <p>Flowst is the bridge that connects learning to capacity building through AI literacy using digital
+              immersive experiences.</p>
+          </div>
+          <div class="image-placeholder">
+            <img src="../assets/heroimg.png" alt="Flowst vision" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">04</div>
+      </div>
+
+      <!-- SLIDE 5: THE REAL PROBLEM -->
+      <div class="slide" id="slide-5">
+        <span class="slide-tag">The Real Problem</span>
+        <h1 class="slide-title">Education is stuck in the past.</h1>
+        <div class="grid-2" style="gap: 40px;">
+          <div class="card">
+            <h3 style="font-size: 36px; margin-bottom: 20px; color: var(--accent-blue);">Content over capability</h3>
+            <p style="font-size: 24px;">Education still prioritizes content consumption over capability building.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 36px; margin-bottom: 20px; color: var(--accent-blue);">Learning is passive</h3>
+            <p style="font-size: 24px;">Learning is passive when learners are not asked to explain, apply, and defend
+              what they know.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 36px; margin-bottom: 20px; color: var(--accent-blue);">Flawed incentives</h3>
+            <p style="font-size: 24px;">Learning systems reward memorization, cramming, and course completions.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 36px; margin-bottom: 20px; color: var(--accent-blue);">Lack of safe AI tools</h3>
+            <p style="font-size: 24px;">Limited tools help young learners safely use AI to its full potential.</p>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">05</div>
+      </div>
+
+      <!-- SLIDE 6: OUR SOLUTION -->
+      <div class="slide" id="slide-6">
+        <span class="slide-tag">Our Solution</span>
+        <h1 class="slide-title">The intelligence layer for new digital learning experiences.</h1>
+        <p style="font-size: 36px; max-width: 1200px; margin-bottom: 80px;">Flowst is the intelligence layer for
+          learning: a platform where teams of specialized AI agents help learners move from information acquisition to
+          expertise-readiness for a global creator economy.</p>
+
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 60px; border-radius: 32px; border: 1px solid var(--border-color);">
+          <div style="text-align: center;">
+            <div
+              style="font-size: 24px; color: #64748b; font-weight: 600; text-transform: uppercase; margin-bottom: 16px;">
+              Learner</div>
+            <h3 style="font-size: 40px; color: var(--text-color);">Understand</h3>
+          </div>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          <div style="text-align: center;">
+            <div
+              style="font-size: 24px; color: #64748b; font-weight: 600; text-transform: uppercase; margin-bottom: 16px;">
+              AI Agents</div>
+            <h3 style="font-size: 40px; color: var(--text-color);">Communicate</h3>
+          </div>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          <div style="text-align: center;">
+            <div
+              style="font-size: 24px; color: #64748b; font-weight: 600; text-transform: uppercase; margin-bottom: 16px;">
+              Outcome</div>
+            <h3 style="font-size: 40px; color: var(--text-color);">Grow</h3>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">06</div>
+      </div>
+
+      <!-- SLIDE 7: WHY MULTI AGENT -->
+      <div class="slide" id="slide-7">
+        <span class="slide-tag">Why Multi-Agent?</span>
+        <h1 class="slide-title">Learning is multidisciplinary.</h1>
+        <div class="grid-2">
+          <div>
+            <p style="font-size: 40px; font-weight: 500; margin-bottom: 40px;">Learning is like healthcare. You don't
+              see one doctor for everything; you see specialists.</p>
+            <p>Each specialist contributes to a better outcome. Flowst applies the same principle to learning because
+              learning itself is multidisciplinary.</p>
+            <p>Flowst is not built around AI capabilities. It is built around how people actually retain and apply
+              knowledge.</p>
+          </div>
+          <div class="image-placeholder">
+            <img src="../assets/flowstagents.png" alt="Flowst Agents" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">07</div>
+      </div>
+
+      <!-- SLIDE 8: PRODUCT MAP -->
+      <div class="slide" id="slide-8">
+        <span class="slide-tag">Product Map</span>
+        <h1 class="slide-title">Same principle. Various applications.</h1>
+        <div class="grid-3">
+          <div class="card">
+            <h3 style="margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+              <div style="width: 16px; height: 16px; border-radius: 50%; background: rgb(111, 214, 183);"></div>
+              Core Modes
+            </h3>
+            <ul style="list-style: none; margin-left: 0;">
+              <li style="display: flex; align-items: center; gap: 12px;"><svg width="24" height="24" viewBox="0 0 24 24"
+                  fill="none" stroke="var(--accent-blue)" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg> Learning Mode</li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Interview
+                Mode
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Build Mode
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+              <div style="width: 16px; height: 16px; border-radius: 50%; background: rgb(110, 128, 122);"></div>
+              Future Modes
+            </h3>
+            <ul style="list-style: none; margin-left: 0;">
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Cognitive
+                Exercises
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Thought
+                Leader Mode
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Community
+                Spaces
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+              <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--accent-purple);"></div>
+              Progression
+            </h3>
+            <ul style="list-style: none; margin-left: 0;">
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Mastery
+                Badges
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Public
+                Profiles
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 24px; height: 24px; border: 2px solid #94a3b8; border-radius: 4px;"></div> Rewards
+                Program
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">08</div>
+      </div>
+
+      <!-- SLIDE 9: MEET THE AGENTS -->
+      <div class="slide" id="slide-9">
+        <span class="slide-tag">Meet the Team</span>
+        <h1 class="slide-title">The Learning Mode Agents</h1>
+        <p style="margin-bottom: 10px; font-weight: 500;">Designed to reduce anxiety and manage cognitive load.</p>
+        <div class="grid-2" style="gap: 10px;">
+          <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <img src="../assets/mascots/miro-avatar.png" alt="Miro"
+              style="width: 100px; height: 100px; border-radius: 80%;">
+            <div>
+              <h3 style="font-size: 32px; color: var(--accent-blue); margin-bottom: 12px;">Miro <span
+                  style="color: #94a3b8; font-size: 24px; font-weight: 400;">| The Planner</span></h3>
+              <p style="font-size: 22px; margin: 0;">Orchestrates the entire learning journey, mapping the path to
+                mastery.</p>
+            </div>
+          </div>
+          <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <img src="../assets/mascots/sofia-avatar.png" alt="Sofia"
+              style="width: 100px; height: 100px; border-radius: 80%;">
+            <div>
+              <h3 style="font-size: 32px; color: var(--accent-blue); margin-bottom: 12px;">Sofia <span
+                  style="color: #94a3b8; font-size: 24px; font-weight: 400;">| The Clarity Coach</span></h3>
+              <p style="font-size: 22px; margin: 0;">Helps learners build mental models through conversation and guided
+                analogies.</p>
+            </div>
+          </div>
+          <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <img src="../assets/mascots/amira-avatar.png" alt="Amira"
+              style="width: 100px; height: 100px; border-radius: 80%;">
+            <div>
+              <h3 style="font-size: 32px; color: var(--accent-blue); margin-bottom: 12px;">Amira <span
+                  style="color: #94a3b8; font-size: 24px; font-weight: 400;">| The Voice</span></h3>
+              <p style="font-size: 22px; margin: 0;">Transforms understanding into confident communication through
+                natural voice interactions.</p>
+            </div>
+          </div>
+          <div class="card" style="display: flex; gap: 24px; align-items: flex-start;">
+            <img src="../assets/mascots/kia-avatar.png" alt="Kia"
+              style="width: 100px; height: 100px; border-radius: 80%;">
+            <div>
+              <h3 style="font-size: 32px; color: var(--accent-blue); margin-bottom: 12px;">Kia <span
+                  style="color: #94a3b8; font-size: 24px; font-weight: 400;">| The Assessor</span></h3>
+              <p style="font-size: 22px; margin: 0;">Observes interactions to identify gaps in understanding and suggest
+                improvements before moving forward.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">09</div>
+      </div>
+
+      <!-- SLIDE 10: AGENT INTERACTION -->
+      <div class="slide" id="slide-10">
+        <span class="slide-tag">Prototype Demonstration</span>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h1 class="slide-title">How the Agents Interact</h1>
+        </div>
+        <section>
+          <iframe width="1660" height="700" src="https://www.youtube.com/embed/YH18H2XXa6Q?si=T4djhLKfxej74J5F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">10</div>
+      </div>
+
+      <!-- SLIDE 11: WHY NOW -->
+      <div class="slide" id="slide-11">
+        <span class="slide-tag">Why Now</span>
+        <h1 class="slide-title">There's never been a better</h1>
+        <div class="grid-3" style="margin-bottom: 60px;">
+          <div class="card">
+            <h3 style="font-size: 32px; margin-bottom: 16px; color: var(--accent-blue);">AI</h3>
+            <p style="font-size: 20px;">AI is changing how people learn, work, and build.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 32px; margin-bottom: 16px; color: var(--accent-blue);">Future of Work</h3>
+            <p style="font-size: 20px;">The future of work increasingly rewards adaptability and expertise.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 32px; margin-bottom: 16px; color: var(--accent-blue);">Creator Economy</h3>
+            <p style="font-size: 20px;">The creator economy rewards people who can communicate what they know.</p>
+          </div>
+        </div>
+        <p style="font-size: 28px; line-height: 1.6;">These shifts are happening simultaneously. While the global
+          economy increasingly rewards expertise, creativity, and adaptability, Nigeria still faces a growing culture of
+          discouraging learning. Flowst gives curiosity a modern path to capability.</p>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">11</div>
+      </div>
+
+      <!-- SLIDE 12: MARKET OPPORTUNITY -->
+      <div class="slide" id="slide-12">
+        <span class="slide-tag">Local First</span>
+        <h1 class="slide-title">Market Opportunity</h1>
+        <div class="grid-3">
+          <div class="card">
+            <div style="font-size: 24px; color: #64748b; font-weight: 600; margin-bottom: 8px;">TAM (The Vision)</div>
+            <h2 style="font-size: 64px; margin-bottom: 24px; color: var(--accent-blue);">$1T+</h2>
+            <ul style="font-size: 20px; line-height: 1.6; margin-left: 20px;">
+              <li>Global EdTech</li>
+              <li>AI in Traditional Education</li>
+              <li>Lifelong & Corporate Learning</li>
+              <li>AI Workforce Development</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div style="font-size: 24px; color: #64748b; font-weight: 600; margin-bottom: 8px;">SAM (The Mission)</div>
+            <h2 style="font-size: 64px; margin-bottom: 24px; color: var(--accent-blue);">$210B</h2>
+            <ul style="font-size: 20px; line-height: 1.6; margin-left: 20px;">
+              <li>Secondary Schools</li>
+              <li>University Students</li>
+              <li>Early Career Professionals</li>
+              <li>AI Literacy Upskilling</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div style="font-size: 24px; color: #64748b; font-weight: 600; margin-bottom: 8px;">SOM (Beachhead)</div>
+            <h2 style="font-size: 64px; margin-bottom: 24px; color: var(--accent-blue);">$12M</h2>
+            <p style="font-size: 20px; margin-bottom: 16px; font-weight: 600;">AI Literacy Pilots in Nigerian Secondary
+              Schools</p>
+            <p style="font-size: 18px; line-height: 1.5; margin: 0; color: #64748b;">Targeting 1,000 top schools across
+              NG with a realistic test run target of an average 50 paying families per school in Year 1.</p>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">12</div>
+      </div>
+
+      <!-- SLIDE 13: GO TO MARKET -->
+      <div class="slide" id="slide-13">
+        <span class="slide-tag">Go-to-Market</span>
+        <h1 class="slide-title">Curiosity to capability through school partnerships.</h1>
+        <div class="grid-2">
+          <div>
+            <div style="margin-bottom: 32px;">
+              <h3 style="font-size: 24px; color: var(--accent-blue);">Phase 1 & 2: Launch & School Pilots</h3>
+              <p style="font-size: 20px; margin-top: 8px;">Launch a social campaign and pilot with secondary schools
+                around one mission: build or create something useful from curiosity, document the process, and present
+                how it works.</p>
+            </div>
+            <div style="margin-bottom: 32px;">
+              <h3 style="font-size: 24px; color: var(--accent-blue);">Phase 3: Co-Build & Iterate</h3>
+              <p style="font-size: 20px; margin-top: 8px;">Stress test, co-build, and iterate with feedback while
+                training students on the learning and build process with AI through YouTube, TikTok, and Reels content.
+              </p>
+            </div>
+            <div>
+              <h3 style="font-size: 24px; color: var(--accent-blue);">Phase 4 & 5: Recognition & Expansion</h3>
+              <p style="font-size: 20px; margin-top: 8px;">Announce winners, give recognition, and expand into more
+                schools.</p>
+            </div>
+          </div>
+          <div class="image-placeholder" style="background: transparent; box-shadow: none;">
+            <img src="../assets/flowst agents.PNG" alt="Completed Session"
+              style="object-fit: contain; width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"
+              onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">13</div>
+      </div>
+
+      <!-- SLIDE 14: COMPETITIVE EDGE -->
+      <div class="slide" id="slide-14">
+        <span class="slide-tag">Competitive Edge</span>
+        <h1 class="slide-title">Why We will Win</h1>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3 style="font-size: 28px; margin-bottom: 24px; color: var(--accent-blue);">The Gap</h3>
+            <ul style="font-size: 20px; margin-left: 20px;">
+              <li>Current platforms give content</li>
+              <li>AI chatbots give answers</li>
+              <li>Traditional education rewards memorization</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 28px; margin-bottom: 24px; color: var(--accent-blue);">Our Differentiators</h3>
+            <ul style="font-size: 20px; margin-left: 20px;">
+              <li>Multi-agent orchestration</li>
+              <li>Voice-based reflection</li>
+              <li>Personalized AI-native journeys</li>
+              <li>Active participation focus</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 28px; margin-bottom: 24px; color: var(--accent-blue);">Versus Competitors</h3>
+            <p style="font-size: 18px; margin-bottom: 12px;"><strong>Gizmo:</strong> Valuable for memory, but its moat
+              is tied to one assistant and a different learning outcome.</p>
+            <p style="font-size: 18px;"><strong>uLesson:</strong> Optimizes education delivery. Flowst builds a new way
+              for people to develop expertise in the age of AI.</p>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">14</div>
+      </div>
+
+      <!-- SLIDE 15: BUSINESS MODEL -->
+      <div class="slide" id="slide-15">
+        <span class="slide-tag">One Model Several Markets</span>
+        <h1 class="slide-title">Business Model</h1>
+        <div class="grid-4" style="gap: 20px;">
+          <div class="card" style="padding: 32px;">
+            <h3 style="font-size: 24px; margin-bottom: 12px;">Explorer (Free)</h3>
+            <p style="font-size: 16px; margin-bottom: 24px; color: #64748b;">Discover a better way to learn.</p>
+            <ul style="font-size: 16px; margin-left: 20px; line-height: 1.4;">
+              <li>Limited usage</li>
+              <li>Core learning modes</li>
+            </ul>
+          </div>
+          <div class="card"
+            style="padding: 32px; border-color: var(--accent-blue); background: rgba(64, 166, 255, 0.05);">
+            <h3 style="font-size: 24px; margin-bottom: 12px; color: var(--accent-blue);">Pro ($20/mo)</h3>
+            <p style="font-size: 16px; margin-bottom: 24px; color: #64748b;">For individuals ready to learn without
+              limits.</p>
+            <ul style="font-size: 16px; margin-left: 20px; line-height: 1.4;">
+              <li>Unlimited usage</li>
+              <li>Access to new modes</li>
+              <li>Advanced analytics</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 32px;">
+            <h3 style="font-size: 24px; margin-bottom: 12px;">Institutions ($799/mo)</h3>
+            <p style="font-size: 16px; margin-bottom: 24px; color: #64748b;">For schools & universities.</p>
+            <ul style="font-size: 16px; margin-left: 20px; line-height: 1.4;">
+              <li>Admin & teacher dashboards</li>
+              <li>Bulk onboarding</li>
+              <li>AI Challenge toolkits</li>
+              <li>Progress analytics</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 32px;">
+            <h3 style="font-size: 24px; margin-bottom: 12px;">Communities & Enterprise</h3>
+            <p style="font-size: 16px; margin-bottom: 24px; color: #64748b;">Custom pricing.</p>
+            <ul style="font-size: 16px; margin-left: 20px; line-height: 1.4;">
+              <li>Role-based learning paths</li>
+              <li>Internal knowledge training</li>
+              <li>Custom AI competitions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">15</div>
+      </div>
+
+      <!-- SLIDE 16: ROADMAP -->
+      <div class="slide" id="slide-16">
+        <span class="slide-tag">5  Year</span>
+        <h1 class="slide-title">Roadmap</h1>
+        <div class="flex-center" style="align-items: stretch; margin-top: 60px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; position: relative;">
+            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: #e2e8f0; z-index: 1;">
+            </div>
+
+            <div
+              style="position: relative; z-index: 2; background: var(--bg-color); padding: 20px; text-align: center;">
+              <div
+                style="width: 24px; height: 24px; border-radius: 50%; background: rgb(111, 214, 183); margin: 0 auto 20px;">
+              </div>
+              <h3 style="font-size: 28px; margin-bottom: 12px;">Phase 1</h3>
+              <p style="font-size: 20px; margin: 0;">Core product experience <br><b>Web</b> Year 1</br></p>
+            </div>
+
+            <div
+              style="position: relative; z-index: 2; background: var(--bg-color); padding: 20px; text-align: center;">
+              <div
+                style="width: 24px; height: 24px; border-radius: 50%; background: rgb(110, 128, 122); margin: 0 auto 20px;">
+              </div>
+              <h3 style="font-size: 28px; margin-bottom: 12px;">Phase 2</h3>
+              <p style="font-size: 20px; margin: 0;">Core product experience <br><b>Mobile</b> Year 3</br>
+              </p>
+            </div>
+
+            <div
+              style="position: relative; z-index: 2; background: var(--bg-color); padding: 20px; text-align: center;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #0c0f13; margin: 0 auto 20px;">
+              </div>
+              <h3 style="font-size: 28px; margin-bottom: 12px;">Phase 3</h3>
+              <p style="font-size: 20px; margin: 0;">Core product experience <br><b>VR</b> Year 5</br></p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">16</div>
+      </div>
+
+      <!-- SLIDE 17: FOUNDER -->
+      <div class="slide" id="slide-17">
+        <span class="slide-tag">The Founder</span>
+        <h1 class="slide-title">Esther Bawo Tsotso</h1>
+        <div class="grid-2">
+          <div>
+            <h3 style="font-size: 32px; color: var(--accent-blue); margin-bottom: 24px; font-style: italic;">"I'm not
+              building an AI startup. I'm solving a problem I've lived, witnessed, and experienced."</h3>
+            <ul style="font-size: 24px; line-height: 1.6;">
+              <li><strong>5+ Years</strong> continuous full-time learning</li>
+              <li><strong>Final Year</strong> Software Engineering Student at MIVA</li>
+              <li><strong>AltSchool Best Learner '26</strong> in Frontend Engineering</li>
+              <li><strong>Former Teacher</strong> - deeply understands education</li>
+              <li><strong>2+ Years</strong> actively learning and building with AI</li>
+            </ul>
+          </div>
+          <div class="card flex-center" style="background: transparent; border: none; padding: 0 !important;">
+            <img src="../assets/esther.jpg" alt="Esther Bawo Tsotso"
+              style="width: 100%; max-width: 500px; height: 500px; object-fit: cover; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">17</div>
+      </div>
+
+      <!-- SLIDE 18: THE ASK -->
+      <div class="slide" id="slide-18">
+        <span class="slide-tag">The Ask</span>
+        <div class="flex-center" style="align-items: flex-start; text-align: left;">
+          <h1 style="font-size: 80px; margin-bottom: 60px; line-height: 1.2;">Raising <span
+              class="gradient-text">pre-seed</span> for growth, pilots, and product development.</h1>
+
+          <div class="grid-3" style="width: 100%;">
+            <div class="card">
+              <h3 style="font-size: 28px; margin-bottom: 16px; color: var(--accent-blue);">Growth & Pilot</h3>
+              <p style="font-size: 20px;">Fund the first school pilot program and growth campaign.</p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 28px; margin-bottom: 16px; color: var(--accent-blue);">Engineering</h3>
+              <p style="font-size: 20px;">Build AI infrastructure and core product development.</p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 28px; margin-bottom: 16px; color: var(--accent-blue);">Research</h3>
+              <p style="font-size: 20px;">Develop learning science partnerships to validate the method.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">18</div>
+      </div>
+
+      <!-- SLIDE 19: CLOSING -->
+      <div
+        class="slide"
+        id="slide-19"
+        style="background: url('../assets/heroimg.png') center bottom/cover no-repeat, transparent !important; background-color: transparent !important;">
+        <div class="flex-center">
+          <div class="brand-row">
+            <img class="brand-mark" src="../assets/brand/flowst-mark-white.png" alt="Flowst mark">
+            <h1 style="font-size: 80px; margin: 0; color: whitesmoke;">Flowst</h1>
+          </div>
+
+          <p
+            style="font-size: 46px; max-width: 1200px; margin-top: 24px; line-height: 1.6; color: var(--bg-color); letter-spacing: 3px;">
+            Welcome to the future of immersive digital learning experiences where increase in human capacity and potential is the foundational structure and at the core of our mission
+        
+          </p>
+        </div>
+      </div>
+
+      <!-- SLIDE 20: END -->
+      <div class="slide" id="slide-20">
+        <div class="flex-center">
+          <h1 style="font-size: 64px; color: #cbd5e1;">Thank you.</h1>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Navigation Logic
+    let currentSlide = 1;
+    const totalSlides = 20;
+    const isExporting = false;
+
+    function updateSlides() {
+      document.querySelectorAll('.slide').forEach((slide, index) => {
+        slide.classList.remove('active');
+        if (index + 1 === currentSlide) {
+          slide.classList.add('active');
+        }
+      });
+      document.getElementById('pageNum').innerText = currentSlide;
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlides();
+      }
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlides();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const editingDeck = document.activeElement?.closest?.('#presentation');
+      if (editingDeck && !e.ctrlKey && !e.metaKey && !e.altKey) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        if (currentSlide < totalSlides) {
+          currentSlide++;
+          updateSlides();
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (currentSlide > 1) {
+          currentSlide--;
+          updateSlides();
+        }
+      }
+    });
+
+    // Resize Logic to maintain 16:9 ratio exactly
+    function resizePresentation() {
+      if (document.body.classList.contains('exporting-pdf')) return;
+
+      const container = document.getElementById('deck-container');
+      const presentation = document.getElementById('presentation');
+
+      const containerWidth = container.clientWidth;
+      const containerHeight = container.clientHeight;
+
+      const targetRatio = 1920 / 1080;
+      const currentRatio = containerWidth / containerHeight;
+
+      let scale;
+      if (currentRatio > targetRatio) {
+        // Window is wider than 16:9, fit to height
+        scale = containerHeight / 1080;
+      } else {
+        // Window is taller than 16:9, fit to width
+        scale = containerWidth / 1920;
+      }
+
+      // Apply slight padding (95%)
+      presentation.style.transform = `scale(${scale * 0.95})`;
+    }
+
+    window.addEventListener('resize', resizePresentation);
+    resizePresentation();
+
+    // PDF Export Logic
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      // 1. Create a pristine container for printing, isolated from responsive CSS
+      const printContainer = document.createElement('div');
+      printContainer.style.position = 'absolute';
+      printContainer.style.top = '0';
+      printContainer.style.left = '0';
+      printContainer.style.width = '1920px';
+      printContainer.style.background = '#f6f3ec';
+      printContainer.style.zIndex = '-9999'; // Hide behind main view
+
+      // 2. Add exporting class so export-specific CSS applies
+      document.body.classList.add('exporting-pdf');
+
+      // 3. Clone the presentation
+      const originalPresentation = document.getElementById('presentation');
+      const clone = originalPresentation.cloneNode(true);
+      clone.style.position = 'static';
+      clone.style.width = '1920px';
+      clone.style.height = 'auto';
+      clone.style.transform = 'none';
+      clone.style.boxShadow = 'none';
+      clone.style.overflow = 'visible';
+
+      // 4. Force all slides to be visible, static blocks exactly 1920x1080
+      const slides = clone.querySelectorAll('.slide');
+      slides.forEach(slide => {
+        // If slide has an inline background image, convert it into an <img> to help html2canvas capture it reliably
+        const bg = slide.style.background || slide.style.backgroundImage;
+        if (bg && bg.includes('url(')) {
+          // extract URL
+          const urlMatch = bg.match(/url\(["']?([^"')]+)["']?\)/);
+          if (urlMatch && urlMatch[1]) {
+            const img = document.createElement('img');
+            img.src = urlMatch[1];
+            img.style.position = 'absolute';
+            img.style.left = '0';
+            img.style.top = '0';
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.style.zIndex = '0';
+            img.crossOrigin = 'anonymous';
+            // insert as first child
+            slide.insertBefore(img, slide.firstChild);
+            // ensure slide content sits above
+            slide.querySelectorAll('*').forEach(el => {
+              if (el !== img) el.style.zIndex = el.style.zIndex || 2;
+            });
+          }
+        }
+
+        slide.style.position = 'relative';
+        slide.style.width = '1920px';
+        slide.style.height = '1080px';
+        slide.style.opacity = '1';
+        slide.style.visibility = 'visible';
+        slide.style.transform = 'none';
+        slide.style.display = 'flex';
+      });
+
+      printContainer.appendChild(clone);
+      document.body.appendChild(printContainer);
+
+      // 5. Temporarily show a loading state on the button
+      const btn = document.getElementById('downloadBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Generating PDF...';
+
+      // 6. Wait for browser reflow, then capture the pristine clone
+      setTimeout(() => {
+        const opt = {
+          margin: 0,
+          filename: 'Flowst_Pitch_Deck.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 1, useCORS: true, allowTaint: true, width: 1920, windowWidth: 1920, scrollY: 0 },
+          jsPDF: { unit: 'px', format: [1920, 1080], orientation: 'landscape', hotfixes: ["px_scaling"] }
+        };
+
+        html2pdf().set(opt).from(clone).save().then(() => {
+          // 7. Cleanup
+          document.body.removeChild(printContainer);
+          document.body.classList.remove('exporting-pdf');
+          btn.innerHTML = originalText;
+        }).catch(err => {
+          console.error('PDF generation error', err);
+          document.body.removeChild(printContainer);
+          document.body.classList.remove('exporting-pdf');
+          btn.innerHTML = originalText;
+        });
+      }, 700);
+    });
+  </script>
+</body>
+
+</html>
