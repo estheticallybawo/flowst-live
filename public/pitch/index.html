@@ -37,26 +37,23 @@
       background-color: #f2f4f8;
       font-family: var(--font-body);
       color: var(--text-color);
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      overflow: auto;
+      min-height: 100vh;
     }
 
     /* Controls */
     .controls {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 16px;
-      z-index: 1000;
+      width: min(100%, 1920px);
+      margin: 24px auto;
       background: rgba(255, 255, 255, 0.95);
       padding: 12px 24px;
       border-radius: 100px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       backdrop-filter: blur(10px);
     }
 
@@ -109,12 +106,10 @@
     /* Deck Container */
     #deck-container {
       position: relative;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      width: min(100%, 1920px);
+      margin: 0 auto;
+      overflow: visible;
+      padding-bottom: 80px;
     }
 
     /* When exporting, we override scaling so html2pdf captures exact dimensions */
@@ -135,11 +130,10 @@
     #presentation {
       position: relative;
       width: var(--slide-width);
-      height: var(--slide-height);
+      height: auto;
       background: var(--bg-color);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      transform-origin: center center;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .exporting-pdf #presentation {
@@ -152,26 +146,22 @@
     }
 
     .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: relative;
+      width: 1920px;
+      height: 1080px;
       background: var(--bg-color);
       padding: 100px 140px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      transform: translateY(20px);
+      opacity: 1;
+      visibility: visible;
+      transform: none;
       display: flex;
       flex-direction: column;
+      margin-bottom: 48px;
     }
 
     .slide.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-      z-index: 10;
+      outline: 3px solid rgba(64, 166, 255, 0.18);
+      outline-offset: -6px;
     }
 
     /* For PDF export, unstack all slides and make them static blocks */
@@ -675,7 +665,7 @@
   </div>
 
   <div id="deck-container">
-    <div id="presentation" contenteditable="true" spellcheck="true" aria-label="Editable Flowst pitch deck">
+    <div id="presentation" aria-label="Flowst pitch deck">
 
       <!-- SLIDE 1: TITLE -->
       <div class="slide active" id="slide-1">
@@ -1285,12 +1275,16 @@
     const isExporting = false;
 
     function updateSlides() {
-      document.querySelectorAll('.slide').forEach((slide, index) => {
-        slide.classList.remove('active');
-        if (index + 1 === currentSlide) {
-          slide.classList.add('active');
-        }
+      const slides = document.querySelectorAll('.slide');
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index + 1 === currentSlide);
       });
+
+      const targetSlide = slides[currentSlide - 1];
+      if (targetSlide) {
+        targetSlide.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
       document.getElementById('pageNum').innerText = currentSlide;
     }
 
@@ -1325,67 +1319,59 @@
       }
     });
 
-    // Resize Logic to maintain 16:9 ratio exactly
-    function resizePresentation() {
-      if (document.body.classList.contains('exporting-pdf')) return;
-
-      const container = document.getElementById('deck-container');
-      const presentation = document.getElementById('presentation');
-
-      const containerWidth = container.clientWidth;
-      const containerHeight = container.clientHeight;
-
-      const targetRatio = 1920 / 1080;
-      const currentRatio = containerWidth / containerHeight;
-
-      let scale;
-      if (currentRatio > targetRatio) {
-        // Window is wider than 16:9, fit to height
-        scale = containerHeight / 1080;
-      } else {
-        // Window is taller than 16:9, fit to width
-        scale = containerWidth / 1920;
-      }
-
-      // Apply slight padding (95%)
-      presentation.style.transform = `scale(${scale * 0.95})`;
-    }
-
-    window.addEventListener('resize', resizePresentation);
-    resizePresentation();
-
     // PDF Export Logic
     document.getElementById('downloadBtn').addEventListener('click', () => {
-      // 1. Create a pristine container for printing, isolated from responsive CSS
-      const printContainer = document.createElement('div');
-      printContainer.style.position = 'absolute';
-      printContainer.style.top = '0';
-      printContainer.style.left = '0';
-      printContainer.style.width = '1920px';
-      printContainer.style.background = '#f6f3ec';
-      printContainer.style.zIndex = '-9999'; // Hide behind main view
+      const btn = document.getElementById('downloadBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Generating PDF...';
 
-      // 2. Add exporting class so export-specific CSS applies
+      // 1. Enable export mode so the export-specific CSS is available
       document.body.classList.add('exporting-pdf');
 
-      // 3. Clone the presentation
+      // 2. Clone the presentation into a separate print container
       const originalPresentation = document.getElementById('presentation');
       const clone = originalPresentation.cloneNode(true);
-      clone.style.position = 'static';
+      clone.removeAttribute('contenteditable');
+      clone.style.position = 'relative';
       clone.style.width = '1920px';
       clone.style.height = 'auto';
       clone.style.transform = 'none';
       clone.style.boxShadow = 'none';
       clone.style.overflow = 'visible';
+      clone.style.visibility = 'visible';
+      clone.style.display = 'block';
 
-      // 4. Force all slides to be visible, static blocks exactly 1920x1080
+      const deckClone = document.createElement('div');
+      deckClone.id = 'deck-container';
+      deckClone.style.position = 'relative';
+      deckClone.style.width = '1920px';
+      deckClone.style.height = 'auto';
+      deckClone.style.overflow = 'visible';
+      deckClone.style.visibility = 'visible';
+      deckClone.style.display = 'block';
+      deckClone.appendChild(clone);
+
+      const printContainer = document.createElement('div');
+      printContainer.style.position = 'absolute';
+      printContainer.style.top = '0';
+      printContainer.style.left = '0';
+      printContainer.style.width = '1920px';
+      printContainer.style.height = 'auto';
+      printContainer.style.overflow = 'visible';
+      printContainer.style.visibility = 'visible';
+      printContainer.style.display = 'block';
+      printContainer.style.opacity = '0.01';
+      printContainer.style.pointerEvents = 'none';
+      printContainer.style.zIndex = '9999';
+      printContainer.appendChild(deckClone);
+      document.body.appendChild(printContainer);
+
+      // 3. Make all slides visible and sized for export
       const slides = clone.querySelectorAll('.slide');
       slides.forEach(slide => {
-        // If slide has an inline background image, convert it into an <img> to help html2canvas capture it reliably
-        const bg = slide.style.background || slide.style.backgroundImage;
-        if (bg && bg.includes('url(')) {
-          // extract URL
-          const urlMatch = bg.match(/url\(["']?([^"')]+)["']?\)/);
+        const computedBg = window.getComputedStyle(slide).getPropertyValue('background-image');
+        if (computedBg && computedBg !== 'none' && computedBg.includes('url(')) {
+          const urlMatch = computedBg.match(/url\(['"]?([^'"]+)['"]?\)/);
           if (urlMatch && urlMatch[1]) {
             const img = document.createElement('img');
             img.src = urlMatch[1];
@@ -1396,13 +1382,9 @@
             img.style.height = '100%';
             img.style.objectFit = 'cover';
             img.style.zIndex = '0';
+            img.style.pointerEvents = 'none';
             img.crossOrigin = 'anonymous';
-            // insert as first child
             slide.insertBefore(img, slide.firstChild);
-            // ensure slide content sits above
-            slide.querySelectorAll('*').forEach(el => {
-              if (el !== img) el.style.zIndex = el.style.zIndex || 2;
-            });
           }
         }
 
@@ -1415,36 +1397,47 @@
         slide.style.display = 'flex';
       });
 
-      printContainer.appendChild(clone);
-      document.body.appendChild(printContainer);
-
-      // 5. Temporarily show a loading state on the button
-      const btn = document.getElementById('downloadBtn');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = 'Generating PDF...';
-
-      // 6. Wait for browser reflow, then capture the pristine clone
-      setTimeout(() => {
-        const opt = {
-          margin: 0,
-          filename: 'Flowst_Pitch_Deck.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 1, useCORS: true, allowTaint: true, width: 1920, windowWidth: 1920, scrollY: 0 },
-          jsPDF: { unit: 'px', format: [1920, 1080], orientation: 'landscape', hotfixes: ["px_scaling"] }
-        };
-
-        html2pdf().set(opt).from(clone).save().then(() => {
-          // 7. Cleanup
-          document.body.removeChild(printContainer);
-          document.body.classList.remove('exporting-pdf');
-          btn.innerHTML = originalText;
-        }).catch(err => {
-          console.error('PDF generation error', err);
-          document.body.removeChild(printContainer);
-          document.body.classList.remove('exporting-pdf');
-          btn.innerHTML = originalText;
+      // 4. Wait for any cloned images to load, then render
+      const exportedImages = clone.querySelectorAll('img');
+      const imageLoadPromises = Array.from(exportedImages).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
         });
-      }, 700);
+      });
+
+      Promise.allSettled(imageLoadPromises).then(() => {
+        setTimeout(() => {
+          const opt = {
+            margin: 0,
+            filename: 'Flowst_Pitch_Deck.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: {
+              scale: 2,
+              useCORS: true,
+              backgroundColor: null,
+              width: 1920,
+              windowWidth: 1920,
+              windowHeight: 1080,
+              scrollX: 0,
+              scrollY: 0,
+            },
+            jsPDF: { unit: 'px', format: [1920, 1080], orientation: 'landscape', hotfixes: ['px_scaling'] }
+          };
+
+          html2pdf().set(opt).from(printContainer).save().then(() => {
+            document.body.removeChild(printContainer);
+            document.body.classList.remove('exporting-pdf');
+            btn.innerHTML = originalText;
+          }).catch(err => {
+            console.error('PDF generation error', err);
+            document.body.removeChild(printContainer);
+            document.body.classList.remove('exporting-pdf');
+            btn.innerHTML = originalText;
+          });
+        }, 120);
+      });
     });
   </script>
 </body>
