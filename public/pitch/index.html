@@ -57,7 +57,14 @@
       backdrop-filter: blur(10px);
     }
 
-    /* Hide controls when printing */
+    /* Hide controls when using browser print/save (Ctrl+P) */
+    @media print {
+      .controls {
+        display: none !important;
+      }
+    }
+
+    /* Hide controls during PDF export mode */
     .exporting-pdf .controls {
       display: none !important;
     }
@@ -160,8 +167,8 @@
     }
 
     .slide.active {
-      outline: 3px solid rgba(64, 166, 255, 0.18);
-      outline-offset: -6px;
+      outline: none;
+      outline-offset: 0;
     }
 
     /* For PDF export, unstack all slides and make them static blocks */
@@ -261,51 +268,71 @@
       height: 100%;
     }
 
-    /* Slide 19: dark overlay and white text for better contrast */
+    /* Slide 19: founder spotlight layout */
     #slide-19 {
       position: relative;
     }
 
     #slide-19::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 1;
-      pointer-events: none;
+      display: none;
     }
 
-    #slide-19 .flex-center {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Brand row for logo + title */
     #slide-19 .brand-row {
       display: flex;
       align-items: center;
       gap: 24px;
-      justify-content: center;
+      justify-content: flex-start;
       margin-bottom: 24px;
     }
 
-    /* Reduce brand mark bottom margin on this slide */
     #slide-19 .brand-mark {
       margin-bottom: 0 !important;
       width: 120px;
       height: 120px;
     }
 
-    #slide-19 .flex-center *,
-    #slide-19 .flex-center {
-      gap: 12px;
-      color: #ffffff !important;
-      -webkit-text-fill-color: #ffffff !important;
+    #slide-19 .founder-list {
+      font-size: 22px;
+      line-height: 1.8;
+      color: #e2e8f0;
+      margin: 0;
+      padding-left: 20px;
     }
 
-    #slide-19 .flex-center h1,
-    #slide-19 .flex-center p {
-      text-shadow: 0 4px 12px rgba(0,0,0,0.45);
+    #slide-19 .founder-list li {
+      margin-bottom: 16px;
+    }
+
+    #slide-19 .founder-card {
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: #ffffff;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+      padding: 0;
+      overflow: hidden;
+      max-width: 640px;
+      width: 100%;
+      justify-self: end;
+      border-radius: 32px;
+    }
+
+    #slide-19 .founder-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #slide-19 .grid-2 {
+      grid-template-columns: minmax(500px, 1.2fr) minmax(420px, 0.8fr);
+      align-items: start;
+    }
+
+    #slide-19 h1,
+    #slide-19 h3,
+    #slide-19 p,
+    #slide-19 li {
+      color: #0f172a !important;
+      -webkit-text-fill-color: #0f172a !important;
     }
 
     /* Components */
@@ -637,33 +664,6 @@
 
 <body>
 
-  <div class="controls" id="controls">
-    <button class="btn" id="prevBtn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6" />
-      </svg>
-      Prev
-    </button>
-    <div class="page-indicator"><span id="pageNum">1</span> / 20</div>
-    <button class="btn" id="nextBtn">
-      Next
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 18l6-6-6-6" />
-      </svg>
-    </button>
-    <button class="btn primary" id="downloadBtn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-      Download PDF
-    </button>
-  </div>
-
   <div id="deck-container">
     <div id="presentation" aria-label="Flowst pitch deck">
 
@@ -682,22 +682,28 @@
         <h1 class="slide-title">Content Walkthrough</h1>
         <div class="grid-2" style="font-size: 28px; line-height: 1.8;">
           <div>
-            <div><strong class="highlight">01</strong> The Shift</div>
-            <div><strong class="highlight">02</strong> Why Flowst Matters</div>
-            <div><strong class="highlight">03</strong> The Real Problem</div>
-            <div><strong class="highlight">04</strong> Our Solution</div>
-            <div><strong class="highlight">05</strong> Why Multi-Agent?</div>
-            <div><strong class="highlight">06</strong> The Product</div>
-            <div><strong class="highlight">07</strong> Meet the Agents</div>
+            <div><strong class="highlight">03</strong> The Shift</div>
+            <div><strong class="highlight">04</strong> Why Flowst Matters</div>
+            <div><strong class="highlight">05</strong> The Real Problem</div>
+            <div><strong class="highlight">06</strong> Our Solution</div>
+            <div><strong class="highlight">07</strong> Why Multi-Agent?</div>
+            <div><strong class="highlight">08</strong> The Product Roadmap</div>
+            <div><strong class="highlight">09</strong> Meet the Agents</div>
+            <div><strong class="highlight">10</strong> Why Now?</div>
+            <div><strong class="highlight">11</strong> Market Opportunity</div>
           </div>
           <div>
-            <div><strong class="highlight">08</strong> Why Now?</div>
-            <div><strong class="highlight">09</strong> Market Opportunity</div>
-            <div><strong class="highlight">10</strong> Go-to-Market</div>
-            <div><strong class="highlight">11</strong> Competitive Edge</div>
-            <div><strong class="highlight">12</strong> Business Model</div>
-            <div><strong class="highlight">13</strong> Roadmap</div>
-            <div><strong class="highlight">14</strong> Founder & The Ask</div>
+           
+            
+            <div><strong class="highlight">12</strong> Unit Economics</div>
+            <div><strong class="highlight">13</strong> Financial Projections</div>
+            <div><strong class="highlight">14</strong> Key Assumptions</div>
+            <div><strong class="highlight">15</strong> Go-to-Market</div>
+            <div><strong class="highlight">16</strong> Competitive Edge</div>
+            <div><strong class="highlight">17</strong> Business Model</div>
+            <div><strong class="highlight">18</strong> 5-Year Roadmap</div>
+            <div><strong class="highlight">19</strong> Founder</div>
+            <div><strong class="highlight">20</strong> The Ask</div>
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
@@ -954,21 +960,8 @@
         <div class="footer-number">09</div>
       </div>
 
-      <!-- SLIDE 10: AGENT INTERACTION -->
+       <!-- SLIDE 110 WHY NOW -->
       <div class="slide" id="slide-10">
-        <span class="slide-tag">Prototype Demonstration</span>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <h1 class="slide-title">How the Agents Interact</h1>
-        </div>
-        <section>
-          <iframe width="1660" height="700" src="https://www.youtube.com/embed/YH18H2XXa6Q?si=T4djhLKfxej74J5F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </section>
-        <div class="footer-logo">Flowst</div>
-        <div class="footer-number">10</div>
-      </div>
-
-      <!-- SLIDE 11: WHY NOW -->
-      <div class="slide" id="slide-11">
         <span class="slide-tag">Why Now</span>
         <h1 class="slide-title">There's never been a better</h1>
         <div class="grid-3" style="margin-bottom: 60px;">
@@ -989,11 +982,11 @@
           economy increasingly rewards expertise, creativity, and adaptability, Nigeria still faces a growing culture of
           discouraging learning. Flowst gives curiosity a modern path to capability.</p>
         <div class="footer-logo">Flowst</div>
-        <div class="footer-number">11</div>
+        <div class="footer-number">10</div>
       </div>
 
       <!-- SLIDE 12: MARKET OPPORTUNITY -->
-      <div class="slide" id="slide-12">
+      <div class="slide" id="slide-11">
         <span class="slide-tag">Local First</span>
         <h1 class="slide-title">Market Opportunity</h1>
         <div class="grid-3">
@@ -1027,11 +1020,110 @@
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
+        <div class="footer-number">11</div>
+      </div>
+
+      <!-- SLIDE 12: UNIT ECONOMICS -->
+      <div class="slide" id="slide-12">
+        <span class="slide-tag">Unit Economics</span>
+        <h1 class="slide-title">Robust Per-User Economics</h1>
+        <div class="grid-2" style="gap: 40px; margin-top: 40px;">
+          <div class="card" style="padding: 40px;">
+      
+            <ul style="font-size: 24px; line-height: 1.8; margin-left: 20px;">
+              <li><strong>ARPU:</strong> $20.00 / month</li>
+              <li><strong>AI API Costs:</strong> $2.50 / month</li>
+              <li><strong>Cloud Hosting & DB:</strong> $0.50 / month</li>
+              <li><strong>Streaming Bandwidth:</strong> $0.50 / month</li>
+              <li><strong>Total COGS:</strong> $3.50 / month</li>
+              <li><strong>Target Margin:</strong> 82.5% Gross Margin per Student</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+            <div style="font-size: 32px; font-weight: 700; color: var(--accent-blue);">$20.00</div>
+            <div style="font-size: 20px; color: #64748b;">Average recurring revenue per user under individual subscription pricing.</div>
+            <div style="font-size: 32px; font-weight: 700; color: #10b981;">82.5%</div>
+            <div style="font-size: 20px; color: #64748b;">Target contribution margin after predictable technical costs.</div>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
         <div class="footer-number">12</div>
       </div>
 
-      <!-- SLIDE 13: GO TO MARKET -->
+      <!-- SLIDE 13: 3-YEAR PROJECTIONS -->
       <div class="slide" id="slide-13">
+        <span class="slide-tag">Scaled Finance</span>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 32px;">
+          <h1 class="slide-title" style="margin-top: 0;">3-Year Financial Projections</h1>
+          <div style="max-width: 720px; text-align: right;">
+            <p style="font-size: 8px; line-height: 1.5; color: #475569; margin: 0;">
+              <em>Baseline projections assume conservative adoption and growth; GTM execution is not included here.</em>
+            </p>
+          </div>
+        </div>
+        <div class="grid-3" style="gap: 24px; margin-top: 10px;">
+          <div class="card" style="padding: 32px;">
+            <h3 style="font-size: 28px; margin-bottom: 24px; color: var(--accent-blue);">Year 1</h3>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>600</strong> Partnered Schools Across 6 States</p>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>30,000</strong> Paying Students</p>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>$7.2M</strong> ARR</p>
+            <p style="font-size: 22px;"><strong>$1.26M</strong> COGS</p>
+          </div>
+          <div class="card" style="padding: 32px;">
+            <h3 style="font-size: 28px; margin-bottom: 24px; color: var(--accent-blue);">Year 2</h3>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>1,200</strong> Partnered Schools more states</p>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>60,000</strong> Paying Students</p>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>$14.4M</strong> ARR</p>
+            <p style="font-size: 22px;"><strong>$2.52M</strong> COGS</p>
+          </div>
+          <div class="card" style="padding: 32px;">
+            <h3 style="font-size: 28px; margin-bottom: 24px; color: var(--accent-blue);">Year 3</h3>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>2,500</strong> Partnered Schools, Institutions, Enterprises</p>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>125,000</strong> Avg Paying per person </p>
+            <p style="font-size: 22px; margin-bottom: 16px;"><strong>$30M</strong> ARR</p>
+            <p style="font-size: 22px;"><strong>$5.25M</strong> COGS</p>
+          </div>
+        </div>
+        <div style="margin-top: 32px; display: flex; gap: 24px; flex-wrap: wrap;">
+          <div class="card" style="padding: 28px; flex: 1; min-width: 320px;">
+            <p style="font-size: 20px; color: #64748b; margin-bottom: 12px;"><strong>Gross Profit Forecast</strong></p>
+            <p style="font-size: 28px; font-weight: 700;">$5.94M → $24.75M</p>
+          </div>
+          <div class="card" style="padding: 28px; flex: 1; min-width: 320px;">
+            <p style="font-size: 20px; color: #64748b; margin-bottom: 12px;"><strong>Margin</strong></p>
+            <p style="font-size: 28px; font-weight: 700;">82.5%</p>
+          </div>
+        </div>
+        
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">13</div>
+      </div>
+
+      <!-- SLIDE 14: GROWTH ASSUMPTIONS -->
+      <div class="slide" id="slide-14">
+        <span class="slide-tag">Assumptions</span>
+        <h1 class="slide-title">Core Growth Assumptions</h1>
+        <div class="grid-2" style="gap: 40px; margin-top: 40px;">
+          <div class="card" style="padding: 40px;">
+            <ul style="font-size: 10px; line-height: 1.8; margin-left: 20px;">
+              <li><strong>The 10% School Conversion Moat:</strong> 50 active paying students per partnered campus out of a 500-student body via Phase 2 competitions.</li>
+              <li><strong>Retention Stability:</strong> 6-month minimum subscription built into competition eligibility rules.</li>
+              <li><strong>Founder-led Sales:</strong> Execution across 6 target states keeps Year 1 acquisition minimal</li>
+              <li><strong>State Representative Network:</strong> Leverage local educators and administrators to drive adoption and provide feedback.</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+            <div style="font-size: 24px; color: var(--accent-blue); font-weight: 700;">Why this works</div>
+            <p style="font-size: 20px; line-height: 1.6; color: #64748b;">Competition-driven engagement creates a durable acquisition loop that converts school excitement into parent-paid student subscriptions while using FOMO as a moat to prepare for future growth.</p>
+            <p style="font-size: 20px; line-height: 1.6; color: #64748b;">A software-first cost base and simple per-user COGS keep margins healthy as scale grows.</p>
+          </div>
+        </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">14</div>
+      </div>
+
+      <!-- SLIDE 15: GO TO MARKET -->
+      <div class="slide" id="slide-15">
         <span class="slide-tag">Go-to-Market</span>
         <h1 class="slide-title">Curiosity to capability through school partnerships.</h1>
         <div class="grid-2">
@@ -1055,17 +1147,17 @@
             </div>
           </div>
           <div class="image-placeholder" style="background: transparent; box-shadow: none;">
-            <img src="../assets/flowst agents.PNG" alt="Completed Session"
+            <img src="../assets/flowst-agents.png" alt="Completed Session"
               style="object-fit: contain; width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"
               onerror="this.style.display='none'">
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
-        <div class="footer-number">13</div>
+        <div class="footer-number">15</div>
       </div>
 
-      <!-- SLIDE 14: COMPETITIVE EDGE -->
-      <div class="slide" id="slide-14">
+      <!-- SLIDE 16: COMPETITIVE EDGE -->
+      <div class="slide" id="slide-16">
         <span class="slide-tag">Competitive Edge</span>
         <h1 class="slide-title">Why We will Win</h1>
 
@@ -1096,11 +1188,11 @@
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
-        <div class="footer-number">14</div>
+        <div class="footer-number">16</div>
       </div>
 
-      <!-- SLIDE 15: BUSINESS MODEL -->
-      <div class="slide" id="slide-15">
+      <!-- SLIDE 17: BUSINESS MODEL -->
+      <div class="slide" id="slide-17">
         <span class="slide-tag">One Model Several Markets</span>
         <h1 class="slide-title">Business Model</h1>
         <div class="grid-4" style="gap: 20px;">
@@ -1144,11 +1236,11 @@
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
-        <div class="footer-number">15</div>
+        <div class="footer-number">17</div>
       </div>
 
-      <!-- SLIDE 16: ROADMAP -->
-      <div class="slide" id="slide-16">
+      <!-- SLIDE 18: ROADMAP -->
+      <div class="slide" id="slide-18">
         <span class="slide-tag">5  Year</span>
         <h1 class="slide-title">Roadmap</h1>
         <div class="flex-center" style="align-items: stretch; margin-top: 60px;">
@@ -1161,8 +1253,8 @@
               <div
                 style="width: 24px; height: 24px; border-radius: 50%; background: rgb(111, 214, 183); margin: 0 auto 20px;">
               </div>
-              <h3 style="font-size: 28px; margin-bottom: 12px;">Phase 1</h3>
-              <p style="font-size: 20px; margin: 0;">Core product experience <br><b>Web</b> Year 1</br></p>
+              <h3 style="font-size: 28px; margin-bottom: 12px;">Phase 1 ✔️</h3>
+              <p style="font-size: 20px; margin: 0;">Core product experience <br><b>PWA</b> Year 1</br></p>
             </div>
 
             <div
@@ -1185,36 +1277,36 @@
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
-        <div class="footer-number">16</div>
+        <div class="footer-number">18</div>
       </div>
 
-      <!-- SLIDE 17: FOUNDER -->
-      <div class="slide" id="slide-17">
+      <!-- SLIDE 19: FOUNDER -->
+      <div class="slide" id="slide-19">
         <span class="slide-tag">The Founder</span>
         <h1 class="slide-title">Esther Bawo Tsotso</h1>
-        <div class="grid-2">
+        <div class="grid-2" style="gap: 60px; align-items: start;">
           <div>
-            <h3 style="font-size: 32px; color: var(--accent-blue); margin-bottom: 24px; font-style: italic;">"I'm not
-              building an AI startup. I'm solving a problem I've lived, witnessed, and experienced."</h3>
-            <ul style="font-size: 24px; line-height: 1.6;">
-              <li><strong>5+ Years</strong> continuous full-time learning</li>
-              <li><strong>Final Year</strong> Software Engineering Student at MIVA</li>
-              <li><strong>AltSchool Best Learner '26</strong> in Frontend Engineering</li>
+            <ul class="founder-list">
+              <li><strong>at 17</strong> I was designing business and brand assets</li>
               <li><strong>Former Teacher</strong> - deeply understands education</li>
-              <li><strong>2+ Years</strong> actively learning and building with AI</li>
+              <li><strong>Post Covid</strong> Tech pivot with background in business & media</li>
+              <li><strong>5+ Years</strong> continuous full-time learning</li>
+              <li><strong>Final Year</strong> Software Engineering Student at MIVA.</li>
+              <li><strong>AltSchool Best Learner '26'</strong> in Frontend Engineering.</li>
+              <li><strong>2+ Years</strong> actively learning and building with AI.</li>
+              <li><strong>Passionate</strong> about increasing the human capacity and potential alongside AI.</li>
             </ul>
           </div>
-          <div class="card flex-center" style="background: transparent; border: none; padding: 0 !important;">
-            <img src="../assets/esther.jpg" alt="Esther Bawo Tsotso"
-              style="width: 100%; max-width: 500px; height: 500px; object-fit: cover; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+          <div class="card founder-card">
+            <img src="../assets/esther.jpg" alt="Esther Bawo Tsotso">
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
-        <div class="footer-number">17</div>
+        <div class="footer-number">19</div>
       </div>
 
-      <!-- SLIDE 18: THE ASK -->
-      <div class="slide" id="slide-18">
+      <!-- SLIDE 20: THE ASK -->
+      <div class="slide" id="slide-20">
         <span class="slide-tag">The Ask</span>
         <div class="flex-center" style="align-items: flex-start; text-align: left;">
           <h1 style="font-size: 80px; margin-bottom: 60px; line-height: 1.2;">Raising <span
@@ -1236,33 +1328,34 @@
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
-        <div class="footer-number">18</div>
+        <div class="footer-number">20</div>
       </div>
 
-      <!-- SLIDE 19: CLOSING -->
-      <div
-        class="slide"
-        id="slide-19"
-        style="background: url('../assets/heroimg.png') center bottom/cover no-repeat, transparent !important; background-color: transparent !important;">
+      <!-- SLIDE 21: CLOSING -->
+      <div class="slide" id="slide-21">
         <div class="flex-center">
           <div class="brand-row">
-            <img class="brand-mark" src="../assets/brand/flowst-mark-white.png" alt="Flowst mark">
-            <h1 style="font-size: 80px; margin: 0; color: whitesmoke;">Flowst</h1>
+            <img class="brand-mark" src="../assets/brand/flowst-mark-black.png" alt="Flowst mark">
+            <h1 style="font-size: 80px; margin: 0; color: #06101c;">Flowst</h1>
           </div>
 
           <p
-            style="font-size: 46px; max-width: 1200px; margin-top: 24px; line-height: 1.6; color: var(--bg-color); letter-spacing: 3px;">
+            style="font-size: 46px; max-width: 1200px; margin-top: 24px; line-height: 1.6; color: rgba(248, 250, 252, 0.95); letter-spacing: 3px;">
             Welcome to the future of immersive digital learning experiences where increase in human capacity and potential is the foundational structure and at the core of our mission
         
           </p>
         </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">21</div>
       </div>
 
-      <!-- SLIDE 20: END -->
-      <div class="slide" id="slide-20">
+      <!-- SLIDE 22: END -->
+      <div class="slide" id="slide-22" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc;">
         <div class="flex-center">
-          <h1 style="font-size: 64px; color: #cbd5e1;">Thank you.</h1>
+          <h1 style="font-size: 64px; color: #f8fafc; text-shadow: 0 8px 20px rgba(0,0,0,0.35);">Thank you.</h1>
         </div>
+        <div class="footer-logo">Flowst</div>
+        <div class="footer-number">22</div>
       </div>
 
     </div>
@@ -1271,7 +1364,11 @@
   <script>
     // Navigation Logic
     let currentSlide = 1;
-    const totalSlides = 20;
+    const totalSlides = document.querySelectorAll('.slide').length;
+    const pageIndicator = document.querySelector('.page-indicator');
+    if (pageIndicator) {
+      pageIndicator.innerHTML = `<span id="pageNum">1</span> / ${totalSlides}`;
+    }
     const isExporting = false;
 
     function updateSlides() {
@@ -1288,19 +1385,6 @@
       document.getElementById('pageNum').innerText = currentSlide;
     }
 
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      if (currentSlide > 1) {
-        currentSlide--;
-        updateSlides();
-      }
-    });
-
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      if (currentSlide < totalSlides) {
-        currentSlide++;
-        updateSlides();
-      }
-    });
 
     document.addEventListener('keydown', (e) => {
       const editingDeck = document.activeElement?.closest?.('#presentation');
@@ -1319,32 +1403,6 @@
       }
     });
 
-    // PDF Export Logic
-    document.getElementById('downloadBtn').addEventListener('click', () => {
-      const btn = document.getElementById('downloadBtn');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = 'Generating PDF...';
-
-      // 1. Enable export mode so the export-specific CSS is available
-      document.body.classList.add('exporting-pdf');
-
-      // 2. Clone the presentation into a separate print container
-      const originalPresentation = document.getElementById('presentation');
-      const clone = originalPresentation.cloneNode(true);
-      clone.removeAttribute('contenteditable');
-      clone.style.position = 'relative';
-      clone.style.width = '1920px';
-      clone.style.height = 'auto';
-      clone.style.transform = 'none';
-      clone.style.boxShadow = 'none';
-      clone.style.overflow = 'visible';
-      clone.style.visibility = 'visible';
-      clone.style.display = 'block';
-
-      const deckClone = document.createElement('div');
-      deckClone.id = 'deck-container';
-      deckClone.style.position = 'relative';
-      deckClone.style.width = '1920px';
       deckClone.style.height = 'auto';
       deckClone.style.overflow = 'visible';
       deckClone.style.visibility = 'visible';
@@ -1356,25 +1414,40 @@
       printContainer.style.top = '0';
       printContainer.style.left = '0';
       printContainer.style.width = '1920px';
-      printContainer.style.height = 'auto';
+      printContainer.style.minHeight = '100vh';
       printContainer.style.overflow = 'visible';
       printContainer.style.visibility = 'visible';
       printContainer.style.display = 'block';
-      printContainer.style.opacity = '0.01';
+      printContainer.style.opacity = '1';
       printContainer.style.pointerEvents = 'none';
       printContainer.style.zIndex = '9999';
+      printContainer.style.background = 'transparent';
+
+      clone.querySelectorAll('iframe').forEach(frame => frame.remove());
+
       printContainer.appendChild(deckClone);
       document.body.appendChild(printContainer);
 
-      // 3. Make all slides visible and sized for export
-      const slides = clone.querySelectorAll('.slide');
-      slides.forEach(slide => {
+      const slideElements = Array.from(clone.querySelectorAll('.slide'));
+      const exportSlides = slideElements.filter(slide => {
+        const hasIframe = slide.querySelector('iframe');
+        if (hasIframe) {
+          slide.remove();
+          return false;
+        }
+        return true;
+      });
+
+      exportSlides.forEach((slide, index) => {
         const computedBg = window.getComputedStyle(slide).getPropertyValue('background-image');
         if (computedBg && computedBg !== 'none' && computedBg.includes('url(')) {
           const urlMatch = computedBg.match(/url\(['"]?([^'"]+)['"]?\)/);
           if (urlMatch && urlMatch[1]) {
             const img = document.createElement('img');
             img.src = urlMatch[1];
+            if (window.location.protocol.startsWith('http')) {
+              img.crossOrigin = 'anonymous';
+            }
             img.style.position = 'absolute';
             img.style.left = '0';
             img.style.top = '0';
@@ -1383,7 +1456,6 @@
             img.style.objectFit = 'cover';
             img.style.zIndex = '0';
             img.style.pointerEvents = 'none';
-            img.crossOrigin = 'anonymous';
             slide.insertBefore(img, slide.firstChild);
           }
         }
@@ -1395,6 +1467,11 @@
         slide.style.visibility = 'visible';
         slide.style.transform = 'none';
         slide.style.display = 'flex';
+
+        const footerNumber = slide.querySelector('.footer-number');
+        if (footerNumber) {
+          footerNumber.innerText = index + 1;
+        }
       });
 
       // 4. Wait for any cloned images to load, then render
@@ -1415,7 +1492,7 @@
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: {
               scale: 2,
-              useCORS: true,
+              useCORS: false,
               backgroundColor: null,
               width: 1920,
               windowWidth: 1920,
