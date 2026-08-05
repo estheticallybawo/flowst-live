@@ -1,9 +1,9 @@
-# Flowst Learning Mode — Miro → Nyx → Amira Product Flow
+# Flowst Learning Mode — Miro → Sofia → Amira Product Flow
 
 **Product:** Flowst AI  
 **Flow Name:** Learn it. See it. Own it.  
-**Agents:** Miro, Nyx, Amira  
-**Purpose:** Define the premium learning flow where Miro organizes the learning journey, Nyx teaches the theory, Amira turns the learner’s mental model into images, and Miro assesses progress.
+**Agents:** Miro, Sofia, Amira  
+**Purpose:** Define the premium learning flow where Miro organizes the learning journey, Sofia teaches the theory, Amira turns the learner’s mental model into images, and Miro assesses progress.
 
 ---
 
@@ -13,7 +13,7 @@ Flowst should not feel like a normal AI tutor that only answers questions.
 
 The core Flowst learning loop is:
 
-> **Learn it with Nyx. See it with Amira. Own it with Miro.**
+> **Learn it with Sofia. See it with Amira. Own it with Miro.**
 
 This gives Flowst a clear educational structure:
 
@@ -29,7 +29,7 @@ This gives Flowst a clear educational structure:
 | Agent | Role | Main Output |
 |---|---|---|
 | Miro | Orchestrator, memory, study guide, assessment | Study path, questions, score, next step |
-| Nyx | Theory and concept clarity | vocalization, clear vocal explanations | communicative and can be used to improve speaking and vocal communication
+| Sofia | Theory and concept clarity | vocalization, clear vocal explanations | communicative and can be used to improve speaking and vocal communication
 | Amira | Visual interpretation and image refinement | Generated image, visual memory anchor, Mental model, concept map |
 
 ---
@@ -45,11 +45,11 @@ User enters goal or uploads document
 ↓
 Miro extracts context and creates study questions
 ↓
-Miro sends user to Nyx
+Miro sends user to Sofia
 ↓
-Nyx teaches theory and helps user create a mental model
+Sofia teaches theory and helps user create a mental model
 ↓
-Miro receives Nyx output
+Miro receives Sofia output
 ↓
 Miro sends the mental model to Amira
 ↓
@@ -80,8 +80,8 @@ Miro can:
 - extract key concepts from documents
 - turn content into study questions
 - decide which agent should teach first
-- send the user to Nyx for theory
-- pass Nyx’s output to Amira
+- send the user to Sofia for theory
+- pass Sofia’s output to Amira
 - assess the final result
 - store weak points and progress
 - generate a reward summary
@@ -90,11 +90,11 @@ Miro is the agent that keeps the full learning journey connected.
 
 ---
 
-## 5. Nyx’s Role
+## 5. Sofia’s Role
 
-Nyx handles the Vocal phase.
+Sofia handles the Vocal phase.
 
-Nyx helps the user:
+Sofia helps the user:
 
 - understand the topic
 - break the concept into parts
@@ -102,9 +102,9 @@ Nyx helps the user:
 - practice explaining the concept in words
 
 
-### Nyx Output
+### Sofia Output
 
-Nyx should produce:
+Sofia should produce:
 
 - concept summary
 - key terms
@@ -124,7 +124,7 @@ helps user create their own mental model
 
 Amira should not be only an image generator. She should be a **visual learning agent** powered by image generation.
 
-Amira takes the learner’s mental model from Nyx and uses it to create visual representations.
+Amira takes the learner’s mental model from Sofia and uses it to create visual representations.
 
 Amira helps the user:
 
@@ -151,7 +151,7 @@ Amira should produce:
 
 ## 7. Miro’s Assessment
 
-After Nyx and Amira, Miro checks:
+After Sofia and Amira, Miro checks:
 
 - theory understanding
 - visual understanding
@@ -181,12 +181,12 @@ After Nyx and Amira, Miro checks:
 > I want to Communicate better.
 
 
-### Nyx free version Plan
+### Sofia free version Plan
 - suggests a few area of interests they are to start with which are most comfortable for them
 - sugests time based session
 - Session starts conversational style 
-- Nyx accesses them with area for improvements, sugguests they return to try session again
-- nyx then suggests Miro for well cordinated plan for a goal based mission with rewards.
+- Sofia accesses them with area for improvements, sugguests they return to try session again
+- Sofia then suggests Miro for well cordinated plan for a goal based mission with rewards.
 
 ## 9. Example Flow: Premium Flow
 
@@ -206,9 +206,9 @@ example
 4. What are HTTP methods?
 5. What is request-response flow?
 
-### Nyx
+### Sofia
 
-Nyx teaches the theory using  mental model and encourages vocalization:
+Sofia teaches the theory using  mental model and encourages vocalization:
 
 > Think of a REST API like a restaurant ordering system. The client makes a request, the server receives it, and a response comes back, now tell me how you would describe it in your terms with things you've encoutered in the real world.
 

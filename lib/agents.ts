@@ -132,9 +132,9 @@ export const AGENTS: readonly AgentProfile[] = [
     ],
     tags: ["Clarity", "Teach", "Explain"],
     assets: {
-      avatar: "/assets/mascots/nyx/avatar.png",
-      portrait: "/assets/mascots/nyx/portrait.png",
-      profileBoard: "/assets/mascots/nyx/profile-board.png",
+      avatar: "/assets/mascots/Sofia/avatar.png",
+      portrait: "/assets/mascots/Sofia/portrait.png",
+      profileBoard: "/assets/mascots/Sofia/profile-board.png",
     },
   },
   {

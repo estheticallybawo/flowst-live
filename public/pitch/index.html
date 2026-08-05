@@ -113,9 +113,10 @@
     /* Deck Container */
     #deck-container {
       position: relative;
-      width: min(100%, 1920px);
+      width: 100%;
       margin: 0 auto;
       overflow: visible;
+      padding-inline: 24px;
       padding-bottom: 80px;
     }
 
@@ -141,6 +142,8 @@
       background: var(--bg-color);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
       overflow: visible;
+      margin: 0 auto;
+      transform-origin: top center;
     }
 
     .exporting-pdf #presentation {
@@ -148,6 +151,7 @@
       height: auto !important;
       box-shadow: none !important;
       transform: none !important;
+      zoom: 1 !important;
       position: static !important;
       overflow: visible !important;
     }
@@ -235,6 +239,7 @@
 
     .gradient-text {
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -268,16 +273,16 @@
       height: 100%;
     }
 
-    /* Slide 19: founder spotlight layout */
-    #slide-19 {
+    /* Slide 20: founding team split layout */
+    #slide-20 {
       position: relative;
     }
 
-    #slide-19::before {
+    #slide-20::before {
       display: none;
     }
 
-    #slide-19 .brand-row {
+    #slide-20 .brand-row {
       display: flex;
       align-items: center;
       gap: 24px;
@@ -285,13 +290,13 @@
       margin-bottom: 24px;
     }
 
-    #slide-19 .brand-mark {
+    #slide-20 .brand-mark {
       margin-bottom: 0 !important;
       width: 120px;
       height: 120px;
     }
 
-    #slide-19 .founder-list {
+    #slide-20 .founder-list {
       font-size: 22px;
       line-height: 1.8;
       color: #e2e8f0;
@@ -299,11 +304,11 @@
       padding-left: 20px;
     }
 
-    #slide-19 .founder-list li {
+    #slide-20 .founder-list li {
       margin-bottom: 16px;
     }
 
-    #slide-19 .founder-card {
+    #slide-20 .founder-card {
       border: 1px solid rgba(15, 23, 42, 0.08);
       background: #ffffff;
       box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
@@ -315,22 +320,22 @@
       border-radius: 32px;
     }
 
-    #slide-19 .founder-card img {
+    #slide-20 .founder-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    #slide-19 .grid-2 {
+    #slide-20 .grid-2 {
       grid-template-columns: minmax(500px, 1.2fr) minmax(420px, 0.8fr);
       align-items: start;
     }
 
-    #slide-19 h1,
-    #slide-19 h3,
-    #slide-19 p,
-    #slide-19 li {
+    #slide-20 h1,
+    #slide-20 h3,
+    #slide-20 p,
+    #slide-20 li {
       color: #0f172a !important;
       -webkit-text-fill-color: #0f172a !important;
     }
@@ -638,14 +643,12 @@
       padding: 34px !important;
     }
 
-    #slide-1 h1,
-    #slide-19 h1 {
+    #slide-1 h1 {
       font-size: 116px !important;
       letter-spacing: -3px !important;
     }
 
-    #slide-1 p,
-    #slide-19 p:last-child {
+    #slide-1 p {
       font-family: var(--font-heading) !important;
       text-transform: uppercase !important;
       letter-spacing: 0.16em !important;
@@ -658,6 +661,34 @@
     #slide-18 h1 {
       font-size: 82px !important;
       line-height: 1.08 !important;
+    }
+
+    #slide-14 li {
+      font-size: 22px !important;
+      line-height: 1.45 !important;
+    }
+
+    #slide-14 p {
+      font-size: 19px !important;
+      line-height: 1.5 !important;
+    }
+
+    #slide-15 .slide-title {
+      font-size: 82px !important;
+      line-height: 1.1 !important;
+
+    }
+
+    #slide-15 h3 {
+      font-size: 22px !important;
+      line-height: 1.3 !important;
+    
+    }
+
+    #slide-15 p {
+      font-size: 18px !important;
+      line-height: 1.35 !important;
+      
     }
   </style>
 </head>
@@ -703,8 +734,9 @@
             <div><strong class="highlight">16</strong> Competitive Edge</div>
             <div><strong class="highlight">17</strong> Business Model</div>
             <div><strong class="highlight">18</strong> 5-Year Roadmap</div>
-            <div><strong class="highlight">19</strong> Founder</div>
-            <div><strong class="highlight">20</strong> The Ask</div>
+            <div><strong class="highlight">19</strong> Traction & Readiness</div>
+            <div><strong class="highlight">20</strong> Founding Team</div>
+            <div><strong class="highlight">21</strong> Milestone Ask</div>
           </div>
         </div>
         <div class="footer-logo">Flowst</div>
@@ -814,7 +846,7 @@
             <div
               style="font-size: 24px; color: #64748b; font-weight: 600; text-transform: uppercase; margin-bottom: 16px;">
               Learning with</div>
-            <h3 style="font-size: 40px; color: var(--text-color);">Immersive Hardware</h3>
+            <h3 style="font-size: 40px; color: var(--text-color);">Hardware Devices</h3>
           </div>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -1007,8 +1039,8 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 32px;">
           <h1 class="slide-title" style="margin-top: 0;">3-Year Financial Projections</h1>
           <div style="max-width: 720px; text-align: right;">
-            <p style="font-size: 8px; line-height: 1.5; color: #475569; margin: 0;">
-              <em>Baseline projections assume conservative adoption and growth; GTM execution is not included here.</em>
+            <p style="font-size: 20px !important; line-height: 1.35 !important; color: #475569; margin: 0;">
+              <em>Baseline projections assume conservative adoption and growth; GTM execution is not included here. Baseline reflects individual subscriptions only; institutional revenue not included.</em>
             </p>
           </div>
         </div>
@@ -1060,6 +1092,9 @@
               <ul style="font-size: 10px; line-height: 1.8; margin-left: 20px;">
                 <li><strong>The 10% School Conversion Moat:</strong> 50 active paying students per partnered campus out
                   of a 500-student body via Phase 2 competitions.</li>
+                <li><strong>Wider Digital Adoption in Nigeria:</strong> Rising trust in online-first education, as seen in
+                  Miva Open University's growth, supports faster onboarding and sustained engagement for digital
+                  learning products.</li>
                 <li><strong>Retention Stability:</strong> 6-month minimum subscription built into competition
                   eligibility rules.</li>
                 <li><strong>Founder-led Sales:</strong> Execution across 6 target states keeps Year 1 acquisition
@@ -1084,27 +1119,25 @@
 
         <!-- SLIDE 15: GO TO MARKET -->
         <div class="slide" id="slide-15">
-          <span class="slide-tag">Go-to-Market</span>
-          <h1 class="slide-title">Curiosity to capability through school partnerships.</h1>
+          <span class="slide-tag">Phygital Go-to-Market Approach</span>
+          <h1 class="slide-title">Validate small, build proof, then scale distribution.</h1>
           <div class="grid-2">
             <div>
-              <div style="margin-bottom: 32px;">
-                <h3 style="font-size: 24px; color: var(--accent-blue);">Phase 1 & 2: Launch & School Pilots</h3>
-                <p style="font-size: 20px; margin-top: 8px;">Launch a social campaign and pilot with secondary schools
-                  around one mission: build or create something useful from curiosity, document the process, and present
-                  how it works.</p>
+              <div style="margin-bottom: 26px;">
+                <h3 style="font-size: 21px; color: var(--accent-blue);">Phase 1 - Classroom Pedagogy Pilot (Targeting September, pending school outreach)</h3>
+                <p style="font-size: 18px; margin-top: 8px;">Partner with a single classroom and teacher to test how Flowst's agents support real learning over a 30-60 day period, using whatever screen infrastructure the school already has. The goal is not scale; it is validating that the pedagogy actually works before building anything bigger on top of it.</p>
               </div>
-              <div style="margin-bottom: 32px;">
-                <h3 style="font-size: 24px; color: var(--accent-blue);">Phase 3: Co-Build & Iterate</h3>
-                <p style="font-size: 20px; margin-top: 8px;">Stress test, co-build, and iterate with feedback while
-                  training students on the learning and build process with AI through YouTube, TikTok, and Reels
-                  content.
-                </p>
+              <div style="margin-bottom: 26px;">
+                <h3 style="font-size: 21px; color: var(--accent-blue);">Phase 2 - B2C Curiosity Campaign</h3>
+                <p style="font-size: 18px; margin-top: 8px;">Using data and insight from Phase 1, launch a broader consumer-facing social campaign and student competition: build or create something from curiosity, document the process, and present how it works. This drives awareness, community, and a wave of students who want Flowst in their school.</p>
+              </div>
+              <div style="margin-bottom: 26px;">
+                <h3 style="font-size: 21px; color: var(--accent-blue);">Phase 3 - B2B Classroom Integration</h3>
+                <p style="font-size: 18px; margin-top: 8px;">With validated pedagogy and organic student demand as leverage, pitch schools on Flowst as a teacher's classroom assistant, at $799/month, including hardware support where needed, subject to funding secured for hardware deployment.</p>
               </div>
               <div>
-                <h3 style="font-size: 24px; color: var(--accent-blue);">Phase 4 & 5: Recognition & Expansion</h3>
-                <p style="font-size: 20px; margin-top: 8px;">Announce winners, give recognition, and expand into more
-                  schools.</p>
+                <h3 style="font-size: 21px; color: var(--accent-blue);">Phase 4 & 5 - Recognition & Expansion</h3>
+                <p style="font-size: 18px; margin-top: 8px;">Announce competition winners, formalize additional school partnerships, and expand into more classrooms and states.</p>
               </div>
             </div>
             <div class="image-placeholder" style="background: transparent; box-shadow: none;">
@@ -1235,7 +1268,7 @@
                 <div style="width: 24px; height: 24px; border-radius: 50%; background: #0c0f13; margin: 0 auto 20px;">
                 </div>
                 <h3 style="font-size: 28px; margin-bottom: 12px;">Phase 3</h3>
-                <p style="font-size: 20px; margin: 0;">Core product experience <br><b>Immersive Hardware</b> Year 5</br>
+                <p style="font-size: 20px; margin: 0;">Core product experience <br><b>Hardware Devices</b> Year 5</br>
                 </p>
               </div>
             </div>
@@ -1244,59 +1277,78 @@
           <div class="footer-number">19</div>
         </div>
 
-        <!-- SLIDE 19: FOUNDER -->
+        <!-- SLIDE 19: TRACTION -->
         <div class="slide" id="slide-19">
-          <span class="slide-tag">The Founder</span>
-          <h1 class="slide-title">Esther Bawo Tsotso</h1>
-          <div class="grid-2" style="gap: 60px; align-items: start;">
-            <div>
-              <ul class="founder-list">
-                <li><strong>at 17</strong> I was designing business and brand assets</li>
-                <li><strong>Former Teacher</strong> - deeply understands education</li>
-                <li><strong>Post Covid</strong> Tech pivot with background in business & media</li>
-                <li><strong>5+ Years</strong> continuous full-time learning</li>
-                <li><strong>Final Year</strong> Software Engineering Student at MIVA.</li>
-                <li><strong>AltSchool Best Learner '26'</strong> in Frontend Engineering.</li>
-                <li><strong>2+ Years</strong> actively learning and building with AI.</li>
-                <li><strong>Passionate</strong> about increasing the human capacity and potential alongside AI.</li>
+          <span class="slide-tag">Current Traction</span>
+          <h1 class="slide-title">Current Traction & Operational Readiness</h1>
+          <div class="grid-3" style="gap: 28px; margin-top: 32px;">
+            <div class="card" style="padding: 36px;">
+              <h3 style="font-size: 30px; margin-bottom: 18px; color: var(--accent-blue);">Functional Prototype</h3>
+              <p style="font-size: 24px; margin: 0;">100% of core multi-agent logic built, compiled, and integrated with the Gemini multi-modal API framework.</p>
+            </div>
+            <div class="card" style="padding: 36px;">
+              <h3 style="font-size: 30px; margin-bottom: 18px; color: var(--accent-blue);">Secured Distribution Pipeline</h3>
+              <p style="font-size: 24px; margin: 0;">Exclusive agreement locked for a 30-day closed-loop classroom Alpha Pilot launching immediately upon the school resumption cycle.</p>
+            </div>
+            <div class="card" style="padding: 36px;">
+              <h3 style="font-size: 30px; margin-bottom: 18px; color: var(--accent-blue);">Zero-Cost Marketing Engine</h3>
+              <p style="font-size: 24px; margin: 0;">Built around school-sanctioned student challenge dynamics to eliminate customer acquisition costs.</p>
+            </div>
+          </div>
+          <div class="footer-logo">Flowst</div>
+          <div class="footer-number">20</div>
+        </div>
+
+        <!-- SLIDE 20: THE BALANCED FOUNDING TEAM -->
+        <div class="slide" id="slide-20">
+          <span class="slide-tag">The Balanced Founding Team</span>
+          <h1 class="slide-title">Engineering Capability + Pedagogical Authority</h1>
+          <div class="grid-2" style="gap: 40px; margin-top: 12px; align-items: stretch;">
+            <div class="card" style="padding: 40px;">
+              <h3 style="font-size: 30px; margin-bottom: 16px; color: var(--accent-blue);">Esther Bawo Tsotso</h3>
+              <p style="font-size: 22px; margin-bottom: 20px;"><strong>Founder & CTO</strong></p>
+              <ul class="founder-list" style="padding-left: 22px; margin: 0;">
+                <li>Software Engineering, MIVA.</li>
+                <li>AltSchool Best Learner '26'.</li>
+                <li>Former Teacher.</li>
+                <li>Leads technical and multi-agent orchestration, token routing, and local deployment telemetry.</li>
               </ul>
             </div>
-            <div class="card founder-card">
-              <img src="../assets/esther.jpg" alt="Esther Bawo Tsotso">
+            <div class="card" style="padding: 40px;">
+              <h3 style="font-size: 30px; margin-bottom: 16px; color: var(--accent-blue);">Daniella Iheanetu-Oguejiofor</h3>
+              <p style="font-size: 22px; margin-bottom: 20px;"><strong>Co-Founder & Chief Education Officer</strong></p>
+              <ul class="founder-list" style="padding-left: 22px; margin: 0;">
+                <li>UK-Born Educator & Curriculum Specialist.</li>
+                <li>Leads global pedagogical standards.</li>
+                <li>Owns neurodivergent compliance model metrics.</li>
+              </ul>
             </div>
           </div>
           <div class="footer-logo">Flowst</div>
-          <div class="footer-number">20</div>
+          <div class="footer-number">21</div>
         </div>
 
-        <!-- SLIDE 20: THE ASK -->
-        <div class="slide" id="slide-20">
-          <span class="slide-tag">The Ask</span>
-          <div class="flex-center" style="align-items: flex-start; text-align: left;">
-            <h1 style="font-size: 80px; margin-bottom: 60px; line-height: 1.2;">Raising <span
-                class="gradient-text">pre-seed</span> for growth, pilots, and product development.</h1>
-
-            <div class="grid-3" style="width: 100%;">
-              <div class="card">
-                <h3 style="font-size: 28px; margin-bottom: 16px; color: var(--accent-blue);">Growth & Pilot</h3>
-                <p style="font-size: 20px;">Fund the first school pilot program and growth campaign.</p>
-              </div>
-              <div class="card">
-                <h3 style="font-size: 28px; margin-bottom: 16px; color: var(--accent-blue);">Engineering</h3>
-                <p style="font-size: 20px;">Build AI infrastructure and core product development.</p>
-              </div>
-              <div class="card">
-                <h3 style="font-size: 28px; margin-bottom: 16px; color: var(--accent-blue);">Research</h3>
-                <p style="font-size: 20px;">Develop learning science partnerships to validate the method.</p>
-              </div>
-            </div>
-          </div>
-          <div class="footer-logo">Flowst</div>
-          <div class="footer-number">20</div>
-        </div>
-
-        <!-- SLIDE 21: CLOSING -->
+        <!-- SLIDE 21: MILESTONE-TRENCHED ASK -->
         <div class="slide" id="slide-21">
+          <span class="slide-tag">The Milestone-Trenched Ask</span>
+          <h1 class="slide-title">$150,000 Milestone-Trenched Round</h1>
+          <p style="font-size: 30px; max-width: 1500px; margin-bottom: 40px;"><strong>The Ask:</strong> Seeking a $150,000 Milestone-Trenched Round at a market-standard $4.6M Pre-Money valuation baseline.</p>
+          <div class="grid-2" style="gap: 32px;">
+            <div class="card" style="padding: 38px;">
+              <h3 style="font-size: 30px; margin-bottom: 16px; color: var(--accent-blue);">Tranche 1: Phase 1 ($15,000)</h3>
+              <p style="font-size: 23px; margin: 0;">Dedicated strictly to running the 30-day classroom Alpha Pilot, optimizing cloud token overhead, and delivering a verified Telemetry Report on student retention.</p>
+            </div>
+            <div class="card" style="padding: 38px;">
+              <h3 style="font-size: 30px; margin-bottom: 16px; color: var(--accent-blue);">Tranche 2: Phase 2 ($135,000)</h3>
+              <p style="font-size: 23px; margin: 0;">Automatically unlocked against Phase 1 telemetry validation metrics to scale engineering and expand to 600 partnered schools across 6 states.</p>
+            </div>
+          </div>
+          <div class="footer-logo">Flowst</div>
+          <div class="footer-number">22</div>
+        </div>
+
+        <!-- SLIDE 22: CLOSING -->
+        <div class="slide" id="slide-22">
           <div class="flex-center">
             <div class="brand-row">
               <img class="brand-mark" src="../assets/brand/flowst-mark-black.png" alt="Flowst mark">
@@ -1311,17 +1363,17 @@
             </p>
           </div>
           <div class="footer-logo">Flowst</div>
-          <div class="footer-number">21</div>
+          <div class="footer-number">23</div>
         </div>
 
-        <!-- SLIDE 22: END -->
-        <div class="slide" id="slide-22"
+        <!-- SLIDE 23: END -->
+        <div class="slide" id="slide-23"
           style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc;">
           <div class="flex-center">
             <h1 style="font-size: 64px; color: #f8fafc; text-shadow: 0 8px 20px rgba(0,0,0,0.35);">Thank you.</h1>
           </div>
           <div class="footer-logo">Flowst</div>
-          <div class="footer-number">22</div>
+          <div class="footer-number">24</div>
         </div>
 
       </div>
@@ -1337,6 +1389,39 @@
       }
       const isExporting = false;
 
+      function fitDeckToViewport() {
+        const container = document.getElementById('deck-container');
+        const presentation = document.getElementById('presentation');
+        if (!container || !presentation) return;
+
+        if (document.body.classList.contains('exporting-pdf')) {
+          presentation.style.zoom = '1';
+          presentation.style.transform = 'none';
+          container.style.minHeight = 'auto';
+          return;
+        }
+
+        const horizontalPadding = 64;
+        const viewportWidth = Math.max(window.innerWidth - horizontalPadding, 360);
+        const baseWidth = 1920;
+        const scale = Math.min(viewportWidth / baseWidth, 1);
+
+        if (window.CSS && CSS.supports && CSS.supports('zoom', '1')) {
+          presentation.style.zoom = String(scale);
+          presentation.style.transform = 'none';
+          container.style.minHeight = 'auto';
+        } else {
+          presentation.style.zoom = '1';
+          presentation.style.transform = `scale(${scale})`;
+
+          const slidesCount = document.querySelectorAll('.slide').length || 1;
+          const baseHeight = 1080;
+          const slideGap = 48;
+          const scaledDeckHeight = (baseHeight * slidesCount + slideGap * (slidesCount - 1)) * scale;
+          container.style.minHeight = `${Math.ceil(scaledDeckHeight) + 120}px`;
+        }
+      }
+
       function updateSlides() {
         const slides = document.querySelectorAll('.slide');
         slides.forEach((slide, index) => {
@@ -1348,6 +1433,9 @@
           targetSlide.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }
+
+      fitDeckToViewport();
+      window.addEventListener('resize', fitDeckToViewport);
 
 
       document.addEventListener('keydown', (e) => {

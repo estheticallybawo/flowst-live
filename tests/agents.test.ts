@@ -35,7 +35,7 @@ test("the active agents match the demo Flowstate contract", () => {
   assert.match(sofia?.summary ?? "", /teaches/i);
   assert.match(amira?.summary ?? "", /spoken explanation|microphone/i);
   assert.match(kai?.summary ?? "", /checks.*understanding/i);
-  assert.doesNotMatch(JSON.stringify(AGENTS), /"nyx"/i);
+  assert.doesNotMatch(JSON.stringify(AGENTS), /"Sofia"/i);
   assert.doesNotMatch(JSON.stringify(amira), /image generator|visual learning|visual memory/i);
   assert.doesNotMatch(JSON.stringify(amira), /German/i);
 });
@@ -64,7 +64,7 @@ test("every agent exposes complete structured profile content", () => {
 test("agent lookup and static params stay aligned with the catalog", () => {
   assert.equal(isAgentId("sofia"), true);
   assert.equal(isAgentId("sophia"), false);
-  assert.equal(isAgentId("nyx"), false);
+  assert.equal(isAgentId("Sofia"), false);
   assert.equal(isAgentId("quen"), false);
   assert.equal(getAgentById("miro")?.name, "Miro");
   assert.equal(getAgentById("kai")?.name, "Kai");
